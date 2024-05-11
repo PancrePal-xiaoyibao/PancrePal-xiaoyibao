@@ -65,7 +65,7 @@ services:
         # 等待docker-entrypoint.sh脚本执行的MongoDB服务进程
         wait $$!
   fastgpt:
-    container_name: fastgpt
+    container_name: fastgpt-PancrePal
     image: registry.cn-hangzhou.aliyuncs.com/fastgpt/fastgpt:v4.7 # git
     # image: registry.cn-hangzhou.aliyuncs.com/fastgpt/fastgpt:v4.7 # 阿里云
     ports:
@@ -78,7 +78,7 @@ services:
     restart: always
     environment:
       # root 密码，用户名为: root。如果需要修改 root 密码，直接修改这个环境变量，并重启即可。
-      - DEFAULT_ROOT_PSW=1234
+      - DEFAULT_ROOT_PSW=PancrePal
       # AI模型的API地址哦。务必加 /v1。这里默认填写了OneApi的访问地址。
       - OPENAI_BASE_URL=http://oneapi:3000/v1
       # AI模型的API Key。（这里默认填写了OneAPI的快速默认key，测试通后，务必及时修改）
@@ -127,7 +127,7 @@ services:
       # mysql 连接参数
       - SQL_DSN=root:oneapimmysql@tcp(mysql:3306)/oneapi
       # 登录凭证加密密钥
-      - SESSION_SECRET=oneapikey
+      - SESSION_SECRET=PancrePal
       # 内存缓存
       - MEMORY_CACHE_ENABLED=true
       # 启动聚合更新，减少数据交互频率
@@ -135,8 +135,32 @@ services:
       # 聚合更新时长
       - BATCH_UPDATE_INTERVAL=10
       # 初始化的 root 密钥（建议部署完后更改，否则容易泄露）
-      - INITIAL_ROOT_TOKEN=fastgpt
+      - INITIAL_ROOT_TOKEN=PancrePal
     volumes:
       - ./oneapi:/data
+  chatgpt-on-wechat:
+    image: zhayujie/chatgpt-on-wechat
+    container_name: chatgpt-on-wechat
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      OPEN_AI_API_KEY: 'fastgpt-l23wPf3g3ITzaGwYRBXeiftffbVwjqE9',
+      OPENAI_AI_API_BASE: 'https://chat.pancreatic-bot.tech/api/v1',
+      CHANNEL_TYPE: 'wx',
+      MODEL: 'yi-34b-chat-200k' 
+      PROXY: ''
+      SINGLE_CHAT_PREFIX: '[""]'  
+      SINGLE_CHAT_REPLY_PREFIX: '"[小胰宝] "'
+      GROUP_CHAT_PREFIX: '["@xyb"]'
+      GROUP_NAME_WHITE_LIST: '["胰腺病友群名1", "胰腺病友群名2"]' #把微信群加进去
+      #IMAGE_CREATE_PREFIX: '[""]
+      CONVERSATION_MAX_TOKENS: 3000
+      SPEECH_RECOGNITION: 'False'
+      CHARACTER_DESC: '你是小胰宝, 一个服务胰腺肿瘤患者的AI助手, 你旨在依据规范治疗，解释有关胰腺肿瘤治疗中有关诊疗指南规范，疾病分级，基因靶向术语，化疗药物，营养支持，相关并发症，以及治疗护理的问题，可使用提问者的语言交流。'
+      EXPIRES_IN_SECONDS: 4800
+      USE_GLOBAL_PLUGIN_CONFIG: 'True'
+      USE_LINKAI: 'False'
+  
+    
 networks:
   fastgpt:
