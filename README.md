@@ -33,11 +33,11 @@ https://aibot.samqin.asia
 
 小胰宝使用如下开源项目，也感谢这些项目大佬的付出，他们为患者创造了科技温情的价值。
 
-1. Fastgpt: 
-2. Chatgpt-on-wechat：
-3. Dify：
-4. LLM：零一万物 提供了LLM能力的接口及Token消耗赞助，让数千患者享受到了科技福利
-5. 也感谢其它为小胰宝上线提供支持的开源社区人士 @v佬 @Richard 
+1. [Fastgpt](https://github.com/labring/FastGPT): 为小胰宝1.0提供了核心RAG平台技术栈，，对万人级别患者提供了稳定和高效能服务，以及便捷高效的知识库搭建；
+2. [Chatgpt-on-wechat](https://github.com/zhayujie/chatgpt-on-wechat/tree/master): 作为微信机器人技术栈，提供了患者更便捷的使用和体验；
+3. [Dify](https://github.com/langgenius/dify): 为小胰宝2.0提供了RAG的扩展空间，包括LLMs的一站式接入，KB的体系扩展，以及最为重要的和全球化RAG能力对齐.
+4. [0-1 AI, one of LLM Large Language Model Leaders](https://01.ai)：零一万物团队，不仅全力支持本公益项目，而且慷慨提供了0-1API接口及Token消耗赞助，让数千患者享受到了科技福利。
+5. 同时，也感谢其它为小胰宝上线提供支持的开源社区人士 @v佬 -中国红客联盟 @Richard-开源社创始人，为小胰宝的技术和发展提供关键支持和引导
 
 
 ---
