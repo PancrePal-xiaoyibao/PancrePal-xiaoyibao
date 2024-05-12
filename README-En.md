@@ -1,6 +1,5 @@
 ## PancrePal - An Intelligent RAG Platform for Pancreatic Cancer Patients
 
-Here is a translation of the project introduction for "PancrePal":
 
 **Project Introduction:**
 PancrePal is a RAG application developed and launched by a fellow patient, SamQin (myself as an pancretic cancer patient & AI developer), with the main purpose of assisting 200K+ newly diagnosed patients and survivors each year to overcome the professional medical and treatment information gap between patients and doctors. With PancrePal, patients can receive 7x24 hour assistance to efficiently and accurately understand their medical conditions, treatment terminology, standardized treatment guidelines, and the complex information of comprehensive treatments. This helps them overcome panic emotions, choose scientific and effective treatment routes, and ultimately gain longer treatment benefits, that is, the window of life.
