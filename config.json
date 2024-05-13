@@ -33,12 +33,12 @@
             "defaultConfig": {}
         },
         {
-            "model": "yi-34b-chat-200k",
-            "name": "yi-200k",
+            "model": "yi-medium",
+            "name": "零一对话模型",
             "avatar": "/imgs/model/yi.svg",
-            "maxContext": 168000,
-            "maxResponse": 4000,
-            "quoteMaxToken": 180000,
+            "maxContext": 14000,
+            "maxResponse": 8000,
+            "quoteMaxToken": 14000,
             "maxTemperature": 1.2,
             "charsPointsPrice": 0,
             "censor": false,
@@ -56,12 +56,12 @@
             "defaultConfig": {}
         },
         {
-            "model": "yi-vl-plus",
-            "name": "yi-vl-plus",
+            "model": "yi-vision",
+            "name": "零一视觉模型",
             "avatar": "/imgs/model/yi.svg",
-            "maxContext": 128000,
+            "maxContext": 8000,
             "maxResponse": 4000,
-            "quoteMaxToken": 100000,
+            "quoteMaxToken": 12000,
             "maxTemperature": 1.2,
             "charsPointsPrice": 0,
             "censor": false,
@@ -83,6 +83,8 @@
         {
             "model": "text-embedding-ada-002",
             "name": "Embedding-2",
+            "baseUrl": "配置openai的代理地址",
+            "key": "配置openapi的代理key",
             "avatar": "/imgs/model/openai.svg",
             "charsPointsPrice": 0,
             "defaultToken": 512,
