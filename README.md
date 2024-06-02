@@ -111,6 +111,33 @@ V1.0
 4. 诊疗协同
 5. 公益组织协同
 
+
+---部署方式
+配置环境建议：推荐服务器部署，配置建议2c2g3M40G起步（阿里云99元），建议4c8g-50G-5M。fastgpt和dify都需要稳定资源，否则增加运维压力。
+
+部署方式：
+1. [推荐]docker-compose安装
+   * 本项目的docker-compose文件已整合优化，可以参考使用
+   * 本项目文件中的config.json文件已整合优化，可参考修改
+   * 模型部分以零一为例，可以随需修改，推荐Moonshot/Glm-4，不推荐openai，主要还是embedding和对话账号，openai国内使用不合法也不稳定。
+   * embedding推荐qwen的text-embedding-v2或者智谱的embedding模型
+
+具体操作
+
+
+mkdir -p fastgpt-xyb && cd fastgpt-xyb
+curl -o docker-compose.yml
+curl -o config.json 
+docker-compose up -d
+
+2. 
+
+3. NPM安装
+   
+5. 辅助安装
+
+
+
 ### 【联络方式】
 作者联系邮箱  qinxiaoqiang2002@hotmail.com,  微信 qinxiaoqiang 
 小胰宝公益组织联系方式【待更新】
