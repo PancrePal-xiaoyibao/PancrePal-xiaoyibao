@@ -27,9 +27,10 @@ https://aibot.samqin.asia
 
 ----
 
-### 【小胰宝使用的产品框架介绍】
+### 【小胰宝1.0产品框架介绍】
 
-待更新
+<img width="1481" alt="image" src="https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/assets/103937568/edcb6e3a-cccd-48c1-952a-b40274b9d9a1">
+
 
 ----
 ### 【小胰宝项目1.0版本使用开源组件】
