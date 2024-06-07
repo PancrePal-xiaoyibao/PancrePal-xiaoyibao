@@ -79,9 +79,10 @@
             "defaultConfig": {}
         }
     ],
+      # 建议优先使用国内embedding模型，出了qwen，zhipu/minimax都可以
     "vectorModels": [
         {
-            "model": "text-embedding-ada-002",
+            "model": "text-embedding-ada-002", 
             "name": "Embedding-2",
             "baseUrl": "配置openai的代理地址",
             "key": "配置openapi的代理key",
@@ -89,6 +90,36 @@
             "charsPointsPrice": 0,
             "defaultToken": 512,
             "maxToken": 3000,
+            "weight": 100,
+            "dbConfig": {},
+            "queryConfig": {}
+        }，
+        {
+            "model": "embedding-2",
+            "name": "zhipu-embedding2",
+            "charsPointsPrice": 0,
+            "defaultToken": 512,
+            "maxToken": 3000,
+            "weight": 100,
+            "dbConfig": {},
+            "queryConfig": {}
+        },
+        {
+            "model": "embo-01",
+            "name": "Embedding-Minimax",
+            "charsPointsPrice": 0,
+            "defaultToken": 1024,
+            "maxToken": 4096,
+            "weight": 100,
+            "dbConfig": {},
+            "queryConfig": {}
+        },
+        {
+            "model": "text-embedding-async-v2",
+            "name": "Embedding-v2-async-qwen",
+            "charsPointsPrice": 0,
+            "defaultToken": 900,
+            "maxToken": 2048,
             "weight": 100,
             "dbConfig": {},
             "queryConfig": {}
