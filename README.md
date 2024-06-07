@@ -124,25 +124,10 @@ V1.0
 
 ### [推荐]docker-compose安装
 
-* 本项目的docker-compose文件已整合优化，可以参考使用
-* 本项目文件中的config.json文件已整合优化，可参考修改
+* 本项目的部署配置文件可以参考docker目录使用
 * 模型部分以零一为例，可以随需修改，推荐Moonshot/Glm-4，不推荐openai，主要还是embedding和对话账号，openai国内使用不合法也不稳定。
-* embedding推荐qwen的text-embedding-v2或者智谱的embedding模型
+* embedding推荐国产大模型，比如qwen的text-embedding-v2或者智谱的embedding模型
 
-#### 具体操作
-
-```shell
-mkdir -p fastgpt-xyb && cd fastgpt-xyb
-curl -o docker-compose.yml
-curl -o config.json 
-docker-compose up -d
-```
-
-2. 
-
-3. NPM安装
-   
-4. 辅助安装
 
 
 ### 【小胰宝开源项目贡献者】
