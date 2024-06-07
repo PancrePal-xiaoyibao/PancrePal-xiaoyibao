@@ -95,7 +95,7 @@
         }
     ],
     "reRankModels": [],
-    #如果需要语言功能则配置如下
+    #如果需要语音功能则配置如下
     "audioSpeechModels": [
         {
             "model": "tts-1",
