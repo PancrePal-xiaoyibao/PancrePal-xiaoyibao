@@ -1,0 +1,145 @@
+{
+    "feConfigs": {
+        "lafEnv": "https://laf.dev"
+    },
+    "systemEnv": {
+        "openapiPrefix": "fastgpt",
+        "vectorMaxProcess": 15,
+        "qaMaxProcess": 15,
+        "pgHNSWEfSearch": 100
+    },
+    "llmModels": [
+        {
+            "model": "gpt-3.5-turbo",
+            "name": "gpt-3.5-turbo",
+            "maxContext": 16000,
+            "avatar": "/imgs/model/openai.svg",
+            "maxResponse": 4000,
+            "quoteMaxToken": 13000,
+            "maxTemperature": 1.2,
+            "charsPointsPrice": 0,
+            "censor": false,
+            "vision": false,
+            "datasetProcess": true,
+            "usedInClassify": true,
+            "usedInExtractFields": true,
+            "usedInToolCall": true,
+            "usedInQueryExtension": true,
+            "toolChoice": true,
+            "functionCall": true,
+            "customCQPrompt": "",
+            "customExtractPrompt": "",
+            "defaultSystemChatPrompt": "",
+            "defaultConfig": {}
+        },
+        {
+            "model": "yi-medium",
+            "name": "零一对话模型",
+            "avatar": "/imgs/model/yi.svg",
+            "maxContext": 14000,
+            "maxResponse": 8000,
+            "quoteMaxToken": 14000,
+            "maxTemperature": 1.2,
+            "charsPointsPrice": 0,
+            "censor": false,
+            "vision": false,
+            "datasetProcess": false,
+            "usedInClassify": false,
+            "usedInExtractFields": false,
+            "usedInToolCall": false,
+            "usedInQueryExtension": false,
+            "toolChoice": true,
+            "functionCall": false,
+            "customCQPrompt": "",
+            "customExtractPrompt": "",
+            "defaultSystemChatPrompt": "",
+            "defaultConfig": {}
+        },
+        {
+            "model": "yi-vision",
+            "name": "零一视觉模型",
+            "avatar": "/imgs/model/yi.svg",
+            "maxContext": 8000,
+            "maxResponse": 4000,
+            "quoteMaxToken": 12000,
+            "maxTemperature": 1.2,
+            "charsPointsPrice": 0,
+            "censor": false,
+            "vision": true,
+            "datasetProcess": false,
+            "usedInClassify": false,
+            "usedInExtractFields": false,
+            "usedInToolCall": false,
+            "usedInQueryExtension": false,
+            "toolChoice": true,
+            "functionCall": false,
+            "customCQPrompt": "",
+            "customExtractPrompt": "",
+            "defaultSystemChatPrompt": "",
+            "defaultConfig": {}
+        }
+    ],
+    "vectorModels": [
+        {
+            "model": "text-embedding-ada-002",
+            "name": "Embedding-2",
+            "baseUrl": "配置openai的代理地址",
+            "key": "配置openapi的代理key",
+            "avatar": "/imgs/model/openai.svg",
+            "charsPointsPrice": 0,
+            "defaultToken": 512,
+            "maxToken": 3000,
+            "weight": 100,
+            "dbConfig": {},
+            "queryConfig": {}
+        }
+    ],
+    "reRankModels": [],
+    #如果需要语言功能则配置如下
+    "audioSpeechModels": [
+        {
+            "model": "tts-1",
+            "name": "OpenAI TTS1",
+            "baseUrl": "配置openai的代理地址",
+            "key": "配置openapi的代理key",
+            "charsPointsPrice": 0,
+            "voices": [
+                {
+                    "label": "Alloy",
+                    "value": "alloy",
+                    "bufferId": "openai-Alloy"
+                },
+                {
+                    "label": "Echo",
+                    "value": "echo",
+                    "bufferId": "openai-Echo"
+                },
+                {
+                    "label": "Fable",
+                    "value": "fable",
+                    "bufferId": "openai-Fable"
+                },
+                {
+                    "label": "Onyx",
+                    "value": "onyx",
+                    "bufferId": "openai-Onyx"
+                },
+                {
+                    "label": "Nova",
+                    "value": "nova",
+                    "bufferId": "openai-Nova"
+                },
+                {
+                    "label": "Shimmer",
+                    "value": "shimmer",
+                    "bufferId": "openai-Shimmer"
+                }
+            ]
+        }
+    ],
+    "whisperModel": {
+        "model": "whisper-1",
+        "name": "Whisper1",
+        "charsPointsPrice": 0
+    }
+}
