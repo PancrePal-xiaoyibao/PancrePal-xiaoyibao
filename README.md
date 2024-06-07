@@ -144,6 +144,13 @@ docker-compose up -d
 4. 辅助安装
 
 
+### 【小胰宝开源项目贡献者】
+
+<a href="https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=PancrePal-xiaoyibao/PancrePal-xiaoyibao" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
 
 ### 【联络方式】
 作者联系邮箱  qinxiaoqiang2002@hotmail.com,  微信 qinxiaoqiang 
