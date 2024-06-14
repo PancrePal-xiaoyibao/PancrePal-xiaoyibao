@@ -7,8 +7,7 @@
 小胰宝已经上线7个月，帮助了2000+患者稳定提供，并聚集了支持AI科技应用的专业医生，患者群，以及开源技术社区和社会公益人士。小胰宝的上线，为全癌种肿瘤患者AI智能服务，开辟和验证了新模式，期待开源社区能够推动为数千万新患者，提供更多类似应用，服务包括肺癌/乳腺癌/甲状腺/肝癌/肠癌等癌肿的患者，获得信息便利。
 
 ### 体验地址
-小胰宝 - 胰腺ca患者助手：    https://aibot.samqin.asia
-星妈爱聊 - ca心理安抚助手：  https://xingma.samqin.asia 
+小胰宝 - 胰腺ca患者助手：https://aibot.samqin.asia<br>  星妈爱聊 - ca心理安抚助手：https://xingma.samqin.asia  
 
 <img src="https://www.freeimg.cn/i/2024/05/08/663ae77288263.png" alt="图片描述文字" />
 
