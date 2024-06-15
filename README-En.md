@@ -102,5 +102,5 @@ Public Welfare Organization Collaboration
 
 ### Contact Information
 Author's contact email: qinxiaoqiang2002@hotmail.com, WeChat: qinxiaoqiang
-PancrePal Public Welfare Organization contact information [To be updated]
+
 
