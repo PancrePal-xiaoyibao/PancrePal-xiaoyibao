@@ -76,8 +76,9 @@ class ChatGPTBot(Bot, OpenAIImage):
                 return self.reply_text_stream(query, new_query, session_id)
 
             reply_content = self.reply_text(session, api_key, args=new_args)
+	    #gpt4 修改内容
 	    if isinstance(reply_content["content"], list):
-                reply_content["content"] = ' '.join(reply_content["content"])
+            reply_content["content"] = ' '.join(reply_content["content"])
             logger.debug(
                 "[CHATGPT] new_query={}, session_id={}, reply_cont={}, completion_tokens={}".format(
                     session.messages,
