@@ -1,0 +1,288 @@
+[INFO][2024-06-14 18:16:26][config.py:260] - [INIT] load config: {'channel_type': 'wechatcom_app', 'single_chat_prefix': [''], 'wechatcom_corp_id': 'ww81a92e0816afd69f', 'wechatcomapp_token': 'cpwtt1yk1saBQf', 'wechatcomapp_secret': 'Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg', 'wechatcomapp_agent_id': '1000004', 'wechatcomapp_aes_key': 'U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU', 'wechatcomapp_port': 9898, 'open_ai_api_key': 'fastgpt-PYewGERC8tKH3duEWY5SJ9qvwV0uXEuoRdgnOX3y4RmOxgNI9Z40pXdedyzdk', 'open_ai_api_base': 'https://xiaoyibao.samqin.online/api/v1', 'model': '', 'text_to_image': 'dall-e-2', 'voice_to_text': 'openai', 'text_to_voice': 'openai', 'proxy': '', 'hot_reload': False, 'single_chat_reply_prefix': '[xyb] ', 'group_chat_prefix': ['@xyb'], 'group_name_white_list': ['ChatGPT测试群', 'ChatGPT测试群2'], 'image_create_prefix': ['画'], 'speech_recognition': False, 'group_speech_recognition': False, 'voice_reply_voice': False, 'conversation_max_tokens': 2500, 'expires_in_seconds': 3600, 'character_desc': '你是基于大语言模型的AI智能助手，旨在回答并解决人们的任何问题，并且可以使用多种语言与人交流。', 'temperature': 0.7, 'subscribe_msg': '感谢您的关注！\n这里是AI智能助手，可以自由对话。\n支持语音对话。\n支持图片输入。\n支持图片输出，画字开头的消息将按要求创作图片。\n支持tool、角色扮演和文字冒险等丰富的插件。\n输入{trigger_prefix}#help 查看详细指令。', 'use_linkai': False, 'linkai_api_key': '', 'linkai_app_code': ''}
+[INFO][2024-06-14 18:16:26][config.py:208] - [Config] User datas loaded.
+ww81a92e0816afd69f Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg 1000004 cpwtt1yk1saBQf U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU
+[INFO][2024-06-14 18:16:27][wechatcomapp_channel.py:39] - [wechatcom] init: corp_id: ww81a92e0816afd69f, secret: Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg, agent_id: 1000004, token: cpwtt1yk1saBQf, aes_key: U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU
+[INFO][2024-06-14 18:16:27][plugin_manager.py:50] - Loading plugins config...
+[INFO][2024-06-14 18:16:27][plugin_manager.py:88] - Scaning plugins ...
+[INFO][2024-06-14 18:16:27][plugin_manager.py:41] - Plugin Godcmd_v1.0 registered, path=./plugins/godcmd
+chatgpt-tool-hub version: 0.5.0
+[INFO][2024-06-14 18:16:28][plugin_manager.py:41] - Plugin tool_v0.5 registered, path=./plugins/tool
+[INFO][2024-06-14 18:16:28][plugin_manager.py:41] - Plugin Hello_v0.1 registered, path=./plugins/hello
+[INFO][2024-06-14 18:16:28][plugin_manager.py:41] - Plugin Role_v1.0 registered, path=./plugins/role
+[INFO][2024-06-14 18:16:28][plugin_manager.py:41] - Plugin Keyword_v0.1 registered, path=./plugins/keyword
+[INFO][2024-06-14 18:16:28][plugin_manager.py:41] - Plugin Finish_v1.0 registered, path=./plugins/finish
+[INFO][2024-06-14 18:16:28][plugin_manager.py:41] - Plugin Banwords_v1.0 registered, path=./plugins/banwords
+[INFO][2024-06-14 18:16:28][plugin_manager.py:41] - Plugin Dungeon_v1.0 registered, path=./plugins/dungeon
+[INFO][2024-06-14 18:16:28][plugin_manager.py:41] - Plugin BDunit_v0.1 registered, path=./plugins/bdunit
+[INFO][2024-06-14 18:16:28][plugin_manager.py:41] - Plugin linkai_v0.1.0 registered, path=./plugins/linkai
+[INFO][2024-06-14 18:16:28][godcmd.py:194] - [Godcmd] 因未设置口令，本次的临时口令为8465。
+[INFO][2024-06-14 18:16:28][godcmd.py:210] - [Godcmd] inited
+[INFO][2024-06-14 18:16:28][keyword.py:40] - [keyword] {}
+[INFO][2024-06-14 18:16:28][keyword.py:42] - [keyword] inited.
+[INFO][2024-06-14 18:16:28][linkai.py:34] - [LinkAI] inited, config={'group_app_map': {'测试群名1': 'default', '测试群名2': 'Kv2fXJcH'}, 'midjourney': {'enabled': False, 'auto_translate': True, 'img_proxy': True, 'max_tasks': 3, 'max_tasks_per_user': 1, 'use_image_create_prefix': True}, 'summary': {'enabled': False, 'group_enabled': True, 'max_file_size': 5000, 'type': ['FILE', 'SHARING']}}
+█[INFO][2024-06-14 18:16:29][tool.py:28] - [tool] inited
+[INFO][2024-06-14 18:16:29][role.py:69] - [Role] inited
+[INFO][2024-06-14 18:16:29][dungeon.py:56] - [Dungeon] inited
+[INFO][2024-06-14 18:16:29][hello.py:38] - [Hello] inited
+[INFO][2024-06-14 18:16:29][finish.py:23] - [Finish] inited
+[INFO][2024-06-14 18:16:54][config.py:260] - [INIT] load config: {'channel_type': 'wechatcom_app', 'single_chat_prefix': [''], 'wechatcom_corp_id': 'ww81a92e0816afd69f', 'wechatcomapp_token': 'cpwtt1yk1saBQf', 'wechatcomapp_secret': 'Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg', 'wechatcomapp_agent_id': '1000004', 'wechatcomapp_aes_key': 'U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU', 'wechatcomapp_port': 9898, 'open_ai_api_key': 'fastgpt-PYewGERC8tKH3duEWY5SJ9qvwV0uXEuoRdgnOX3y4RmOxgNI9Z40pXdedyzdk', 'open_ai_api_base': 'https://xiaoyibao.samqin.online/api/v1', 'model': '', 'text_to_image': 'dall-e-2', 'voice_to_text': 'openai', 'text_to_voice': 'openai', 'proxy': '', 'hot_reload': False, 'single_chat_reply_prefix': '[xyb] ', 'group_chat_prefix': ['@xyb'], 'group_name_white_list': ['ChatGPT测试群', 'ChatGPT测试群2'], 'image_create_prefix': ['画'], 'speech_recognition': False, 'group_speech_recognition': False, 'voice_reply_voice': False, 'conversation_max_tokens': 2500, 'expires_in_seconds': 3600, 'character_desc': '你是基于大语言模型的AI智能助手，旨在回答并解决人们的任何问题，并且可以使用多种语言与人交流。', 'temperature': 0.7, 'subscribe_msg': '感谢您的关注！\n这里是AI智能助手，可以自由对话。\n支持语音对话。\n支持图片输入。\n支持图片输出，画字开头的消息将按要求创作图片。\n支持tool、角色扮演和文字冒险等丰富的插件。\n输入{trigger_prefix}#help 查看详细指令。', 'use_linkai': False, 'linkai_api_key': '', 'linkai_app_code': ''}
+[INFO][2024-06-14 18:16:54][config.py:208] - [Config] User datas loaded.
+ww81a92e0816afd69f Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg 1000004 cpwtt1yk1saBQf U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU
+[INFO][2024-06-14 18:16:54][wechatcomapp_channel.py:39] - [wechatcom] init: corp_id: ww81a92e0816afd69f, secret: Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg, agent_id: 1000004, token: cpwtt1yk1saBQf, aes_key: U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU
+[INFO][2024-06-14 18:16:54][plugin_manager.py:50] - Loading plugins config...
+[INFO][2024-06-14 18:16:54][plugin_manager.py:88] - Scaning plugins ...
+[INFO][2024-06-14 18:16:54][plugin_manager.py:41] - Plugin Godcmd_v1.0 registered, path=./plugins/godcmd
+chatgpt-tool-hub version: 0.5.0
+[INFO][2024-06-14 18:16:54][plugin_manager.py:41] - Plugin tool_v0.5 registered, path=./plugins/tool
+[INFO][2024-06-14 18:16:54][plugin_manager.py:41] - Plugin Hello_v0.1 registered, path=./plugins/hello
+[INFO][2024-06-14 18:16:54][plugin_manager.py:41] - Plugin Role_v1.0 registered, path=./plugins/role
+[INFO][2024-06-14 18:16:54][plugin_manager.py:41] - Plugin Keyword_v0.1 registered, path=./plugins/keyword
+[INFO][2024-06-14 18:16:54][plugin_manager.py:41] - Plugin Finish_v1.0 registered, path=./plugins/finish
+[INFO][2024-06-14 18:16:54][plugin_manager.py:41] - Plugin Banwords_v1.0 registered, path=./plugins/banwords
+[INFO][2024-06-14 18:16:54][plugin_manager.py:41] - Plugin Dungeon_v1.0 registered, path=./plugins/dungeon
+[INFO][2024-06-14 18:16:54][plugin_manager.py:41] - Plugin BDunit_v0.1 registered, path=./plugins/bdunit
+[INFO][2024-06-14 18:16:54][plugin_manager.py:41] - Plugin linkai_v0.1.0 registered, path=./plugins/linkai
+[INFO][2024-06-14 18:16:54][godcmd.py:194] - [Godcmd] 因未设置口令，本次的临时口令为2654。
+[INFO][2024-06-14 18:16:54][godcmd.py:210] - [Godcmd] inited
+[INFO][2024-06-14 18:16:54][keyword.py:40] - [keyword] {}
+[INFO][2024-06-14 18:16:54][keyword.py:42] - [keyword] inited.
+[INFO][2024-06-14 18:16:54][linkai.py:34] - [LinkAI] inited, config={'group_app_map': {'测试群名1': 'default', '测试群名2': 'Kv2fXJcH'}, 'midjourney': {'enabled': False, 'auto_translate': True, 'img_proxy': True, 'max_tasks': 3, 'max_tasks_per_user': 1, 'use_image_create_prefix': True}, 'summary': {'enabled': False, 'group_enabled': True, 'max_file_size': 5000, 'type': ['FILE', 'SHARING']}}
+█[INFO][2024-06-14 18:16:55][tool.py:28] - [tool] inited
+[INFO][2024-06-14 18:16:55][role.py:69] - [Role] inited
+[INFO][2024-06-14 18:16:55][dungeon.py:56] - [Dungeon] inited
+[INFO][2024-06-14 18:16:55][hello.py:38] - [Hello] inited
+[INFO][2024-06-14 18:16:55][finish.py:23] - [Finish] inited
+http://0.0.0.0:9898/
+[ERROR][2024-06-14 18:16:55][app.py:66] - App startup failed!
+[ERROR][2024-06-14 18:16:55][app.py:67] - No socket could be created -- (('0.0.0.0', 9898): [Errno 98] Address already in use)
+Traceback (most recent call last):
+  File "app.py", line 61, in run
+    start_channel(channel_name)
+  File "app.py", line 40, in start_channel
+    channel.startup()
+  File "/usr/cow-qywx/chatgpt-on-wechat/channel/wechatcom/wechatcomapp_channel.py", line 50, in startup
+    web.httpserver.runsimple(app.wsgifunc(), ("0.0.0.0", port))
+  File "/usr/local/python3/lib/python3.8/site-packages/web/httpserver.py", line 176, in runsimple
+    server.start()
+  File "/usr/local/python3/lib/python3.8/site-packages/cheroot/server.py", line 1844, in start
+    self.prepare()
+  File "/usr/local/python3/lib/python3.8/site-packages/cheroot/server.py", line 1799, in prepare
+    raise socket.error(msg)
+OSError: No socket could be created -- (('0.0.0.0', 9898): [Errno 98] Address already in use)
+/usr/local/python3/lib/python3.8/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work
+  warn("Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work", RuntimeWarning)
+http://0.0.0.0:9898/
+[INFO][2024-06-14 18:17:21][app.py:19] - signal 15 received, exiting...
+[INFO][2024-06-14 18:17:21][config.py:219] - [Config] User datas saved.
+[INFO][2024-06-14 18:17:23][config.py:260] - [INIT] load config: {'channel_type': 'wechatcom_app', 'single_chat_prefix': [''], 'wechatcom_corp_id': 'ww81a92e0816afd69f', 'wechatcomapp_token': 'cpwtt1yk1saBQf', 'wechatcomapp_secret': 'Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg', 'wechatcomapp_agent_id': '1000004', 'wechatcomapp_aes_key': 'U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU', 'wechatcomapp_port': 9898, 'open_ai_api_key': 'fastgpt-PYewGERC8tKH3duEWY5SJ9qvwV0uXEuoRdgnOX3y4RmOxgNI9Z40pXdedyzdk', 'open_ai_api_base': 'https://xiaoyibao.samqin.online/api/v1', 'model': '', 'text_to_image': 'dall-e-2', 'voice_to_text': 'openai', 'text_to_voice': 'openai', 'proxy': '', 'hot_reload': False, 'single_chat_reply_prefix': '[xyb] ', 'group_chat_prefix': ['@xyb'], 'group_name_white_list': ['ChatGPT测试群', 'ChatGPT测试群2'], 'image_create_prefix': ['画'], 'speech_recognition': False, 'group_speech_recognition': False, 'voice_reply_voice': False, 'conversation_max_tokens': 2500, 'expires_in_seconds': 3600, 'character_desc': '你是基于大语言模型的AI智能助手，旨在回答并解决人们的任何问题，并且可以使用多种语言与人交流。', 'temperature': 0.7, 'subscribe_msg': '感谢您的关注！\n这里是AI智能助手，可以自由对话。\n支持语音对话。\n支持图片输入。\n支持图片输出，画字开头的消息将按要求创作图片。\n支持tool、角色扮演和文字冒险等丰富的插件。\n输入{trigger_prefix}#help 查看详细指令。', 'use_linkai': False, 'linkai_api_key': '', 'linkai_app_code': ''}
+[INFO][2024-06-14 18:17:23][config.py:208] - [Config] User datas loaded.
+ww81a92e0816afd69f Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg 1000004 cpwtt1yk1saBQf U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU
+[INFO][2024-06-14 18:17:24][wechatcomapp_channel.py:39] - [wechatcom] init: corp_id: ww81a92e0816afd69f, secret: Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg, agent_id: 1000004, token: cpwtt1yk1saBQf, aes_key: U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU
+[INFO][2024-06-14 18:17:24][plugin_manager.py:50] - Loading plugins config...
+[INFO][2024-06-14 18:17:24][plugin_manager.py:88] - Scaning plugins ...
+[INFO][2024-06-14 18:17:24][plugin_manager.py:41] - Plugin Godcmd_v1.0 registered, path=./plugins/godcmd
+chatgpt-tool-hub version: 0.5.0
+[INFO][2024-06-14 18:17:24][plugin_manager.py:41] - Plugin tool_v0.5 registered, path=./plugins/tool
+[INFO][2024-06-14 18:17:24][plugin_manager.py:41] - Plugin Hello_v0.1 registered, path=./plugins/hello
+[INFO][2024-06-14 18:17:24][plugin_manager.py:41] - Plugin Role_v1.0 registered, path=./plugins/role
+[INFO][2024-06-14 18:17:24][plugin_manager.py:41] - Plugin Keyword_v0.1 registered, path=./plugins/keyword
+[INFO][2024-06-14 18:17:24][plugin_manager.py:41] - Plugin Finish_v1.0 registered, path=./plugins/finish
+[INFO][2024-06-14 18:17:24][plugin_manager.py:41] - Plugin Banwords_v1.0 registered, path=./plugins/banwords
+[INFO][2024-06-14 18:17:24][plugin_manager.py:41] - Plugin Dungeon_v1.0 registered, path=./plugins/dungeon
+[INFO][2024-06-14 18:17:24][plugin_manager.py:41] - Plugin BDunit_v0.1 registered, path=./plugins/bdunit
+[INFO][2024-06-14 18:17:24][plugin_manager.py:41] - Plugin linkai_v0.1.0 registered, path=./plugins/linkai
+[INFO][2024-06-14 18:17:24][godcmd.py:194] - [Godcmd] 因未设置口令，本次的临时口令为2045。
+[INFO][2024-06-14 18:17:24][godcmd.py:210] - [Godcmd] inited
+[INFO][2024-06-14 18:17:24][keyword.py:40] - [keyword] {}
+[INFO][2024-06-14 18:17:24][keyword.py:42] - [keyword] inited.
+[INFO][2024-06-14 18:17:24][linkai.py:34] - [LinkAI] inited, config={'group_app_map': {'测试群名1': 'default', '测试群名2': 'Kv2fXJcH'}, 'midjourney': {'enabled': False, 'auto_translate': True, 'img_proxy': True, 'max_tasks': 3, 'max_tasks_per_user': 1, 'use_image_create_prefix': True}, 'summary': {'enabled': False, 'group_enabled': True, 'max_file_size': 5000, 'type': ['FILE', 'SHARING']}}
+█[INFO][2024-06-14 18:17:25][tool.py:28] - [tool] inited
+[INFO][2024-06-14 18:17:25][role.py:69] - [Role] inited
+[INFO][2024-06-14 18:17:25][dungeon.py:56] - [Dungeon] inited
+[INFO][2024-06-14 18:17:25][hello.py:38] - [Hello] inited
+[INFO][2024-06-14 18:17:25][finish.py:23] - [Finish] inited
+http://0.0.0.0:9898/
+[INFO][2024-06-14 18:17:52][wechatcomapp_channel.py:147] - [wechatcom] receive params: <Storage {'timestamp': '1718360272', 'msg_signature': '34112948c64db5c0f047b32256830b75892ec544', 'nonce': '1718086935'}>
+[INFO][2024-06-14 18:17:52][bridge.py:61] - create bot chatGPT for chat
+[INFO][2024-06-14 18:17:52][chat_gpt_bot.py:49] - [CHATGPT] query=Hi
+[INFO][2024-06-14 18:17:55][wechatcomapp_channel.py:63] - [wechatcom] Do send text to QinXiaoQiang: [xyb] 
+您好，我是小胰宝，我来了～你好，我是小胰宝～
+[INFO][2024-06-14 18:18:12][wechatcomapp_channel.py:147] - [wechatcom] receive params: <Storage {'timestamp': '1718360292', 'msg_signature': '41f2d5028b7ccec6c35b9bc0b50e4af7508657c8', 'nonce': '1717936354'}>
+[INFO][2024-06-14 18:18:12][chat_gpt_bot.py:49] - [CHATGPT] query=我有点累 开个放松的钢琴曲
+[INFO][2024-06-14 18:18:21][wechatcomapp_channel.py:63] - [wechatcom] Do send text to QinXiaoQiang: [xyb] 
+您好，我是小胰宝，我来了～很抱歉，我目前无法直接播放音乐。不过，我可以推荐一些放松的钢琴曲给您。您可以在音乐平台或视频网站上搜索这些曲子来聆听：
+
+1. **Ludovico Einaudi** - "Nuvole Bianche"
+2. **Yiruma** - "River Flows in You"
+3. **Brian Crain** - "Butterfly Waltz"
+4. **Claude Debussy** - "Clair de Lune"
+5. **Erik Satie** - "Gymnopédie No.1"
+
+希望这些建议能帮助您放松。
+[INFO][2024-06-14 18:19:33][wechatcomapp_channel.py:147] - [wechatcom] receive params: <Storage {'timestamp': '1718360373', 'msg_signature': '10632845ca60577c3d3353dc82399ce85d324f5d', 'nonce': '1717983531'}>
+[INFO][2024-06-14 18:19:33][chat_gpt_bot.py:49] - [CHATGPT] query=你是谁
+[INFO][2024-06-14 18:19:42][wechatcomapp_channel.py:63] - [wechatcom] Do send text to QinXiaoQiang: [xyb] 你好，我是小胰宝～
+[INFO][2024-06-14 18:22:22][wechatcomapp_channel.py:147] - [wechatcom] receive params: <Storage {'timestamp': '1718360542', 'msg_signature': '9f4ba1e2402ee41f6ee3f4c69a1700ae3713adf0', 'nonce': '1718108647'}>
+[INFO][2024-06-14 18:22:22][chat_gpt_bot.py:49] - [CHATGPT] query=上海今天天气
+[INFO][2024-06-14 18:22:30][wechatcomapp_channel.py:63] - [wechatcom] Do send text to QinXiaoQiang: [xyb] 
+您好，我是小胰宝，我来了～上海今天的天气是阴天，气温范围在31℃到23℃之间，风力小于3级。
+
+搜索结果来自：
+上海天气预报,上海7天天气预报,上海15天天气预报,上海天气查询 - http://weather.com.cn/weather/101020100.shtml
+[INFO][2024-06-14 18:52:36][wechatcomapp_channel.py:147] - [wechatcom] receive params: <Storage {'timestamp': '1718362356', 'msg_signature': '0abbc3889c5af157bf65ff19687c2191491a45e5', 'nonce': '1718272645'}>
+[INFO][2024-06-14 18:52:36][chat_gpt_bot.py:49] - [CHATGPT] query=搜索下庄表伟
+[ERROR][2024-06-14 18:52:44][chat_channel.py:303] - Worker return exception: can only concatenate str (not "list") to str
+Traceback (most recent call last):
+  File "/usr/local/python3/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/cow-qywx/chatgpt-on-wechat/channel/chat_channel.py", line 176, in _handle
+    reply = self._decorate_reply(context, reply)
+  File "/usr/cow-qywx/chatgpt-on-wechat/channel/chat_channel.py", line 261, in _decorate_reply
+    reply_text = conf().get("single_chat_reply_prefix", "") + reply_text + conf().get("single_chat_reply_suffix", "")
+TypeError: can only concatenate str (not "list") to str
+[INFO][2024-06-14 18:53:55][wechatcomapp_channel.py:147] - [wechatcom] receive params: <Storage {'timestamp': '1718362435', 'msg_signature': '1666231bb690e564ee2841658d243b4768de7b78', 'nonce': '1718614679'}>
+[INFO][2024-06-14 18:53:55][chat_gpt_bot.py:49] - [CHATGPT] query=搜索下庄表伟
+[WARNING][2024-06-14 18:53:55][session_manager.py:72] - Exception when counting tokens precisely for prompt: expected string or buffer
+[WARNING][2024-06-14 18:54:00][chat_gpt_bot.py:145] - [CHATGPT] Bad Gateway: Invalid response object from API: '{"code":500,"statusText":"","message":"Cannot read properties of undefined (reading \'value\')","data":null}' (HTTP response code was 500)
+[WARNING][2024-06-14 18:54:10][chat_gpt_bot.py:160] - [CHATGPT] 第1次重试
+[INFO][2024-06-14 18:54:26][wechatcomapp_channel.py:63] - [wechatcom] Do send text to QinXiaoQiang: [xyb] 
+您好，我是小胰宝，我来了～庄表伟是一位资深的开源推广者和研究者。他在1997年毕业后，一直活跃在编程领域，并于2009年加入盛大创新院。他热衷于开源社区的活动，并积极参与各种交流。庄表伟贡献了很多在开源领域的工作，包括一个正在进行的写作计划《借助开源项目，学习软件开发》。
+
+庄表伟曾发起了“我们的开源项目”活动，旨在为开发者提供一个分享和讨论自己开源项目的平台。这个活动得到了广泛的响应，吸引了众多开发者的参与，并成功举办了多场活动。他通过这些活动，促进了开发者之间的交流和合作。
+
+此外，庄表伟在开源社中担任重要角色，他对开源项目的管理和推动有着深刻的见解。他强调，开源项目应该注重长期可持续性，而不是仅仅追求短期的成果。庄表伟认为，一个好的开源生态应该包括热情的开源开发者、能够培育优秀开发者和项目的教育机构、资助开源项目的基金会，以及愿意支持开源的企业。
+
+庄表伟对于开源社区和项目的运营有着丰富的经验和深入的思考，他的工作和观点对于推动开源文化和项目的发展具有重要意义。
+
+搜索结果来自：
+“我们的开源项目”活动发起人——庄表伟专访-云社区-华为云 - https://bbs.huaweicloud.com/blogs/104682
+开源社庄表伟：开源要出圈了，推坑文化、沉浸式养鱼塘，社区建设心法了解一下 I OpenTEKr 大话开源 Vol.5_大话开源_OpenTEKr_InfoQ写作社区 - https://xie.infoq.cn/article/6bdcda08b3ed4be1097335500
+开源社理事庄表伟：KPI拉不动开源，是工具生了锈还是另有讲究？ - https://baijiahao.baidu.com/s?id=1762481528272673779
+[INFO][2024-06-15 07:10:20][config.py:260] - [INIT] load config: {'channel_type': 'wechatcom_app', 'single_chat_prefix': [''], 'wechatcom_corp_id': 'ww81a92e0816afd69f', 'wechatcomapp_token': 'cpwtt1yk1saBQf', 'wechatcomapp_secret': 'Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg', 'wechatcomapp_agent_id': '1000004', 'wechatcomapp_aes_key': 'U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU', 'wechatcomapp_port': 9898, 'open_ai_api_key': 'fastgpt-PYewGERC8tKH3duEWY5SJ9qvwV0uXEuoRdgnOX3y4RmOxgNI9Z40pXdedyzdk', 'open_ai_api_base': 'http://111.229.128.119:3100/api/v1', 'model': 'gpt-3.5-turbo', 'text_to_image': 'dall-e-2', 'voice_to_text': 'openai', 'text_to_voice': 'openai', 'proxy': '', 'hot_reload': False, 'single_chat_reply_prefix': '[xyb] ', 'group_chat_prefix': ['@xyb'], 'group_name_white_list': ['ChatGPT测试群', 'ChatGPT测试群2'], 'image_create_prefix': ['画'], 'speech_recognition': False, 'group_speech_recognition': False, 'voice_reply_voice': False, 'conversation_max_tokens': 2500, 'expires_in_seconds': 3600, 'character_desc': '你是基于大语言模型的AI智能助手，旨在回答并解决人们的任何问题，并且可以使用多种语言与人交流。', 'temperature': 0.7, 'subscribe_msg': '感谢您的关注！\n这里是AI智能助手，可以自由对话。\n支持语音对话。\n支持图片输入。\n支持图片输出，画字开头的消息将按要求创作图片。\n支持tool、角色扮演和文字冒险等丰富的插件。\n输入{trigger_prefix}#help 查看详细指令。', 'use_linkai': False, 'linkai_api_key': '', 'linkai_app_code': ''}
+[INFO][2024-06-15 07:10:20][config.py:208] - [Config] User datas loaded.
+ww81a92e0816afd69f Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg 1000004 cpwtt1yk1saBQf U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU
+[INFO][2024-06-15 07:10:21][wechatcomapp_channel.py:39] - [wechatcom] init: corp_id: ww81a92e0816afd69f, secret: Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg, agent_id: 1000004, token: cpwtt1yk1saBQf, aes_key: U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU
+[INFO][2024-06-15 07:10:21][plugin_manager.py:50] - Loading plugins config...
+[INFO][2024-06-15 07:10:21][plugin_manager.py:88] - Scaning plugins ...
+[INFO][2024-06-15 07:10:21][plugin_manager.py:41] - Plugin Godcmd_v1.0 registered, path=./plugins/godcmd
+chatgpt-tool-hub version: 0.5.0
+[INFO][2024-06-15 07:10:22][plugin_manager.py:41] - Plugin tool_v0.5 registered, path=./plugins/tool
+[INFO][2024-06-15 07:10:22][plugin_manager.py:41] - Plugin Hello_v0.1 registered, path=./plugins/hello
+[INFO][2024-06-15 07:10:22][plugin_manager.py:41] - Plugin Role_v1.0 registered, path=./plugins/role
+[INFO][2024-06-15 07:10:22][plugin_manager.py:41] - Plugin Keyword_v0.1 registered, path=./plugins/keyword
+[INFO][2024-06-15 07:10:22][plugin_manager.py:41] - Plugin Finish_v1.0 registered, path=./plugins/finish
+[INFO][2024-06-15 07:10:22][plugin_manager.py:41] - Plugin Banwords_v1.0 registered, path=./plugins/banwords
+[INFO][2024-06-15 07:10:22][plugin_manager.py:41] - Plugin Dungeon_v1.0 registered, path=./plugins/dungeon
+[INFO][2024-06-15 07:10:22][plugin_manager.py:41] - Plugin BDunit_v0.1 registered, path=./plugins/bdunit
+[INFO][2024-06-15 07:10:22][plugin_manager.py:41] - Plugin linkai_v0.1.0 registered, path=./plugins/linkai
+[INFO][2024-06-15 07:10:22][godcmd.py:194] - [Godcmd] 因未设置口令，本次的临时口令为1029。
+[INFO][2024-06-15 07:10:22][godcmd.py:210] - [Godcmd] inited
+[INFO][2024-06-15 07:10:22][keyword.py:40] - [keyword] {}
+[INFO][2024-06-15 07:10:22][keyword.py:42] - [keyword] inited.
+[INFO][2024-06-15 07:10:22][linkai.py:34] - [LinkAI] inited, config={'group_app_map': {'测试群名1': 'default', '测试群名2': 'Kv2fXJcH'}, 'midjourney': {'enabled': False, 'auto_translate': True, 'img_proxy': True, 'max_tasks': 3, 'max_tasks_per_user': 1, 'use_image_create_prefix': True}, 'summary': {'enabled': False, 'group_enabled': True, 'max_file_size': 5000, 'type': ['FILE', 'SHARING']}}
+█[INFO][2024-06-15 07:10:23][tool.py:28] - [tool] inited
+[INFO][2024-06-15 07:10:23][role.py:69] - [Role] inited
+[INFO][2024-06-15 07:10:23][dungeon.py:56] - [Dungeon] inited
+[INFO][2024-06-15 07:10:23][hello.py:38] - [Hello] inited
+[INFO][2024-06-15 07:10:23][finish.py:23] - [Finish] inited
+[INFO][2024-06-15 07:11:24][config.py:260] - [INIT] load config: {'channel_type': 'wechatcom_app', 'single_chat_prefix': [''], 'wechatcom_corp_id': 'ww81a92e0816afd69f', 'wechatcomapp_token': 'cpwtt1yk1saBQf', 'wechatcomapp_secret': 'Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg', 'wechatcomapp_agent_id': '1000004', 'wechatcomapp_aes_key': 'U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU', 'wechatcomapp_port': 9898, 'open_ai_api_key': 'fastgpt-PYewGERC8tKH3duEWY5SJ9qvwV0uXEuoRdgnOX3y4RmOxgNI9Z40pXdedyzdk', 'open_ai_api_base': 'http://111.229.128.119:3100/api/v1', 'model': 'gpt-3.5-turbo', 'text_to_image': 'dall-e-2', 'voice_to_text': 'openai', 'text_to_voice': 'openai', 'proxy': '', 'hot_reload': False, 'single_chat_reply_prefix': '[xyb] ', 'group_chat_prefix': ['@xyb'], 'group_name_white_list': ['ChatGPT测试群', 'ChatGPT测试群2'], 'image_create_prefix': ['画'], 'speech_recognition': False, 'group_speech_recognition': False, 'voice_reply_voice': False, 'conversation_max_tokens': 2500, 'expires_in_seconds': 3600, 'character_desc': '你是基于大语言模型的AI智能助手，旨在回答并解决人们的任何问题，并且可以使用多种语言与人交流。', 'temperature': 0.7, 'subscribe_msg': '感谢您的关注！\n这里是AI智能助手，可以自由对话。\n支持语音对话。\n支持图片输入。\n支持图片输出，画字开头的消息将按要求创作图片。\n支持tool、角色扮演和文字冒险等丰富的插件。\n输入{trigger_prefix}#help 查看详细指令。', 'use_linkai': False, 'linkai_api_key': '', 'linkai_app_code': ''}
+[INFO][2024-06-15 07:11:24][config.py:208] - [Config] User datas loaded.
+ww81a92e0816afd69f Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg 1000004 cpwtt1yk1saBQf U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU
+[INFO][2024-06-15 07:11:24][wechatcomapp_channel.py:39] - [wechatcom] init: corp_id: ww81a92e0816afd69f, secret: Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg, agent_id: 1000004, token: cpwtt1yk1saBQf, aes_key: U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU
+[INFO][2024-06-15 07:11:24][plugin_manager.py:50] - Loading plugins config...
+[INFO][2024-06-15 07:11:24][plugin_manager.py:88] - Scaning plugins ...
+[INFO][2024-06-15 07:11:24][plugin_manager.py:41] - Plugin Godcmd_v1.0 registered, path=./plugins/godcmd
+chatgpt-tool-hub version: 0.5.0
+[INFO][2024-06-15 07:11:25][plugin_manager.py:41] - Plugin tool_v0.5 registered, path=./plugins/tool
+[INFO][2024-06-15 07:11:25][plugin_manager.py:41] - Plugin Hello_v0.1 registered, path=./plugins/hello
+[INFO][2024-06-15 07:11:25][plugin_manager.py:41] - Plugin Role_v1.0 registered, path=./plugins/role
+[INFO][2024-06-15 07:11:25][plugin_manager.py:41] - Plugin Keyword_v0.1 registered, path=./plugins/keyword
+[INFO][2024-06-15 07:11:25][plugin_manager.py:41] - Plugin Finish_v1.0 registered, path=./plugins/finish
+[INFO][2024-06-15 07:11:25][plugin_manager.py:41] - Plugin Banwords_v1.0 registered, path=./plugins/banwords
+[INFO][2024-06-15 07:11:25][plugin_manager.py:41] - Plugin Dungeon_v1.0 registered, path=./plugins/dungeon
+[INFO][2024-06-15 07:11:25][plugin_manager.py:41] - Plugin BDunit_v0.1 registered, path=./plugins/bdunit
+[INFO][2024-06-15 07:11:25][plugin_manager.py:41] - Plugin linkai_v0.1.0 registered, path=./plugins/linkai
+[INFO][2024-06-15 07:11:25][godcmd.py:194] - [Godcmd] 因未设置口令，本次的临时口令为6320。
+[INFO][2024-06-15 07:11:25][godcmd.py:210] - [Godcmd] inited
+[INFO][2024-06-15 07:11:25][keyword.py:40] - [keyword] {}
+[INFO][2024-06-15 07:11:25][keyword.py:42] - [keyword] inited.
+[INFO][2024-06-15 07:11:25][linkai.py:34] - [LinkAI] inited, config={'group_app_map': {'测试群名1': 'default', '测试群名2': 'Kv2fXJcH'}, 'midjourney': {'enabled': False, 'auto_translate': True, 'img_proxy': True, 'max_tasks': 3, 'max_tasks_per_user': 1, 'use_image_create_prefix': True}, 'summary': {'enabled': False, 'group_enabled': True, 'max_file_size': 5000, 'type': ['FILE', 'SHARING']}}
+█[INFO][2024-06-15 07:11:25][tool.py:28] - [tool] inited
+[INFO][2024-06-15 07:11:25][role.py:69] - [Role] inited
+[INFO][2024-06-15 07:11:25][dungeon.py:56] - [Dungeon] inited
+[INFO][2024-06-15 07:11:25][hello.py:38] - [Hello] inited
+[INFO][2024-06-15 07:11:25][finish.py:23] - [Finish] inited
+http://0.0.0.0:9898/
+[INFO][2024-06-15 07:11:35][wechatcomapp_channel.py:147] - [wechatcom] receive params: <Storage {'msg_signature': '7586829c0aaca58f8b8b9cff117b883e2d56d284', 'nonce': '1718356094', 'timestamp': '1718406695'}>
+[INFO][2024-06-15 07:11:35][bridge.py:61] - create bot chatGPT for chat
+[INFO][2024-06-15 07:11:35][chat_gpt_bot.py:49] - [CHATGPT] query=Hi
+[WARNING][2024-06-15 07:11:35][session_manager.py:94] - Exception when counting tokens precisely for prompt: name 'get_tokenizer' is not defined
+[INFO][2024-06-15 07:47:47][config.py:260] - [INIT] load config: {'channel_type': 'wechatcom_app', 'single_chat_prefix': [''], 'wechatcom_corp_id': 'ww81a92e0816afd69f', 'wechatcomapp_token': 'cpwtt1yk1saBQf', 'wechatcomapp_secret': 'Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg', 'wechatcomapp_agent_id': '1000004', 'wechatcomapp_aes_key': 'U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU', 'wechatcomapp_port': 9898, 'open_ai_api_key': 'fastgpt-PYewGERC8tKH3duEWY5SJ9qvwV0uXEuoRdgnOX3y4RmOxgNI9Z40pXdedyzdk', 'open_ai_api_base': 'http://111.229.128.119:3100/api/v1', 'model': 'gpt-3.5-turbo', 'text_to_image': 'dall-e-2', 'voice_to_text': 'openai', 'text_to_voice': 'openai', 'proxy': '', 'hot_reload': False, 'single_chat_reply_prefix': '[xyb] ', 'group_chat_prefix': ['@xyb'], 'group_name_white_list': ['ChatGPT测试群', 'ChatGPT测试群2'], 'image_create_prefix': ['画'], 'speech_recognition': False, 'group_speech_recognition': False, 'voice_reply_voice': False, 'conversation_max_tokens': 2500, 'expires_in_seconds': 3600, 'character_desc': '你是基于大语言模型的AI智能助手，旨在回答并解决人们的任何问题，并且可以使用多种语言与人交流。', 'temperature': 0.7, 'subscribe_msg': '感谢您的关注！\n这里是AI智能助手，可以自由对话。\n支持语音对话。\n支持图片输入。\n支持图片输出，画字开头的消息将按要求创作图片。\n支持tool、角色扮演和文字冒险等丰富的插件。\n输入{trigger_prefix}#help 查看详细指令。', 'use_linkai': False, 'linkai_api_key': '', 'linkai_app_code': ''}
+[INFO][2024-06-15 07:47:47][config.py:208] - [Config] User datas loaded.
+ww81a92e0816afd69f Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg 1000004 cpwtt1yk1saBQf U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU
+[INFO][2024-06-15 07:47:48][wechatcomapp_channel.py:39] - [wechatcom] init: corp_id: ww81a92e0816afd69f, secret: Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg, agent_id: 1000004, token: cpwtt1yk1saBQf, aes_key: U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU
+[INFO][2024-06-15 07:47:48][plugin_manager.py:50] - Loading plugins config...
+[INFO][2024-06-15 07:47:48][plugin_manager.py:88] - Scaning plugins ...
+[INFO][2024-06-15 07:47:48][plugin_manager.py:41] - Plugin Godcmd_v1.0 registered, path=./plugins/godcmd
+chatgpt-tool-hub version: 0.5.0
+[INFO][2024-06-15 07:47:48][plugin_manager.py:41] - Plugin tool_v0.5 registered, path=./plugins/tool
+[INFO][2024-06-15 07:47:48][plugin_manager.py:41] - Plugin Hello_v0.1 registered, path=./plugins/hello
+[INFO][2024-06-15 07:47:48][plugin_manager.py:41] - Plugin Role_v1.0 registered, path=./plugins/role
+[INFO][2024-06-15 07:47:48][plugin_manager.py:41] - Plugin Keyword_v0.1 registered, path=./plugins/keyword
+[INFO][2024-06-15 07:47:48][plugin_manager.py:41] - Plugin Finish_v1.0 registered, path=./plugins/finish
+[INFO][2024-06-15 07:47:48][plugin_manager.py:41] - Plugin Banwords_v1.0 registered, path=./plugins/banwords
+[INFO][2024-06-15 07:47:48][plugin_manager.py:41] - Plugin Dungeon_v1.0 registered, path=./plugins/dungeon
+[INFO][2024-06-15 07:47:48][plugin_manager.py:41] - Plugin BDunit_v0.1 registered, path=./plugins/bdunit
+[INFO][2024-06-15 07:47:48][plugin_manager.py:41] - Plugin linkai_v0.1.0 registered, path=./plugins/linkai
+[INFO][2024-06-15 07:47:48][godcmd.py:194] - [Godcmd] 因未设置口令，本次的临时口令为6458。
+[INFO][2024-06-15 07:47:48][godcmd.py:210] - [Godcmd] inited
+[INFO][2024-06-15 07:47:48][keyword.py:40] - [keyword] {}
+[INFO][2024-06-15 07:47:48][keyword.py:42] - [keyword] inited.
+[INFO][2024-06-15 07:47:48][linkai.py:34] - [LinkAI] inited, config={'group_app_map': {'测试群名1': 'default', '测试群名2': 'Kv2fXJcH'}, 'midjourney': {'enabled': False, 'auto_translate': True, 'img_proxy': True, 'max_tasks': 3, 'max_tasks_per_user': 1, 'use_image_create_prefix': True}, 'summary': {'enabled': False, 'group_enabled': True, 'max_file_size': 5000, 'type': ['FILE', 'SHARING']}}
+█[INFO][2024-06-15 07:47:49][tool.py:28] - [tool] inited
+[INFO][2024-06-15 07:47:49][role.py:69] - [Role] inited
+[INFO][2024-06-15 07:47:49][dungeon.py:56] - [Dungeon] inited
+[INFO][2024-06-15 07:47:49][hello.py:38] - [Hello] inited
+[INFO][2024-06-15 07:47:49][finish.py:23] - [Finish] inited
+http://0.0.0.0:9898/
+[INFO][2024-06-15 07:47:51][app.py:19] - signal 2 received, exiting...
+[INFO][2024-06-15 07:47:51][config.py:219] - [Config] User datas saved.
+[INFO][2024-06-15 07:47:53][app.py:19] - signal 2 received, exiting...
+[INFO][2024-06-15 07:47:53][config.py:219] - [Config] User datas saved.
+/usr/local/python3/lib/python3.8/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work
+  warn("Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work", RuntimeWarning)
+Traceback (most recent call last):
+  File "app.py", line 71, in <module>
+    run()
+  File "app.py", line 64, in run
+    time.sleep(1)
+  File "app.py", line 22, in func
+    return old_handler(_signo, _stack_frame)
+KeyboardInterrupt
+[INFO][2024-06-15 07:48:18][config.py:260] - [INIT] load config: {'channel_type': 'wechatcom_app', 'single_chat_prefix': [''], 'wechatcom_corp_id': 'ww81a92e0816afd69f', 'wechatcomapp_token': 'cpwtt1yk1saBQf', 'wechatcomapp_secret': 'Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg', 'wechatcomapp_agent_id': '1000004', 'wechatcomapp_aes_key': 'U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU', 'wechatcomapp_port': 9898, 'open_ai_api_key': 'fastgpt-PYewGERC8tKH3duEWY5SJ9qvwV0uXEuoRdgnOX3y4RmOxgNI9Z40pXdedyzdk', 'open_ai_api_base': 'http://111.229.128.119:3100/api/v1', 'model': 'gpt-3.5-turbo', 'text_to_image': 'dall-e-2', 'voice_to_text': 'openai', 'text_to_voice': 'openai', 'proxy': '', 'hot_reload': False, 'single_chat_reply_prefix': '[xyb] ', 'group_chat_prefix': ['@xyb'], 'group_name_white_list': ['ChatGPT测试群', 'ChatGPT测试群2'], 'image_create_prefix': ['画'], 'speech_recognition': False, 'group_speech_recognition': False, 'voice_reply_voice': False, 'conversation_max_tokens': 2500, 'expires_in_seconds': 3600, 'character_desc': '你是基于大语言模型的AI智能助手，旨在回答并解决人们的任何问题，并且可以使用多种语言与人交流。', 'temperature': 0.7, 'subscribe_msg': '感谢您的关注！\n这里是AI智能助手，可以自由对话。\n支持语音对话。\n支持图片输入。\n支持图片输出，画字开头的消息将按要求创作图片。\n支持tool、角色扮演和文字冒险等丰富的插件。\n输入{trigger_prefix}#help 查看详细指令。', 'use_linkai': False, 'linkai_api_key': '', 'linkai_app_code': ''}
+[INFO][2024-06-15 07:48:18][config.py:208] - [Config] User datas loaded.
+ww81a92e0816afd69f Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg 1000004 cpwtt1yk1saBQf U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU
+[INFO][2024-06-15 07:48:18][wechatcomapp_channel.py:39] - [wechatcom] init: corp_id: ww81a92e0816afd69f, secret: Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg, agent_id: 1000004, token: cpwtt1yk1saBQf, aes_key: U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU
+[INFO][2024-06-15 07:48:18][plugin_manager.py:50] - Loading plugins config...
+[INFO][2024-06-15 07:48:18][plugin_manager.py:88] - Scaning plugins ...
+[INFO][2024-06-15 07:48:18][plugin_manager.py:41] - Plugin Godcmd_v1.0 registered, path=./plugins/godcmd
+chatgpt-tool-hub version: 0.5.0
+[INFO][2024-06-15 07:48:18][plugin_manager.py:41] - Plugin tool_v0.5 registered, path=./plugins/tool
+[INFO][2024-06-15 07:48:18][plugin_manager.py:41] - Plugin Hello_v0.1 registered, path=./plugins/hello
+[INFO][2024-06-15 07:48:18][plugin_manager.py:41] - Plugin Role_v1.0 registered, path=./plugins/role
+[INFO][2024-06-15 07:48:18][plugin_manager.py:41] - Plugin Keyword_v0.1 registered, path=./plugins/keyword
+[INFO][2024-06-15 07:48:18][plugin_manager.py:41] - Plugin Finish_v1.0 registered, path=./plugins/finish
+[INFO][2024-06-15 07:48:18][plugin_manager.py:41] - Plugin Banwords_v1.0 registered, path=./plugins/banwords
+[INFO][2024-06-15 07:48:18][plugin_manager.py:41] - Plugin Dungeon_v1.0 registered, path=./plugins/dungeon
+[INFO][2024-06-15 07:48:18][plugin_manager.py:41] - Plugin BDunit_v0.1 registered, path=./plugins/bdunit
+[INFO][2024-06-15 07:48:18][plugin_manager.py:41] - Plugin linkai_v0.1.0 registered, path=./plugins/linkai
+[INFO][2024-06-15 07:48:18][godcmd.py:194] - [Godcmd] 因未设置口令，本次的临时口令为2586。
+[INFO][2024-06-15 07:48:18][godcmd.py:210] - [Godcmd] inited
+[INFO][2024-06-15 07:48:18][keyword.py:40] - [keyword] {}
+[INFO][2024-06-15 07:48:18][keyword.py:42] - [keyword] inited.
+[INFO][2024-06-15 07:48:18][linkai.py:34] - [LinkAI] inited, config={'group_app_map': {'测试群名1': 'default', '测试群名2': 'Kv2fXJcH'}, 'midjourney': {'enabled': False, 'auto_translate': True, 'img_proxy': True, 'max_tasks': 3, 'max_tasks_per_user': 1, 'use_image_create_prefix': True}, 'summary': {'enabled': False, 'group_enabled': True, 'max_file_size': 5000, 'type': ['FILE', 'SHARING']}}
+█[INFO][2024-06-15 07:48:19][tool.py:28] - [tool] inited
+[INFO][2024-06-15 07:48:19][role.py:69] - [Role] inited
+[INFO][2024-06-15 07:48:19][dungeon.py:56] - [Dungeon] inited
+[INFO][2024-06-15 07:48:19][hello.py:38] - [Hello] inited
+[INFO][2024-06-15 07:48:19][finish.py:23] - [Finish] inited
