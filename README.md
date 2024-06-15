@@ -2,16 +2,19 @@
 
 ### 【项目介绍】
 
-小胰宝是由病友SamQin（本人）开发并上线的RAG应用，主旨为帮助每年**数十万**新增确诊病人以及幸存病人，克服专业医学和治疗的医患信息差。使用小胰宝，可7x24小时，帮助病患高效率，准确理解病情状态，治疗术语，规范治疗指南，以及综合治疗的复杂信息，克服慌乱情绪，选择科学和有效治疗路线，并最终获得更长的治疗收益，也即生命窗口。
+小胰宝是由病友SamQin开发并上线的RAG应用，主旨为帮助每年**数十万**新增确诊病人以及幸存病人，克服专业医学和治疗的医患信息差。使用小胰宝，可7x24小时，帮助病患高效率，准确理解病情状态，治疗术语，规范治疗指南，以及综合治疗的复杂信息，克服慌乱情绪，选择科学和有效治疗路线，并最终获得更长的治疗收益，也即生命窗口。
 
 小胰宝已经上线7个月，帮助了2000+患者稳定提供，并聚集了支持AI科技应用的专业医生，患者群，以及开源技术社区和社会公益人士。小胰宝的上线，为全癌种肿瘤患者AI智能服务，开辟和验证了新模式，期待开源社区能够推动为数千万新患者，提供更多类似应用，服务包括肺癌/乳腺癌/甲状腺/肝癌/肠癌等癌肿的患者，获得信息便利。
 
+### 体验地址
+小胰宝 - 胰腺ca患者助手：https://aibot.samqin.asia<br>  星妈爱聊 - ca心理安抚助手：https://xingma.samqin.asia  
 
 <img src="https://www.freeimg.cn/i/2024/05/08/663ae77288263.png" alt="图片描述文字" />
 
+癌症治疗路线，包括医疗诊治，营养支持和心理支持三个主要方面，也都直接决定治疗效果的好坏，也就是“生命窗口”的长短。AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外，我们还尝试提供针对”心理支持“的【星妈爱聊- 胰腺ca患者心理安抚小助手】，以及【小食宝 - 患者营养和菜谱小助手】，形成三环合一的综合应用，帮助患者和家属高效率的获得信息。
 
-### 体验地址
-https://aibot.samqin.asia 
+![星妈爱聊](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/blob/main/xingma.png)
+
 
 ![小胰宝新手宝典](https://github.com/samqin123/---RAG-/assets/103937568/4e1b2e11-38fe-4978-9660-d2761c2a0af1)
 
@@ -24,9 +27,10 @@ https://aibot.samqin.asia
 
 ----
 
-### 【小胰宝使用的产品框架介绍】
+### 【小胰宝1.0产品框架介绍】
 
-待更新
+<img width="1481" alt="image" src="https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/assets/103937568/edcb6e3a-cccd-48c1-952a-b40274b9d9a1">
+
 
 ----
 ### 【小胰宝项目1.0版本使用开源组件】
@@ -120,27 +124,19 @@ V1.0
 
 ### [推荐]docker-compose安装
 
-* 本项目的docker-compose文件已整合优化，可以参考使用
-* 本项目文件中的config.json文件已整合优化，可参考修改
+* 本项目的部署配置文件可以参考docker目录使用
 * 模型部分以零一为例，可以随需修改，推荐Moonshot/Glm-4，不推荐openai，主要还是embedding和对话账号，openai国内使用不合法也不稳定。
-* embedding推荐qwen的text-embedding-v2或者智谱的embedding模型
-
-#### 具体操作
-
-```shell
-mkdir -p fastgpt-xyb && cd fastgpt-xyb
-curl -o docker-compose.yml
-curl -o config.json 
-docker-compose up -d
-```
-
-2. 
-
-3. NPM安装
-   
-4. 辅助安装
+* embedding推荐国产大模型，比如qwen的text-embedding-v2或者智谱的embedding模型
 
 
+
+### 【小胰宝开源项目贡献者】
+
+<a href="https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=PancrePal-xiaoyibao/PancrePal-xiaoyibao" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
 
 ### 【联络方式】
 作者联系邮箱  qinxiaoqiang2002@hotmail.com,  微信 qinxiaoqiang 

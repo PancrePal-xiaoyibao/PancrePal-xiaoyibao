@@ -1,0 +1,26 @@
+[INFO][2024-05-17 10:30:41][config.py:229] - 配置文件不存在，将使用config-template.json模板
+[ERROR][2024-05-17 10:30:41][app.py:65] - App startup failed!
+[ERROR][2024-05-17 10:30:41][app.py:66] - [Errno 2] No such file or directory: './config-template.json'
+Traceback (most recent call last):
+  File "/Users/qinxiaoqiang/Downloads/cow1/app.py", line 45, in run
+    load_config()
+  File "/Users/qinxiaoqiang/Downloads/cow1/config.py", line 232, in load_config
+    config_str = read_file(config_path)
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/qinxiaoqiang/Downloads/cow1/config.py", line 270, in read_file
+    with open(path, mode="r", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: './config-template.json'
+[INFO][2024-05-17 10:31:27][config.py:229] - 配置文件不存在，将使用config-template.json模板
+[ERROR][2024-05-17 10:31:27][app.py:65] - App startup failed!
+[ERROR][2024-05-17 10:31:27][app.py:66] - [Errno 2] No such file or directory: './config-template.json'
+Traceback (most recent call last):
+  File "/Users/qinxiaoqiang/Downloads/cow1/app.py", line 45, in run
+    load_config()
+  File "/Users/qinxiaoqiang/Downloads/cow1/config.py", line 232, in load_config
+    config_str = read_file(config_path)
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/qinxiaoqiang/Downloads/cow1/config.py", line 270, in read_file
+    with open(path, mode="r", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: './config-template.json'
