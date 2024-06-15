@@ -1,30 +1,32 @@
+#config.json文件中所有备注都需要删除，否则报错
+
 {
   "channel_type": "wechatcom_app",
   "single_chat_prefix": [""],  
-  "wechatcom_corp_id": "ww81a92e0816afd69f",
-  "wechatcomapp_token": "cpwtt1yk1saBQf",
-  "wechatcomapp_secret": "Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg",
-  "wechatcomapp_agent_id": "1000004",
-  "wechatcomapp_aes_key": "U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU",
+  "wechatcom_corp_id": "xxx", # 企业微信corp_id
+  "wechatcomapp_token": "xx", # 企业微信应用token,创建   -> 应用 -> 应用详情 -> 应用ID
+  "wechatcomapp_secret": "Psxxxxxx", # 企业微信应用密钥，企业微信，后台配置入口：首页agent ID下面就是，需要点击查看，企业微信端确认后就可以看到 
+  "wechatcomapp_agent_id": "1000xxx", # 企业微信应用id，创建应用后，首页AgentID
+  "wechatcomapp_aes_key": "U2Axx", # 企业微信应用aes_key，企业微信后台：应用管理->API接收消息 里面和token一起生成，保存用于回填
   "wechatcomapp_port": 9898,
-  "open_ai_api_key": "fastgpt-PYewGERC8tKH3duEWY5SJ9qvwV0uXEuoRdgnOX3y4RmOxgNI9Z40pXdedyzdk",
-  "open_ai_api_base": "http://111.229.128.119:3100/api/v1", 
-  "model": "gpt-3.5-turbo",
+  "open_ai_api_key": "fastgpt-xx", #fastgpt应用- api服务
+  "open_ai_api_base": "http://ip:3100/api/v1",  #fastgpt应用api地址，记得加V
+  "model": "gpt-3.5-turbo", #建议填写，使用openai模块，避免报错
   "text_to_image": "dall-e-2",
   "voice_to_text": "openai",
   "text_to_voice": "openai",
   "proxy": "",
   "hot_reload": false,
-  "single_chat_reply_prefix": "[xyb] ",
+  "single_chat_reply_prefix": "[小胰宝] ",
   "group_chat_prefix": [
-    "@xyb"
+    "@小胰宝"
   ],
   "group_name_white_list": [
     "ChatGPT测试群",
     "ChatGPT测试群2"
   ],
   "image_create_prefix": [
-    "画"
+    "x画"
   ],
   "speech_recognition": false,
   "group_speech_recognition": false,
