@@ -92,15 +92,6 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 * 模型部分以零一为例，可以随需修改，推荐Moonshot/Stepchat/Glm-4系列，不推荐openai，主要还是embedding和对话账号，openai国内使用不合法也不稳定。
 * embedding推荐国产大模型，比如qwen的text-embedding-v2或者智谱的embedding模型
 
-
-## 【小胰宝开源项目贡献者】
-
-<a href="https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=PancrePal-xiaoyibao/PancrePal-xiaoyibao" />
-</a>
-
-Made with [contrib.rocks](https://contrib.rocks).
-
 ## 【联络方式】
 
 - 作者联系邮箱 `qinxiaoqiang2002@hotmail.com`，微信：`qinxiaoqiang`
