@@ -2,15 +2,24 @@
 
 
 ## Project Introduction:
-PancrePal is a RAG application developed and launched by a fellow patient, SamQin (myself as an pancretic cancer patient & AI developer), with the main purpose of assisting 200K+ newly diagnosed patients and survivors each year to overcome the professional medical and treatment information gap between patients and doctors. With PancrePal, patients can receive 7x24 hour assistance to efficiently and accurately understand their medical conditions, treatment terminology, standardized treatment guidelines, and the complex information of comprehensive treatments. This helps them overcome panic emotions, choose scientific and effective treatment routes, and ultimately gain longer treatment benefits, that is, the window of life.
+Pancrepal was developed and launched by fellow patient SamQin as a RAG application, aimed at helping hundreds of thousands of newly diagnosed patients and survivors each year to bridge the information gap between medical professionals and patients regarding specialized medical and treatment information. With Pancrepal, patients can access 24/7 support to efficiently and accurately understand their condition, treatment terms, standardized treatment guidelines, and the complex information surrounding comprehensive care. This enables patients to overcome panic, choose scientific and effective treatment routes, and ultimately achieve longer treatment benefits, thus extending their life window.
 
-PancrePal has been online for 7 months, helping over 2000+ patients with stable support, and has gathered professional doctors who support the application of AI technology, patient communities, and open-source technology communities and public welfare practitioners. The launch of PancrePal has pioneered and validated a new model for AI intelligent services for patients with all types of cancer, looking forward to the open-source community promoting more similar applications for tens of millions of new patients. These services include providing convenience for patients with tumors such as lung cancer, breast cancer, thyroid cancer, liver cancer, and intestinal cancer.
+Pancrepal has been online for 8 months, assisting over 3000 patients by providing stable support and gathering professional doctors who endorse AI technology applications, patient groups, the open-source tech community, and social welfare advocates. In July 2024, the project officially went open source, thanks to prominent figures like @RichardLin and Mr. Zhuang from the Open Source Society, leading and driving the establishment, organization, promotion, and enhancement of the open-source community.
+The launch of Pancrepal has pioneered and validated a new model for AI intelligent services for cancer patients across all types of tumors. We look forward to partners in the open-source community to take action and use their unique "technology + AI + humanities" capabilities to replicate this project, swiftly providing more similar applications for tens of millions of CA patients and offering them choices.
 
-Please note that the translation maintains the essence and goals of the original text, conveying the supportive and technological nature of the PancrePal application. If you have specific terms or jargon that need to be translated differently, please provide additional context or the preferred translation.
+We highly recommend developing and launching related AI assistants for patients with lung cancer, breast cancer, thyroid cancer, liver cancer, and colorectal cancer. Please feel free to contact the project organizers to exchange information and join hands for public welfare! 
 
-### Take a try of PancrePal here 
-https://aibot.samqin.asia
+### Take a try of PancrePal family here 
 
+https://aibot.samqin.asia - An app aiming to help patients & familiy to understand therapy terms and treatment standard knowledges
+https://xiangma.samqin.asia - An AI chatbotxRAG app specifically designed for pancreatic patients and their families. It aims to provide psychological counseling and stress relief in conjunction with comprehensive treatment, helping patients and their families maintain a stable mental state to achieve more positive treatment outcomes.
+
+---
+Centered around comprehensive treatment, "Pancrepal Family" focuses on three main aspects of cancer treatment: medical care, nutritional support, and psychological support, which directly influence the outcomes, known as the "window of life."
+
+In addition to AI-powered patient applications like Pancrepal, which assist in the treatment process, we are also introducing specialized tools such as "StarMom Chat - Pancreatic CA Patient Psychological Soothing Assistant" for psychological support, and "Little Foodie - Patient Nutrition and Recipe Assistant" for nutritional guidance. Together, these form a unified triad of comprehensive applications aimed at efficiently providing information to patients and their families.
+
+We encourage replication of this project to develop applications for multiple cancer types, emphasizing the necessity of integrating these three aspects for effective patient care.
 ---
 
 ##Project Open-Source Principles and Oath:
@@ -31,76 +40,17 @@ The PancrePal project utilizes the following open-source projects, and we expres
 [Chatgpt-on-wechat](https://github.com/zhayujie/chatgpt-on-wechat/tree/master): Integrating AI capabilities with messaging platforms.
 [Dify](https://github.com/langgenius/dify): A project that has supported the customization and functionality of our application.
 [0-1 AI, one of LLM Large Language Model Leaders](https://01.ai): Zero One Team offered greatest support & sponsored the consumption of tokens, allowing thousands of patients to enjoy the benefits of technological advancements.
+Upon learning about the progress of the Pancrepal project, [Stepfun](https://stepfun.com) team @Sunny Fu Kai and @simin proactively reached out to support the project with generous token donations. Product manager @Chen Xuedan and development lead @halo offered technical support for prompt optimization. Stepchat's involvement not only underscores 
+ ### the values of the open-source world but also conveys an important message: There is always a group of people willing to leverage open-source AI technology and human warmth to create more applications like Pancrepal, helping cancer patients in China and those benefiting from China's medical aid internationally, providing them with the opportunity to overcome information gaps, choose scientifically sound, standardized treatments, and achieve life-extending benefits.
 Additionally, we extend our thanks to other individuals in the open-source community who have supported the launch of PancrePa, including @Richard, the guider leading PancrePla to opensource world, @Vlinic-expert in LLM app coding and pilot of the LLM RED TEAM to improve security, etc.
 
 
 ## Version Introduction and Roadmap
+see link
 
-### V1.0
-
-Features Introduction
-
-Knowledge Base Construction:
-1.1 Based on the principle of "standardized treatment," carefully selected and imported guidelines for standardized treatment of pancreatic cancer (including guidelines and patient guides from CSCO/China and NCCN/USA), covering more than 20 pancreatic cancer complications and comprehensive treatment-related guidelines (white blood cells/platelets/obstruction/jauice intervention, etc.).
-1.2 Imported the comprehensive treatment experience treasure content accumulated by the pancreatic patient community.
-1.3 Covered targeted therapy and gene therapy, definitions of genes related to pancreatic cancer, and key points to note in gene therapy.
-1.4 Imported standards for nutritional support and treatment.
-1.5 Selected and imported featured articles on comprehensive treatment.
-
-Agent Construction
-2.1 Agent creation.
-2.2 Prompt configuration.
-2.3 LLM (Large Language Model) configuration and selection.
-2.4 Tool matching.
-2.5 Dialogue testing.
-2.6 Dialogue template management.
-
-Service Management
-3.1 API creation and management.
-3.2 External usage link creation and management.
-3.3 Service statistics and dashboard.
-
-System Management
-4.1 User permissions/role management.
-4.2 Log management.
-
-WeChat Management
-5.1 WeChat bot integration and automated monitoring.
-5.2 Bot dialogue configuration management.
-5.3 Other application management.
-
-Enterprise WeChat Management
-6.1 Enterprise WeChat application integration.
-6.2 Bot dialogue configuration management.
-6.3 Other application feature management.
-
-The operation system is an indispensable part of the knowledge base, including:
-7.1 Knowledge system design.
-7.2 Knowledge system evaluation and grading.
-7.3 Knowledge base structure design.
-7.4 Knowledge content import and verification.
-7.5 Knowledge base optimization, compression, and iteration.
-
-V2.0 Version
-En-route Features:
-
-1.1 Image Recognition: Capable of uploading and recognizing content from monitoring reports, intelligently interpreting the definition and abnormalities of disease indicators, facilitating patients' understanding of the significance of indicators and timely interaction with the attending physician.
-1.2 Audio-Video Knowledge Base.
-1.3 Voice Interaction: Adding stable voice interaction capabilities to facilitate communication with the elderly.
-1.4 New Version Knowledge Base System
-1.4.1 Pancreatic Cancer Comprehensive Treatment Medications.
-1.4.2 Pancreatic Cancer Comprehensive Treatment Nutrition Menus.
-1.5 Stable WeChat Bot: Urgently needs technical contributors from the open-source community for assistance.
-
-## Open-Source expertise Recruitment
-** More stable WeChat Bot**: Many patient groups are gathered within the WeChat ecosystem, hence the need for a stable WeChat bot. Currently, we are using free open-source tools including Chatgpt-on-wechat, which has an issue of going offline every 2-3 days, significantly affecting the use of patients and the requirements of applications like PancrePal that serve hundreds of thousands of users. If there are supporters in the open-source community, please contact me.
-
-** Knowledge Base Iteration**
-LLM Capability Enhancement
-Diagnostic Collaboration
-Public Welfare Organization Collaboration
 
 ### Contact Information
-Author's contact email: qinxiaoqiang2002@hotmail.com, WeChat: qinxiaoqiang
+Leader of PancrePal Team: Richard, wechat: `OPQRichard`
+Author's contact email: 'qinxiaoqiang2002@hotmail.com', WeChat: 'qinxiaoqiang'
 
 
