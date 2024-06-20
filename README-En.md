@@ -12,7 +12,7 @@ We highly recommend developing and launching related AI assistants for patients 
 ### Take a try of PancrePal family here 
 
 https://aibot.samqin.asia - An app aiming to help patients & familiy to understand therapy terms and treatment standard knowledges
-https://xiangma.samqin.asia - An AI chatbotxRAG app specifically designed for pancreatic patients and their families. It aims to provide psychological counseling and stress relief in conjunction with comprehensive treatment, helping patients and their families maintain a stable mental state to achieve more positive treatment outcomes.
+https://xingma.samqin.asia - An AI chatbotxRAG app specifically designed for pancreatic patients and their families. It aims to provide psychological counseling and stress relief in conjunction with comprehensive treatment, helping patients and their families maintain a stable mental state to achieve more positive treatment outcomes.
 
 ---
 Centered around comprehensive treatment, "Pancrepal Family" focuses on three main aspects of cancer treatment: medical care, nutritional support, and psychological support, which directly influence the outcomes, known as the "window of life."
