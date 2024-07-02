@@ -15,7 +15,6 @@
 - 小胰宝 - 胰腺ca患者助手：https://aibot.samqin.asia
 - 星妈爱聊 - ca心理安抚助手：https://xingma.samqin.asia
 
-![小胰宝](https://www.freeimg.cn/i/2024/05/08/663ae77288263.png)
 
 ## 围绕综合治疗配套的“小胰宝一家人”
 
