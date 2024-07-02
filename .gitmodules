@@ -1,0 +1,3 @@
+[submodule "src/CoW-win"]
+	path = src/CoW-win
+	url = https://github.com/PancrePal-xiaoyibao/chatgpt-on-wechat-win
