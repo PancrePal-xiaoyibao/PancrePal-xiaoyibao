@@ -23,10 +23,8 @@
 
 AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外，我们还尝试提供针对”心理支持“的【星妈爱聊- 胰腺ca患者心理安抚小助手】，以及【小食宝 - 患者营养和菜谱小助手】，形成三环合一的综合应用，帮助患者和家属高效率的获得信息。也请复制本项目，创建多癌肿应用的开发者注意这一点的必要性。
 
-![星妈爱聊](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/blob/main/xingma.png)
-
-
-![小胰宝新手宝典](https://github.com/samqin123/---RAG-/assets/103937568/4e1b2e11-38fe-4978-9660-d2761c2a0af1)
+#![星妈爱聊](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/blob/main/xingma.png)
+#![小胰宝新手宝典](https://github.com/samqin123/---RAG-/assets/103937568/4e1b2e11-38fe-4978-9660-d2761c2a0af1)
 
 ## 【项目开源原则和誓言】
 
