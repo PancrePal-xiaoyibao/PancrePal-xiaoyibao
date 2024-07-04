@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  one-api:
+    image: {{ .ImageAPI }}
+    #image: justsong/one-api:latest
+    container_name: one-api
+    restart: always
+    environment:
+      - INITIAL_ROOT_TOKEN={{ .ApiKey }}
+      - INITIAL_ROOT_ACCESS_TOKEN={{ .RootKey }}
+      - SESSION_SECRET=random_string
+      - MEMORY_CACHE_ENABLED=true
+      - BATCH_UPDATE_ENABLED=true
+      - BATCH_UPDATE_INTERVAL=10
+      - TZ=Asia/Shanghai
+    ports:
+      - "3600:3000"
+    volumes:
+      - {{ .DataDir }}/one-api:/data
+
+networks:
+  fastgpt:

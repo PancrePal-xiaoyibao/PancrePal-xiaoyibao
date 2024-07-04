@@ -1,0 +1,58 @@
+version: '3.3'
+services:
+  pg:
+    image: {{ .ImagePG }}
+    container_name: pg
+    restart: always
+    ports:
+      - 5432:5432
+    networks:
+      - fastgpt
+    environment:
+      - POSTGRES_USER={{ .DbUser }}
+      - POSTGRES_PASSWORD={{ .DbPass }}
+      - POSTGRES_DB=postgres
+    volumes:
+      - {{ .DataDir }}/pg:/var/lib/postgresql/data
+
+  mongo:
+    image:  {{ .ImageMG }}
+    container_name: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    networks:
+      - fastgpt
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME={{ .DbUser }}
+      - MONGO_INITDB_ROOT_PASSWORD={{ .DbPass }}
+    volumes:
+      - {{ .DataDir }}/mongo:/data/db
+
+  fastgpt:
+    container_name: fastgpt
+    image: {{ .ImageGPT }}
+    ports:
+      - 3100:3000
+    networks:
+      - fastgpt
+    depends_on:
+      - mongo
+      - pg
+    restart: always
+    environment:
+      - DEFAULT_ROOT_PSW=admin
+      - OPENAI_BASE_URL={{ .BaseURL }}
+      - CHAT_API_KEY=sk-{{ .ApiKey }}
+      - DB_MAX_LINK=30
+      - TOKEN_KEY=any
+      - ROOT_KEY=root_key
+      - FILE_TOKEN_KEY=filetoken
+      - MONGODB_URI=mongodb://{{ .DbUser }}:{{ .DbPass }}@mongo:27017/fastgpt?authSource=admin
+      - PG_URL=postgresql://{{ .DbUser }}:{{ .DbPass }}@pg:5432/postgres
+      - LOG_LEVEL=info
+    volumes:
+      - {{ .DataDir }}/config.json:/app/data/config.json
+
+networks:
+  fastgpt:
