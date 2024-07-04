@@ -46,6 +46,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 
 1. [Fastgpt](https://github.com/labring/FastGPT): 为小胰宝1.0提供了核心RAG平台技术栈，，对万人级别患者提供了稳定和高效能服务，以及便捷高效的知识库搭建；<br>
 2. [Chatgpt-on-wechat](https://github.com/zhayujie/chatgpt-on-wechat/tree/master): 作为微信机器人技术栈，提供了患者更便捷的使用和体验；<br>
+3. [资深开发者Francis](https://github.com/Tishon1532/chatgpt-on-wechat-win):感谢 @Tishon1532 提供了微信机器人解决方案，极大改善了微信群病友的使用和体验；<br> 
 3. [Dify](https://github.com/langgenius/dify): 为小胰宝2.0提供了RAG的扩展空间，包括LLMs的一站式接入，KB的体系扩展，以及最为重要的和全球化RAG能力对齐.<br>
 4. [0-1 AI, one of LLM Large Language Model Leaders](https://01.ai)：零一万物团队，不仅全力支持本公益项目，而且慷慨提供了0-1API接口及Token消耗赞助，让数千患者享受到了科技福利。<br>
 5. 同时，也感谢其它为小胰宝上线提供支持的开源社区人士 @v佬 -中国红客联盟 @Richard-开源社创始人，为小胰宝的技术和发展提供关键支持和引导
@@ -72,7 +73,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 - [x] 任务1：[微信机器人优化][]：基于COW项目的微信机器人，降低掉线率，可以使用不同的魔改版本，欢迎测试后提交PR；
 - [x] 任务2：[部署自动化](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/issues/14)：现在是需要3个项目的手工部署，希望能自动化部署，欢迎测试后提交PR；
 - [ ] 任务3：[multi-agent优化](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/issues/13)：目前只支持单agent和workflow，但肿瘤患者需要医学助理-营养助理-心理助理构成的至少3个agent联合服务，配合癌症患者的综合治疗效果。目前只能以3个应用来分解，患者则需要使用3个ai助手，很不方便; 需要熟悉RAG的大佬搭建demo，并提交PR；
-- [ ] 任务4：[微信小程序]()：越来越多的患者希望把微信小程序端开发出来，技术上小胰宝提供了api接口，但是需要前端开发者协助开发，欢迎测试后提交PR；建议使用git上的开源免费chatbot小程序框架。
+- [ ] 任务4：[铂金任务：微信小程序端](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/issues/23)：越来越多的患者希望把微信小程序端开发出来，技术上小胰宝提供了api接口，但是需要前端开发者协助开发，欢迎测试后提交PR；建议使用git上的开源免费chatbot小程序框架。
 - [ ] 任务5: [小胰宝复制跨癌肿｜和cozy结合](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/issues/18):基于COZY和小胰宝Repo，复制和构建五大癌肿的新癌肿适配智能助手小x宝。
 - [ ] 任务6: [Fastgpt知识库Re-ranking和问答优化](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/issues/16):使用re-rank，带来的RAG的效果提升和优化对话质量。
 - [ ] 任务7：[优化fastgpt响应速度，实现流式输出]()：目前fastgpt的响应速度比较慢，大概要5-15秒，需要优化到2-3秒，欢迎测试后提交PR；
