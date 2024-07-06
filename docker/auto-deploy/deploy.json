@@ -1,11 +1,11 @@
 {
   "WorkDir":    "./run",
   "TmplDir":    "./tmpl",
-  "MainFests":  ["api", "gpt"],
-  "BaseURL":  "http://localhost:3600/v1",
-  "ApiKey":   "1234567890",
-  "RootKey":  "0987654321",
-  "DbUser":   "username",
-  "DbPass":   "password",
-  "DataDir":  "./data"
+  "ManiFests":  ["api", "gpt", "ngx"],
+  "BaseURL":    "http://localhost:3600/v1",
+  "ApiKey":     "1234567890",
+  "RootKey":    "0987654321",
+  "DbUser":     "username",
+  "DbPass":     "password",
+  "DataDir":    "./data"
 }
