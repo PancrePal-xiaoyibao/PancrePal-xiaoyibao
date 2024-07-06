@@ -13,7 +13,7 @@
 ## 体验地址
 
 - 小胰宝 - 胰腺ca患者助手：https://chat.xiaoyibao.com.cn
-- 星妈爱聊 - ca心理安抚助手：https://xingma.samqin.asia
+- 星妈爱聊 - ca心理安抚助手：https://xingma.xiaoyibao.com.cn
 
 
 ## 围绕综合治疗配套的“小胰宝一家人”
