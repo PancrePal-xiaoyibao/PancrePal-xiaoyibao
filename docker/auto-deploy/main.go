@@ -23,11 +23,11 @@ func main() {
 	}
 
 	// 2
-	for _, mainFest := range container.MainFests {
-		libs.ApplyTemplate(container.WorkDir, templates, mainFest, container)
+	for _, maniFest := range container.ManiFests {
+		libs.ApplyTemplate(container.WorkDir, templates, maniFest, container)
 	}
 
 	// 3
-	libs.Start(container.WorkDir, container.MainFests)
+	libs.Start(container.WorkDir, container.ManiFests)
 
 }
