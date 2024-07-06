@@ -12,7 +12,7 @@
 
 ## 体验地址
 
-- 小胰宝 - 胰腺ca患者助手：https://aibot.samqin.asia
+- 小胰宝 - 胰腺ca患者助手：https://chat.xiaoyibao.com.cn
 - 星妈爱聊 - ca心理安抚助手：https://xingma.samqin.asia
 
 
@@ -44,7 +44,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 
 ## 【小胰宝1.0产品框架介绍】
 
-<img width="1481" alt="image" src="https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/assets/103937568/edcb6e3a-cccd-48c1-952a-b40274b9d9a1">
+<img width="640" alt="image" src="https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/assets/103937568/edcb6e3a-cccd-48c1-952a-b40274b9d9a1">
 
 
 ----
