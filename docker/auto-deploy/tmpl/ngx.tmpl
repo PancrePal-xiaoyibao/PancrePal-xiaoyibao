@@ -8,5 +8,5 @@ services:
       - '81:81'
       - '443:443'
     volumes:
-      - {{ .DataDir }}:/data
-      - {{ .DataDir }}/ssl:/etc/letsencrypt
+      - {{ .DataDir }}/nginx/data:/data
+      - {{ .DataDir }}/nginx/letsencrypt:/etc/letsencrypt
