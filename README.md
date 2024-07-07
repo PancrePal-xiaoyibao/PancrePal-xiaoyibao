@@ -92,6 +92,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 ### 运营类型
 - [x] 任务9: [永恒的话题：运营](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao): 小胰宝运营内容互动版块
 - [x] 任务10 [维护知识宝典](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao)：定期维护更新针对病友的系统性病情应知必回体系，尤其是指南和共识。
+- [ ] 任务12 [小胰宝网站建设和维护](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/issues/30):网站刚建好，内容组织和内容编辑都需要文笔，思路熟悉的同学来完善和运营，非技术同学优先；
 - [ ] 任务: 社区运营：目前小胰宝的社区运营团队刚刚成立，需要志愿者加入，增强“内容运营”，“病友社群运营”的运营能力，欢迎报名，请联系wx@m89989988m
 - [ ] 任务: 内容库运营：欢迎提交和胰腺癌治疗的内容（包括pdf文件，治疗方案，治疗药物，靶向方案，免疫方案，治疗方案的内容，经验。如果你可以去自行添加到[小胰宝知识库项目](https://xycjscs.github.io/KnowledgeBase-xiaoyibao/)，欢迎提交PR），或者可以申请加入志愿者群，联系wx@m89989988m
 ---
