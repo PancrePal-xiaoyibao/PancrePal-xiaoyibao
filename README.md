@@ -84,7 +84,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 ## 【任务广场：需要开源社区帮助的工作项】
 ### 开发类型
 
-- [x] 任务1：[微信机器人优化][]：基于COW项目的微信机器人，降低掉线率，可以使用不同的魔改版本，欢迎测试后提交PR；
+- [x] 任务1：~~[微信机器人优化][]：基于COW项目的微信机器人，降低掉线率，可以使用不同的魔改版本，欢迎测试后提交PR；~~
 - [x] 任务2：[部署自动化](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/issues/14)：现在是需要3个项目的手工部署，希望能自动化部署，欢迎测试后提交PR；
 - [x] 任务3：[multi-agent优化](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/issues/13)：目前只支持单agent和workflow，但肿瘤患者需要医学助理-营养助理-心理助理构成的至少3个agent联合服务，配合癌症患者的综合治疗效果。目前只能以3个应用来分解，患者则需要使用3个ai助手，很不方便; 需要熟悉RAG的大佬搭建demo，并提交PR；
 - [ ] 任务4：[铂金任务：微信小程序端](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/issues/23)：越来越多的患者希望把微信小程序端开发出来，技术上小胰宝提供了api接口，但是需要前端开发者协助开发，欢迎测试后提交PR；建议使用git上的开源免费chatbot小程序框架。
