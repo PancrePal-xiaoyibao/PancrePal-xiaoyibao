@@ -52,20 +52,23 @@ ls -l bin/lauch
 
 Modify based on default (deploy.json) configuration.
 
-| Syntax      |                  Description                   | default value |
-| :---        |:----------------------------------------------:|--------------:|
-| WorkDir      | The deployment main directory of the project   |   ./run |
-| TmplDir   |         Deployment template directory          |      ./tmpl |
-| ManiFests      |              Deployment Manifests              |   "api", "gpt", "ngx" |
-| ImageAPI   |             one-api container name             |      justsong/one-api:latest |
-| ImageGPT      |             fastGPT container name             |   ghcr.io/labring/fastgpt:v4.6.4 |
-| BaseURL   |           3rd ai interface base url            |      http://localhost:3600/v1 |
-| ApiKey      |              3rd ai interface key              |   1234567890 |
-| RootKey   |              one-api root api key              |      0987654321 |
-| DbUser      |               database username                |   username |
-| DbPass   |                databse password                |      password |
-| DataDir      |             System Data directory              |   ./data |
+| Syntax    |                   Description                    |                  default value |
+| :---      | :----------------------------------------------: |                --------------: |
+| WorkDir   |   The deployment main directory of the project   |                          ./run |
+| TmplDir   |          Deployment template directory           |                         ./tmpl |
+| ManiFests |               Deployment Manifests               |            "api", "gpt", "ngx" |
+| ImageAPI  |              one-api container name              |        justsong/one-api:latest |
+| ImageGPT  |              fastGPT container name              | ghcr.io/labring/fastgpt:v4.6.4 |
+| BaseURL   |            one-api interface base url            |       http://localhost:3600/v1 |
+| ApiKey    |             one-api ai interface key             |                     1234567890 |
+| RootKey   |               one-api root api key               |                     0987654321 |
+| DbUser    |                database username                 |                       username |
+| DbPass    |                 databse password                 |                       password |
+| DataDir   |              System Data directory               |                         ./data |
 
+```bash
+cat deploy.json
+```
 ```json
 {
   "WorkDir":    "./run",
