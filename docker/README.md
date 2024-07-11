@@ -16,7 +16,7 @@ $ cat /etc/issue
 Ubuntu 22.04 LTS
 ```
 
-Install Git and Golang.
+Install Git and Docker.
 
 ```bash
 $ sudo apt install -y git golang-go docker.io docker-compose
@@ -50,7 +50,7 @@ ls -l bin/lauch
 
 ### 4. Configure
 
-Modify based on default configuration.
+Modify based on default (deploy.json) configuration.
 
 | Syntax      |                  Description                   | default value |
 | :---        |:----------------------------------------------:|--------------:|
