@@ -31,11 +31,12 @@
 > 除了操作步骤的说明，我们会开源prompts，构建技巧，以方便无代码能力的人员，快速参考和实现构建。
 
 ## Demo
->**Cozy平台：**
->[星妈爱聊](https://www.coze.cn/store/bot/7391456276259160115)
+>**Cozy平台：** <br>
+>[星妈爱聊](https://www.coze.cn/store/bot/7391456276259160115) <br>
+>[小食宝-肿瘤患者营养专家](https://www.coze.cn/s/iM8k258G) <br>
 
->**zhipu平台:**
->[小胰宝](https://chatglm.cn/share/FEmRj)
+>**zhipu平台:** <br>
+>[小胰宝](https://chatglm.cn/share/FEmRj) <br>
 
 ---
 ## 围绕综合治疗配套的“小胰宝一家人”
