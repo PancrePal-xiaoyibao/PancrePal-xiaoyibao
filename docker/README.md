@@ -40,12 +40,12 @@ cat docker/auto-deploy/README.md
 Build the lauch.
 ```bash
 $ cd docker/auto-deploy
-$ go mod tidy
-$ make amd64
+$ sudo go mod tidy
+$ sudo make amd64
 ```
 If you did not see any error message, congratulations, you can find the executable file lauch in the bin directory.
 ```bash
-ls -l bin/lauch
+ls -l launch
 ```
 
 ### 4. Configure
@@ -85,11 +85,11 @@ cat deploy.json
 }
 ```
 
-### 5. Run the lauch start auto deploy
+### 5. Run the launch start auto deploy
 
-Run the lauch.
+Run the launch.
 ```bash
-$ bin/lauch
+$ sudo ./lauch
 ```
 
 ## Contribution
