@@ -1,0 +1,13 @@
+{
+  "WorkDir":    "./run",
+  "ManiFests":  ["gpt", "ngx"],
+  "ImageAPI":   "justsong/one-api:latest",
+  "ImageGPT":   "ghcr.io/labring/fastgpt:latest",
+  "BaseURL":    "http://one-api:3600/v1",
+  "ApiKey":     "1234567890",
+  "RootKey":    "0987654321",
+  "DbUser":     "username",
+  "DbPass":     "password",
+  "GptPass":    "admin",
+  "DataDir":    "./data"
+}

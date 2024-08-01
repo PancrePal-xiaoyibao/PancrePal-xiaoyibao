@@ -159,8 +159,8 @@ github.com/pelletier/go-toml v1.9.5 h1:4yBQzkHv+7BHq2PQUZF3Mx0IYxG7LsP222s7Agd3v
 github.com/pelletier/go-toml v1.9.5/go.mod h1:u1nR/EPcESfeI/szUZKdtJ0xRNbUoANCkoOuaOx1Y+c=
 github.com/pelletier/go-toml/v2 v2.0.1 h1:8e3L2cCQzLFi2CR4g7vGFuFxX7Jl1kKX8gW+iV0GUKU=
 github.com/pelletier/go-toml/v2 v2.0.1/go.mod h1:r9LEWfGN8R5k0VXJ+0BkIe7MYkRdwZOjgMj2KwnJFUo=
-github.com/peterwillcn/ai-lauch v0.0.4 h1:R1q7M3vJnRbzlXaeEs+Bsd9aHXtPF1VOw+iuYVWJbAE=
-github.com/peterwillcn/ai-lauch v0.0.4/go.mod h1:GsEvyl2rKSH3dvCq58yu3aB3duykhdNTl4y2sa+0gG0=
+github.com/peterwillcn/ai-launch v0.0.3 h1:fywEaK0CmTSr1mBJ2xIao6Af4H7a4yNCgXcsZ05K4eA=
+github.com/peterwillcn/ai-launch v0.0.3/go.mod h1:rCjilxAQK9316jleTNhnQZAY6wKENGhf5v140bfhcQU=
 github.com/pkg/diff v0.0.0-20210226163009-20ebb0f2a09e/go.mod h1:pJLUxLENpZxwdsKMEsNbx1VGcRFpLqf3715MtcvvzbA=
 github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pkg/sftp v1.13.1/go.mod h1:3HaPG6Dq1ILlpPZRO0HVMrsydcdLt6HRDccSgb87qRg=

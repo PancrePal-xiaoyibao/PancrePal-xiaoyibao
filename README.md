@@ -12,7 +12,7 @@
 >**- 癌症的种类繁多分级分类也多，治疗手段多样，且在空间上极不平衡，在时间上发展极快，我们应当帮助患者理清思路，合理看待，正确治疗，避免不必要的恐惧和过度或低效的治疗方法**
 
 **因为我们相信:** <br>
-> **一个弱者，在情境中若想崛起，若想为自己的权力抗争，唯一的方法就是尽量发光。不是因为相信这个光可以照亮一切，只是因为黑暗里的一点点光在远处会特别耀眼，其他的光会看到你这扇光。微光会吸引微光，微光会照亮微光，我们相互找到，然后一起发光，才能把压榨的阴霾照亮。** 引用自 熊浩《奇葩说》  
+> **一个弱者，在情境中若想崛起，若想为自己的权力抗争，唯一的方法就是尽量发光。不是因为相信这个光可以照亮一切，只是因为黑暗里的一点点光在远处会特别耀眼，其他的光会看到你这扇光。微光会吸引微光，微光会照亮微光，我们相互找到，然后一起发光，才能把压榨的阴霾照亮。** 引用自 熊浩《奇葩说》
 
 **我们的最近10条动态** <br>
 > ｜**2024-7  经过商议，开始着手协助构建面向 **肛肠癌**的AI助手 - 小萌宝，和该癌肿的热心美丽的博主Tina进行合作。** <br>
@@ -75,7 +75,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 3.  LLM能力增强: 希望继续能够在LLM的主力公司/开发大佬的帮助下，提升RAG效果；尤其是在国产LLM风起云涌中，希望在垂直领域，建立更好的应用效果，无论是Cozy，还是Fastgpt，都需要借助LLM的进化速度，来持续提升效果；
 4. **公益组织协同**： 我们希望在技术持续推动的同时，选择和加入DNA相同的公益组织，为小胰宝项目的持续和扩大，提供**资金**，**管理**，**身份**的稳定支持。
 
---- 
+---
 ### 小胰宝团队wiki: 团队内部使用
 [只提供团队内部使用](https://uei55ql5ok.feishu.cn/wiki/space/7388724291384246276?ccm_open_type=lark_wiki_spaceLink&open_tab_from=wiki_home)
 
@@ -93,7 +93,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 
 1. [Fastgpt](https://github.com/labring/FastGPT): 为小胰宝1.0提供了核心RAG平台技术栈，，对万人级别患者提供了稳定和高效能服务，以及便捷高效的知识库搭建；Fastgpt杨老师积极帮助xyb协调和解决困扰的权限管理分级，并在社区中寻找微信机器人资源，带动社区贡献，特别感谢Fastgpt团队的无私支持！也期待他们更大的技术突破和成功。<br>
 2. [Chatgpt-on-wechat](https://github.com/zhayujie/chatgpt-on-wechat/tree/master): 作为微信机器人技术栈，提供了患者更便捷的使用和体验；<br>
-3. [开发者Francis](https://github.com/Tishon1532/chatgpt-on-wechat-win):感谢 @Tishon1532 提供了微信机器人解决方案，极大改善了微信群病友的使用和体验，拓展了小胰宝在卡片消息使用场景的应用思路，我们成功的加入了密塔搜索，点歌台等病友高频使用场景；<br> 
+3. [开发者Francis](https://github.com/Tishon1532/chatgpt-on-wechat-win):感谢 @Tishon1532 提供了微信机器人解决方案，极大改善了微信群病友的使用和体验，拓展了小胰宝在卡片消息使用场景的应用思路，我们成功的加入了密塔搜索，点歌台等病友高频使用场景；<br>
 3. [Dify](https://github.com/langgenius/dify): 为小胰宝2.0提供了RAG的扩展空间，包括LLMs的一站式接入，KB的体系扩展，以及最为重要的和全球化RAG能力对齐.<br>
 4. [0-1 AI, one of LLM Large Language Model Leaders](https://01.ai)：零一万物团队，不仅全力支持本公益项目，而且慷慨提供了0-1API接口及Token消耗赞助，让数千患者享受到了科技福利。<br>
 5. 同时，也感谢其它为小胰宝上线提供支持的开源社区人士 @ -中国红客联盟 @wangzhitao-京东健康 @linan-律师，为小胰宝的发展提供关键资源，包括支持和保障。
@@ -137,14 +137,14 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 
 ### 【推荐】一键部署安装
 
-* 感谢@peterwillcn老师，贡献了一键部署代码，请参阅[一键部署Readme文档](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/blob/main/docker/README.md)
+* 感谢@peterwillcn老师，贡献了一键部署代码，请参阅[一键部署Readme文档](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/blob/main/src/README.md)
 * 模型部分以零一为例，可以随需修改，推荐Moonshot/Stepchat/Glm-4系列，不推荐openai，主要还是embedding和对话账号，openai国内使用不合法也不稳定。
 * embedding推荐国产大模型，比如qwen的text-embedding-v2或者智谱的embedding模型
 
 
 ## 【小胰宝项目延伸 - 知识库项目】
 
-感谢@徐宇超老师的付出，为小胰宝和更多面向多癌肿的“小x宝”们，提供了一个知识库项目，方便非技术和医疗背景的贡献者，随时进行知识文档的汇总。<br>项目地址： https://xycjscs.github.io/KnowledgeBase-xiaoyibao/ 
+感谢@徐宇超老师的付出，为小胰宝和更多面向多癌肿的“小x宝”们，提供了一个知识库项目，方便非技术和医疗背景的贡献者，随时进行知识文档的汇总。<br>项目地址： https://xycjscs.github.io/KnowledgeBase-xiaoyibao/
 
 ---
 

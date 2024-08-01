@@ -1,56 +1,50 @@
-auto-deploy
+一键部署
 =========
 
-## Introduction
+## 简介
 
-Convenient and quick setup of AI system, one key deployment.
+便捷部署,有两中方式可选，第一是下载编译好的[可执行文件](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/releases/download/v1.2/launch.tgz)，第二从源代码编译。
 
-## Build and run step by step
+## 源码编译
 
-### 1. Ubuntu Prerequisites
+### 1. 系统版本
 
-Make sure your ubuntu version is 22.04 or later.
+使用 ubuntu 22.04
 
 ```bash
 $ cat /etc/issue
 Ubuntu 22.04 LTS
 ```
 
-Install Git and Docker.
+安装依赖软件包
 
 ```bash
-$ sudo apt install -y git golang-go docker.io docker-compose
+$ sudo apt install -y git golang-go unzip docker.io docker-compose
 ```
 
-### 2. Clone source code
-Make sure you are in the working folder.
+### 2. 克隆源代码
 
 ```bash
 $ git clone https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao.git
 ```
 
-If clone works successfully, you should see folder structure like docker/auto-deploy
+### 3. 代码下载完毕后，进入src/auto-deploy文件夹进行编译
 
+编译命令
 ```bash
-cat docker/auto-deploy/README.md
-```
-
-### 3. Make
-
-Build the lauch.
-```bash
-$ cd docker/auto-deploy
+$ cd src/auto-deploy
 $ sudo go mod tidy
-$ sudo make amd64
+$ sudo make
 ```
-If you did not see any error message, congratulations, you can find the executable file lauch in the bin directory.
+
+如果看到生成了launch文件，即编译成功。
 ```bash
 ls -l launch
 ```
 
 ### 4. Configure
 
-Modify based on default (deploy.json) configuration.
+配置文件默认值 (deploy.json)
 
 | Syntax    |                   Description                    |                  default value |
 | :---      | :----------------------------------------------: |                --------------: |
@@ -66,6 +60,7 @@ Modify based on default (deploy.json) configuration.
 | DbPass    |                 databse password                 |                       password |
 | DataDir   |              System Data directory               |                         ./data |
 
+配置例子
 ```bash
 cat deploy.json
 ```
@@ -85,20 +80,31 @@ cat deploy.json
 }
 ```
 
-### 5. Run the launch start auto deploy
+### 5. 运行自动部署
 
-Run the launch.
 ```bash
-$ sudo ./lauch
+$ sudo chmod +x launch
+# 启动部署
+$ sudo ./launch -o start
+# 关闭服务 
+$ sudo ./launch -o stop
+# 重启服务
+$ sudo ./launch -o restart
 ```
 
-## Contribution
+### 6. 关于fastgpt 部署提醒：
+1. 建议先部署oneapi或者newapi，建立LLM api池，方便后续模型对比测试和上线；
+2. 建议定期备份数据库mongo
 
-We welcome contributions to the Project.
+### 7. 关于config.json配置文件
+1. 格式请保持一致；
+2. 模型可以扩展：配置文件中已经有了样例，根据你要加入的模型，复制修改添加最好；
+3. 建议embedding使用国内大模型，如qwen的embedding-02/async-01都可以有免费的token资源；
+   <img width="592" alt="image" src="https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/assets/103937568/348cc4d2-02cb-4619-9e4a-4e6aee0c1413">
 
-## Acknowledgments
+5. 模型配置中，注意至少要有一个模型配置“datasetProcess”为true，用于fastgpt知识库前端“文件处理”配置选项，建议多个；
+<img width="768" alt="image" src="https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/assets/103937568/5c8b11f2-213a-42bc-a96a-9e06b614c8e9">
 
-A sincere thank you to all teams and projects that we rely on directly or indirectly.
 
 ## License
 

@@ -3,7 +3,7 @@ name: Build AI launch
 on:
   push:
     paths:
-      - 'docker/auto-deploy/**'
+      - 'src/auto-deploy/**'
 
 jobs:
   build:
@@ -21,7 +21,7 @@ jobs:
 
       - name: Build binary
         run: |
-          cd docker/auto-deploy
+          cd src/auto-deploy
           make all
 
       - name: Upload artifact
@@ -29,7 +29,6 @@ jobs:
         with:
           name: launch
           path: |
-            docker/auto-deploy/tmpl/**
-            docker/auto-deploy/deploy.json
-            docker/auto-deploy/launch
+            src/auto-deploy/deploy.json
+            src/auto-deploy/launch
 
