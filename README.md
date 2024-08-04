@@ -14,6 +14,9 @@
 **因为我们相信:** <br>
 > **一个弱者，在情境中若想崛起，若想为自己的权力抗争，唯一的方法就是尽量发光。不是因为相信这个光可以照亮一切，只是因为黑暗里的一点点光在远处会特别耀眼，其他的光会看到你这扇光。微光会吸引微光，微光会照亮微光，我们相互找到，然后一起发光，才能把压榨的阴霾照亮。** 引用自 熊浩《奇葩说》
 
+## 第二波招募中
+<img width="320" alt="image" src="https://private-user-images.githubusercontent.com/103937568/354893478-7c25836a-ef98-4eec-acb7-7bab355b7dda.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjI3NjU3OTksIm5iZiI6MTcyMjc2NTQ5OSwicGF0aCI6Ii8xMDM5Mzc1NjgvMzU0ODkzNDc4LTdjMjU4MzZhLWVmOTgtNGVlYy1hY2I3LTdiYWIzNTViN2RkYS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwODA0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDgwNFQwOTU4MTlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wYmRiYjBhNTVjYzg4NDg2ZWYwOGEzNmZjNjFkYjhmOGI3NTJmMjU0N2ZiMmUzYjUwMjAxNGFmMzMwMGNlY2M4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.bc5zTonFkN49kpHtLi76gUQiHWCzD-Sv4NMOqijxxCo">
+
 **我们的最近10条动态** <br>
 > ｜**2024-7  经过商议，开始着手协助构建面向 **肛肠癌**的AI助手 - 小萌宝，和该癌肿的热心美丽的博主Tina进行合作。** <br>
 > ｜**2024-6  小胰宝的使用人数出现下滑，但是AI工具在病友群的普及和使用上升，我们很开心看到这样的技术扩散；** <br>
