@@ -46,19 +46,18 @@ ls -l launch
 
 配置文件默认值 (deploy.json)
 
-| Syntax    |                   Description                    |                  default value |
-| :---      | :----------------------------------------------: |                --------------: |
-| WorkDir   |   The deployment main directory of the project   |                          ./run |
-| TmplDir   |          Deployment template directory           |                         ./tmpl |
-| ManiFests |               Deployment Manifests               |            "api", "gpt", "ngx" |
-| ImageAPI  |              one-api container name              |        justsong/one-api:latest |
-| ImageGPT  |              fastGPT container name              | ghcr.io/labring/fastgpt:v4.6.4 |
-| BaseURL   |            one-api interface base url            |       http://localhost:3600/v1 |
-| ApiKey    |             one-api ai interface key             |                     1234567890 |
-| RootKey   |               one-api root api key               |                     0987654321 |
-| DbUser    |                database username                 |                       username |
-| DbPass    |                 databse password                 |                       password |
-| DataDir   |              System Data directory               |                         ./data |
+| Syntax       |     Description      |                  default value |
+| :----------- |  :---------------:   |                --------------: |
+| WorkDir      |       运行目录       |                          ./run |
+| BackupDir    |       备份路径       |                         ./tmpl |
+| ImageAPI     | one-api 容器仓库名称 |        justsong/one-api:latest |
+| ImageGPT     | fastGPT 容器仓库名称 | ghcr.io/labring/fastgpt:v4.6.4 |
+| BaseURL      | one-api 连接         | http://oneapi:3000/v1          |
+| ApiKey       |  one-api 连接token   |                     1234567890 |
+| RootKey      |  one-api 管理token   |                     0987654321 |
+| DbUser       |     数据库用户名     |                       username |
+| DbPass       |      数据库密码      |                       password |
+| DataDir      |       数据目录       |                         ./data |
 
 配置例子
 ```bash
@@ -66,17 +65,17 @@ cat deploy.json
 ```
 ```json
 {
-  "WorkDir":    "./run",
-  "TmplDir":    "./tmpl",
-  "ManiFests":  ["api", "gpt", "ngx"],
-  "ImageAPI":   "justsong/one-api:latest",
-  "ImageGPT":   "ghcr.io/labring/fastgpt:v4.6.4",
-  "BaseURL":    "http://localhost:3600/v1",
-  "ApiKey":     "1234567890",
-  "RootKey":    "0987654321",
-  "DbUser":     "username",
-  "DbPass":     "password",
-  "DataDir":    "./data"
+   "WorkDir":    "./run",
+   "BackupDir":  "./backup",
+   "ImageAPI":   "justsong/one-api:latest",
+   "ImageGPT":   "ghcr.io/labring/fastgpt:latest",
+   "BaseURL":    "http://oneapi:3000/v1",
+   "ApiKey":     "1234567890",
+   "RootKey":    "0987654321",
+   "DbUser":     "username",
+   "DbPass":     "password",
+   "GptPass":    "admin",
+   "DataDir":    "./data"
 }
 ```
 
@@ -86,10 +85,10 @@ cat deploy.json
 $ sudo chmod +x launch
 # 启动部署
 $ sudo ./launch -o start
-# 关闭服务 
+# 关闭服务
 $ sudo ./launch -o stop
-# 重启服务
-$ sudo ./launch -o restart
+# 备份数据
+$ sudo ./launch -o backup
 ```
 
 ### 6. 关于fastgpt 部署提醒：

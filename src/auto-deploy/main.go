@@ -15,20 +15,14 @@ func main() {
 		fmt.Printf("Error creating directory %s: %s\n", workDir, err)
 	}
 	libs.MakeConfig(workDir)
-	templates := libs.GetTemp()
-	for _, manifest := range container.ManiFests {
-		m := manifest
-		libs.ApplyTemplate(workDir, manifest, templates[m], container)
-	}
 	switch container.Operation {
 	case "start":
-		libs.Start(workDir, container.ManiFests)
-	case "restart":
-		libs.Restart(workDir, container.ManiFests)
+		libs.Start(workDir, container)
 	case "stop":
-		libs.Stop(workDir, container.ManiFests)
+		libs.Stop(workDir, container)
+	case "backup":
+		libs.Backup(container)
 	default:
-		fmt.Printf("Unknown operation: [ %s ], \nexample: [ ./launch -o start (stop, restart) ] \n", container.Operation)
+		fmt.Printf("Unknown operation: [ %s ], \nexample: [ ./launch -o start (stop, backup) ] \n", container.Operation)
 	}
-	libs.Clean(workDir)
 }

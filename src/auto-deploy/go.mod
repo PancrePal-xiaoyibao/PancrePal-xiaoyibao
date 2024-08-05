@@ -2,7 +2,7 @@ module github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao
 
 go 1.22
 
-require github.com/peterwillcn/ai-launch v0.0.3
+require github.com/peterwillcn/ai-launch v1.0.3
 
 require (
 	github.com/antlabs/strsim v0.0.2 // indirect
@@ -11,7 +11,9 @@ require (
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.10.1 // indirect
+	github.com/go-sql-driver/mysql v1.7.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
+	github.com/jarvanstack/mysqldump v0.7.0 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/magiconair/properties v1.8.6 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
