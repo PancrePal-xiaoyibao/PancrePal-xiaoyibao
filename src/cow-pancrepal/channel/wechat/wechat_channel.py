@@ -34,7 +34,7 @@ import re
 group_id ="填写在minimax账号的group_id"
 api_key="填写minimax申请的apikey"
 openai.api_key = "" #可以不填写
-openai.api_base = " #可以不填写
+openai.api_base = "" #可以不填写
 
 def replace_markdown_urls(text, replacement):
     # 正则表达式匹配Markdown中的URL
