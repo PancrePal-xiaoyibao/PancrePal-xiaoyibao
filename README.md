@@ -43,9 +43,10 @@
 > 除了操作步骤的说明，我们会开源prompts，构建技巧，以方便无代码能力的人员，快速参考和实现构建。
 
 ## Demo
->**Cozy平台：** <br>
->[星妈爱聊](https://www.coze.cn/store/bot/7391456276259160115) <br>
->[小食宝-肿瘤患者营养专家](https://www.coze.cn/s/iM8k258G) <br>
+
+| **[星妈爱聊](https://www.coze.cn/store/bot/7391456276259160115)** | **[小食宝-肿瘤患者营养专家](https://www.coze.cn/s/iM8k258G)** |
+|:---:|:---:|
+| <img width="320" alt="image" src="https://github.com/user-attachments/assets/2a963674-090d-4889-9d8b-e9154c2fe6a9">| <img width="320" alt="image" src="https://github.com/user-attachments/assets/c5d32327-0c86-42ac-8857-8b452f2c3364"> |
 
 >**zhipu平台:** <br>
 >[小胰宝](https://chatglm.cn/share/FEmRj) <br>
