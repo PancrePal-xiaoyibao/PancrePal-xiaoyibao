@@ -51,6 +51,7 @@
 
 >**zhipu平台:** <br>
 >[小胰宝](https://chatglm.cn/share/FEmRj) <br>
+<img width="320" alt="image" src="https://github.com/user-attachments/assets/11bfc020-e943-4306-b6fe-fbe4254b7c54">
 
 ---
 ## 围绕综合治疗配套的“小胰宝一家人”
