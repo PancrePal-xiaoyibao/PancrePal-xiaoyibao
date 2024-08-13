@@ -9,7 +9,6 @@ ssh -i /path/server-a.pem root@ip-server-a << EOF
 docker exec -it mongo mongodump --db fastgpt -u "myusername" -p "mypassword" --authenticationDatabase admin --out /data/backup
 sleep 15
 echo "Database backup completed."
-EOF
 
 # Compress the backup file
 echo "Compressing backup file..."
@@ -32,8 +31,9 @@ echo "Cleanup completed."
 # Upload the backup file to server B
 echo "Uploading backup file to server B..."
 rsync -avz --progress -e "ssh -i /path/server-b.pem" root@ip-server-a:/usr/fastgpt/mongobackup/fastgpt-mongo-backup-${current_date}.tar.gz root@ip-server-b:/usr/fastgpt/mongobackup/
-sleep 5
+sleep 2
 echo "Upload completed."
+EOF
 
 # SSH to server B and restore the database
 ssh -i /path/server-b.pem root@ip-server-b << EOF
