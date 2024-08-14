@@ -2,7 +2,7 @@
   "WorkDir":    "./run",
   "BackupDir":  "./backup",
   "ImageAPI":   "justsong/one-api:latest",
-  "ImageGPT":   "ghcr.io/labring/fastgpt:latest",
+  "ImageGPT":   "registry.cn-hangzhou.aliyuncs.com/fastgpt/fastgpt:latest",
   "BaseURL":    "http://oneapi:3000/v1",
   "ApiKey":     "1234567890",
   "RootKey":    "0987654321",
