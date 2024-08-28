@@ -144,7 +144,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 ### 【推荐】一键部署安装
 
 * 感谢@peterwillcn老师，贡献了一键部署代码，请参阅[一键部署Readme文档](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/blob/main/src/README.md)
-* 模型部分以零一为例，可以随需修改，推荐Moonshot/Stepchat/Glm-4系列，不推荐openai，主要还是embedding和对话账号，openai国内使用不合法也不稳定。
+* 模型部分以零一为例，可以随需修改，推荐Moonshot/StepFun/Glm-4系列，不推荐openai，主要还是embedding和对话账号，openai国内使用不合法也不稳定。
 * embedding推荐国产大模型，比如qwen的text-embedding-v2或者智谱的embedding模型
 
 
