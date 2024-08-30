@@ -73,13 +73,28 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 ---
 ### 【开源合作招募】
 
-持续招募并欢迎技术/非技术开源社区伙伴加入，请参考[新成员加入流程](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/blob/main/%E5%8A%A0%E5%85%A5%E9%A1%B9%E7%9B%AE%E5%89%8D%E5%BF%85%E8%AF%BB.md), 并在加入前确认自己的贡献方向。
-确认您希望加入后，请填写[申请表](https://uei55ql5ok.feishu.cn/share/base/form/shrcnl187uRCQnAIhs2A0RbjB7w)。
+#### 持续招募并欢迎技术/非技术开源社区伙伴加入
+* 请参考[新成员加入流程](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/blob/main/%E5%8A%A0%E5%85%A5%E9%A1%B9%E7%9B%AE%E5%89%8D%E5%BF%85%E8%AF%BB.md), 并在加入前确认自己的贡献方向。
+* 确认您希望加入后，请填写[申请表](https://uei55ql5ok.feishu.cn/share/base/form/shrcnl187uRCQnAIhs2A0RbjB7w)。
 
-1. **诊疗协同**：希望和更多的一/二线城市胰腺治疗中心/医生建立沟通，提供免费的技术能力，透过医生和诊疗中心，扩大小胰宝的应用规模；相比于医生花宝贵时间和金钱精力，基于小胰宝的复制和快速上线，可以既实现自主性，技术路线上可以避坑，何乐而不为？
-2. **通用知识库**迭代： 希望能够有更多**非技术**专业人士加入，帮助去构建和迭代胰腺肿瘤治疗的**通用**知识库； 我们尊重私有知识库和商业知识库，本项目也能够很好的进行对接它们，通过私有化部署提升和建立私有化价值；
-3.  LLM能力增强: 希望继续能够在LLM的主力公司/开发大佬的帮助下，提升RAG效果；尤其是在国产LLM风起云涌中，希望在垂直领域，建立更好的应用效果，无论是Cozy，还是Fastgpt，都需要借助LLM的进化速度，来持续提升效果；
-4. **公益组织协同**： 我们希望在技术持续推动的同时，选择和加入DNA相同的公益组织，为小胰宝项目的持续和扩大，提供**资金**，**管理**，**身份**的稳定支持。
+#### 小胰宝项目正在招募的角色：
+**RAG专家**：覆盖从RAG平台技术栈选型，部署和上线，到底层知识库文档转化，KB建立，Workflow构建，场景实现以及生产内容质量的持续提升，毫无疑问，这是一个核心能力岗位，同时也是RAG患者专业服务的一个极佳实践机会。欢迎具备对等专业能力的伙伴加入；
+**知识库运营团队**：负责对知识库的体系搭建，内容优化，内容构建和扩充，为RAG质量提升，提供坚固的基础能力；
+**产品经理**：配合现有团队进行RAG横向技术栈和产品场景实现的路线图设计，以及下场动手和技术开发一起
+**开发团队**：近期急需小程序前端经验的伙伴加入
+**社群运营**：希望淋过雨但是依然愿意帮助他人撑伞的伙伴加入，支持病友社群使用/媒体运营的职能需求，我们需要对官网/公众号/小红书有经验的伙伴。如果来自IT技术圈，优势欢迎。
+
+#### 跨癌肿招募
+**我们努力的动力和目标，是为了全癌种的患者都能够有更少的信息差，让他们有选择权和生命获益。因此我们在招募跨癌肿主理人，领导团队早日上线适配癌肿的助手。**
+
+**小肺宝：一款面向肺癌患者的RAG平台和AI助手**，     [小肺宝- 主理人招募｜肺癌](https://uei55ql5ok.feishu.cn/wiki/Nplgw6ffAiHW0uk9Kqjc71rQnDg) <br>
+**小粉宝：一款面向乳腺癌患者的RAG平台和AI助手**     [小粉宝- 主理人招募｜乳腺肿瘤](https://uei55ql5ok.feishu.cn/wiki/RAwcwXX6MirSoSkb6y8cVrcVnbh) <br>
+**小甘宝：一款面肝癌患者的RAG平台和AI助手**        [小甘宝 - 主理人招募｜肝脏肿瘤](https://uei55ql5ok.feishu.cn/wiki/VweswmxFuiR614k4LBRcVR84nMf) <br>
+
+|        |        |
+|--------|--------|
+| <img width="320" alt="image" src="https://private-user-images.githubusercontent.com/103937568/363078752-ffb9bb57-9bcb-4236-884c-140254ea3df9.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjUwMDI2NTgsIm5iZiI6MTcyNTAwMjM1OCwicGF0aCI6Ii8xMDM5Mzc1NjgvMzYzMDc4NzUyLWZmYjliYjU3LTliY2ItNDIzNi04ODRjLTE0MDI1NGVhM2RmOS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwODMwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDgzMFQwNzE5MThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT04MzFmM2Q0OTQwM2RjYWQ4NTRmODEyMmMxNDFiYzIyOWI5ZTA5YWE3NDdkMWVmNWQ4MzM3MTI2ODM3NDZkZTY1JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.CcUnOLQM6kcsGOI01Psbvu5hR7HIYYQw4KAE58TrARE">| <img width="320" alt="image" src="https://private-user-images.githubusercontent.com/103937568/363078819-9cbe5bae-0410-4445-bba0-754f2817a05b.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjUwMDI2NTgsIm5iZiI6MTcyNTAwMjM1OCwicGF0aCI6Ii8xMDM5Mzc1NjgvMzYzMDc4ODE5LTljYmU1YmFlLTA0MTAtNDQ0NS1iYmEwLTc1NGYyODE3YTA1Yi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwODMwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDgzMFQwNzE5MThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05NzQ0NDAzNzY5NmZkOTQ0OTYxMGJmOTIyNzVjN2NlOGViNDdhZjdiNzFkNWY5ZTE5NmE0ODNhNTc1NWQ1ZjhjJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.Qpe1UwxZYP1t1agM7DSzgu13V068ygnOb9EVp39eN40"> ｜
+
 
 ---
 ### 小胰宝团队wiki: 团队内部使用
