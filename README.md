@@ -119,7 +119,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 3. [Dify](https://github.com/langgenius/dify): 为小胰宝2.0提供了RAG的扩展空间，包括LLMs的一站式接入，KB的体系扩展，以及最为重要的和全球化RAG能力对齐.<br>
 4. [0-1 AI, one of LLM Large Language Model Leaders](https://01.ai)：零一万物团队，不仅全力支持本公益项目，而且慷慨提供了0-1API接口及Token消耗赞助，让数千患者享受到了科技福利。<br>
 5. 同时，也感谢其它为小胰宝上线提供支持的开源社区人士 @ -中国红客联盟 @wangzhitao-京东健康 @linan-律师，为小胰宝的发展提供关键资源，包括支持和保障。
-6. [阶跃星辰](https://www.stepfun.com/)的小伙伴@Sunny付凯老师@simin主动联系项目，给予了慷慨的token捐赠，在2024人工智能大会上宣传小胰宝，产品@陈雪丹和研发负责人@halo 帮助对prompt优化提供了技术支持。Stepchat的加入，不仅见证了开源世界的价值观，也代表一个重要的信息：
+6. [阶跃星辰](https://www.stepfun.com/)的小伙伴@Sunny付凯老师@simin主动联系项目，给予了慷慨的token捐赠，在2024人工智能大会上宣传小胰宝，产品@陈雪丹和研发负责人@halo 帮助对prompt优化提供了技术支持。StepFun的加入，不仅见证了开源世界的价值观，也代表一个重要的信息：
    ### 始终有一群人，愿意基于开源AI技术和人性温暖，制造出更多类似小胰宝的科技应用，帮助肿瘤患者和他们的家庭，有机会跨过信息鸿沟，选择科学规范治疗，获得更多的生命收益。这一点，聚集于生命所在，是无法以商业成功来衡量的。
 
 ----
@@ -160,7 +160,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 ### 【推荐】一键部署安装
 
 * 感谢@peterwillcn老师，贡献了一键部署代码，请参阅[一键部署Readme文档](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/blob/main/src/README.md)
-* 模型部分以零一为例，可以随需修改，推荐Moonshot/Stepchat/Glm-4系列，不推荐openai，主要还是embedding和对话账号，openai国内使用不合法也不稳定。
+* 模型部分以零一为例，可以随需修改，推荐Moonshot/StepFun/Glm-4系列，不推荐openai，主要还是embedding和对话账号，openai国内使用不合法也不稳定。
 * embedding推荐国产大模型，比如qwen的text-embedding-v2或者智谱的embedding模型
 
 
