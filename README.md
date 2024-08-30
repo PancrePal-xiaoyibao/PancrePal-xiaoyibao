@@ -171,7 +171,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 
 ## 【联络方式】
 
-- 作者联系邮箱 `qinxiaoqiang2002@hotmail.com`，微信：`qinxiaoqiang`
+- 作者联系邮箱 `qinxiaoqiang2002@hotmail.com`，微信：`qinxiaoqiang2002`
 - 小胰宝公益组织负责人 RichardLin 微信：`OPQRichard`
 - 法律顾问：linan律师
 
