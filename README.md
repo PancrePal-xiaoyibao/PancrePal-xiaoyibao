@@ -177,5 +177,9 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 - 法律顾问：linan律师
 
 # 🌟 贡献者
-![Contributors 贡献者](https://contrib.rocks/image?repo=PancrePal-xiaoyibao/PancrePal-xiaoyibao&Max=1000")
+<a href="https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=PancrePal-xiaoyibao/PancrePal-xiaoyibao" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
 
