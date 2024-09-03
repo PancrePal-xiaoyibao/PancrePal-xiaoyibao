@@ -1,8 +1,0 @@
-- # ChatGLM
-  id: "65940acff94777010aa6b796"
-  name: "ChatGLM"
-  api: "qingyan-glms-free-api"
-  apiKey: "[替换为refresh_token]"
-  maxRounds: 10
-  avatarUrl: "https://sfile.chatglm.cn/img2text/8a82543e-850b-45d1-820c-b48ae9e7f147.jpg"
-  enabled: true
