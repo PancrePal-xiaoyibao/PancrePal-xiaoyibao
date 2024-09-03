@@ -4,9 +4,11 @@ import { fileTypeFromBuffer } from 'file-type';
 import type IMessage from "./interfaces/IMessage.ts";
 import type ICompletionMessage from "./interfaces/ICompletionMessage.ts";
 import type IMedia from "./interfaces/IMedia.ts";
+import EX from "@/api/consts/exceptions.ts";
 import wxkfApi from "@/lib/wxkf-api.ts";
 import qingyanGlmsFreeApi from '@/lib/qingyan-glms-free-api.ts';
 import qingyanGlmsApi from "@/lib/qingyan-glms-api.ts";
+import APIException from "@/lib/exceptions/APIException.ts";
 import logger from "@/lib/logger.ts";
 import util from "@/lib/util.ts";
 
@@ -21,13 +23,15 @@ const userMediaStore = {};
 
 async function generateAssistantReply(messages: ICompletionMessage[], userId: string, openKfId: string) {
     const agentConfig = wxkfApi.getAgentConfig(openKfId);
+    if (!agentConfig.enabled)
+        throw new APIException(EX.API_AGENT_IS_DISABLED);
     if (!API_MAP[agentConfig.api])
         throw new Error(`Agent API ${agentConfig.api} not found`);
     const apiKeys = agentConfig.apiKey.split(",");
     const latestConvId = getUserLatestConvId(userId, openKfId, agentConfig.maxRounds);
     const result = await API_MAP[agentConfig.api].createCompletion(agentConfig.id, messages, _.sample(apiKeys), latestConvId);
     setUserLatestConvId(result.id, userId, openKfId);
-    const reply = result.choices[0].message.content;
+    const reply = result.choices[0].message.content || '';
     addMessageToUserMessageList({
         msgtype: 'text',
         msgid: '',
@@ -178,8 +182,9 @@ async function handleTextMessage(text: IMessage['text'], userId: string, openKfI
         });
     }
     clearUserMediaList(userId, openKfId);
+    logger.info(`[User] ${messages[messages.length - 1].content}`);
     const reply = await generateAssistantReply(messages, userId, openKfId);
-    console.log(reply);
+    logger.info(`[Assistant] ${reply}`);
     const imageUrls = [];
     const urlPattern = /\((https?:\/\/\S+)\)/g;
     let match;
@@ -206,6 +211,7 @@ async function handleImageMessage(image: IMessage['image'], userId: string, open
         type: 'image',
         promise: wxkfApi.downloadMedia(image.media_id)
     }, userId, openKfId);
+    await wxkfApi.sendTextMessage(`收到！需要我做些什么呢？`, userId, openKfId);
     // const reply = await generateAssistantReply([
     //     {
     //         role: 'user',
@@ -277,7 +283,10 @@ async function handleMessge(msg: IMessage) {
     })()
         .catch(err => {
             logger.error(err);
-            wxkfApi.sendTextMessage('哎呀，发生了点意外，请稍候重试~', userId, openKfId)
+            let message = '哎呀，发生了点意外，请稍候重试T^T';
+            if((err instanceof APIException) && err.compare(EX.API_AGENT_IS_DISABLED))
+                message = '抱歉，智能体当前已下线，暂时无法为您提供服务T^T';
+            wxkfApi.sendTextMessage(message, userId, openKfId)
                 .catch(err => logger.error(err));
         });
 }

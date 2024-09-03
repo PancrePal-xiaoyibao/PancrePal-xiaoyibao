@@ -3,25 +3,27 @@ import fs from "fs-extra";
 import _ from "lodash";
 import mime from "mime";
 import assert from "assert";
-import yaml from 'yaml';
 import FormData from "form-data";
 import axios, { AxiosResponse } from "axios";
 import { getSignature, decrypt } from "@wecom/crypto";
 
 import type IMessage from "@/lib/interfaces/IMessage.ts";
-import environment from "@/lib/environment.ts";
 import EX from "@/api/consts/exceptions.ts";
 import APIException from "@/lib/exceptions/APIException.ts";
 import AsyncLock from "async-lock";
 import logger from "@/lib/logger.ts";
+import agents from "./agents.ts";
+import secret from "./secret.ts";
 import util from "@/lib/util.ts";
 import IAgentConfig from "./interfaces/IAgentConfig.ts";
 
-const WXKF_API_CORP_ID = environment.envVars["WXKF_API_CORP_ID"];
-const WXKF_API_CORP_SECRET = environment.envVars["WXKF_API_CORP_SECRET"];
-const WXKF_API_TOKEN = environment.envVars["WXKF_API_TOKEN"];
-const WXKF_API_ENCODING_AES_KEY =
-    environment.envVars["WXKF_API_ENCODING_AES_KEY"];
+const {
+    WXKF_API_CORP_ID,
+    WXKF_API_CORP_SECRET,
+    WXKF_API_TOKEN,
+    WXKF_API_ENCODING_AES_KEY
+} = secret;
+
 // 文件最大大小
 const FILE_MAX_SIZE = 100 * 1024 * 1024;
 
@@ -31,7 +33,7 @@ let accessTokenData: any = null;
 let nextCursor: string = fs.existsSync('tmp/message-cursor') ? fs.readFileSync('tmp/message-cursor').toString() : undefined;
 
 function checkSignature(params: any, encryptedData: string) {
-    assert(WXKF_API_TOKEN, 'Please set the environment variable WXKF_API_TOKEN');
+    assert(WXKF_API_TOKEN, 'Please set the WXKF_API_TOKEN in secret.yml');
     const signature = getSignature(
         WXKF_API_TOKEN,
         params.timestamp,
@@ -43,7 +45,7 @@ function checkSignature(params: any, encryptedData: string) {
 }
 
 function decryptData(encryptedData: string): { message: string, id: string, random: Buffer } {
-    assert(WXKF_API_ENCODING_AES_KEY, 'Please set the environment variable WXKF_API_ENCODING_AES_KEY');
+    assert(WXKF_API_ENCODING_AES_KEY, 'Please set the WXKF_API_ENCODING_AES_KEY in secret.yml');
     return decrypt(WXKF_API_ENCODING_AES_KEY, encryptedData);
 }
 
@@ -69,8 +71,8 @@ function parseMessage(msg: string) {
 }
 
 async function getAccessToken() {
-    assert(WXKF_API_CORP_ID, 'Please set the environment variable WXKF_API_CORP_ID');
-    assert(WXKF_API_CORP_SECRET, 'Please set the environment variable WXKF_API_CORP_SECRET');
+    assert(WXKF_API_CORP_ID, 'Please set the WXKF_API_CORP_ID in secret.yml');
+    assert(WXKF_API_CORP_SECRET, 'Please set the WXKF_API_CORP_SECRET in secret.yml');
     return await lock.acquire('getAccessToken', async () => {
         const filePath = 'tmp/access-token.json';
         if (!accessTokenData && await fs.exists(filePath))
@@ -90,7 +92,8 @@ async function getAccessToken() {
         };
         await fs.writeJSON(filePath, accessTokenData);
         return accessToken;
-    });
+    })
+        .catch(() => logger.warn('获取access_token失败，可能是WXKF_API_CORP_ID或WXKF_API_CORP_SECRET配置错误'));
 }
 
 async function downloadMedia(mediaId: string) {
@@ -162,34 +165,35 @@ async function uploadMedia(type: 'image' | 'voice' | 'video' | 'file', filename:
 }
 
 async function initAccountList() {
-    !WXKF_API_CORP_ID && logger.warn('Please set the environment variable WXKF_API_CORP_ID');
-    !WXKF_API_CORP_SECRET && logger.warn('Please set the environment variable WXKF_API_CORP_SECRET');
-    !WXKF_API_TOKEN && logger.warn('Please set the environment variable WXKF_API_TOKEN');
-    !WXKF_API_ENCODING_AES_KEY && logger.warn('Please set the environment variable WXKF_API_ENCODING_AES_KEY');
-    if(!WXKF_API_CORP_ID || !WXKF_API_CORP_SECRET || !WXKF_API_TOKEN || !WXKF_API_ENCODING_AES_KEY) {
-        logger.warn('【服务尚未工作，请按照以下流程配置】');
-        logger.warn('请先前往 https://kf.weixin.qq.com/kf 登录并启用企业内部接入配置');
-        logger.warn('回调地址：https://example.com/message/notify (example.com请改为您的域名)');
-        logger.warn('完成配置后，你会获得Token、EncodingAESKey、企业ID(CorpId)、Secret');
-        logger.warn('将它们分别设置到环境变量 WXKF_API_TOKEN、WXKF_API_ENCODING_AES_KEY、WXKF_API_CORP_ID、WXKF_API_CORP_SECRET 后重启服务即可');
+    if(WXKF_API_CORP_ID == 'default' || WXKF_API_CORP_SECRET == 'default') {
+        if(WXKF_API_TOKEN == 'default' || WXKF_API_ENCODING_AES_KEY == 'default')
+            logger.warn('【STEP1】Token或EncodingAESKey未配置，请从微信客服企业内部接入处生成Token和EncodingAESKey');
+        else {
+            logger.success('【STEP1】Token或EncodingAESKey已配置');
+            logger.warn('【STEP2】微信客服还未完成接入，请从微信客服平台发起回调验证获取企业ID和Secret');
+        }
         return;
     }
-    logger.info('Init account list');
-    const agentConfigs: IAgentConfig[] = yaml.parse((await fs.readFile('agents.yml')).toString());
+    else if(WXKF_API_TOKEN == 'default' || WXKF_API_ENCODING_AES_KEY == 'default')
+        logger.warn('【STEP1】Token和EncodingAESKey未配置，微信客服还未接入完成，请填写微信客服企业内部接入处的Token和EncodingAESKey');
+    logger.info('【初始化微信客服列表】');
     let agentConfigCache: Record<string, IAgentConfig> = {};
     if(await fs.exists('tmp/accounts.json'))
         agentConfigCache = await fs.readJSON('tmp/accounts.json');
     const accountList = await getAccountList();
-    for(let agentConfig of agentConfigs) {
+    for(let agentConfig of agents) {
+        if(!agentConfig.avatarUrl)
+            agentConfig.avatarUrl = 'https://sfile.chatglm.cn/chatglm4/81a30afa-d5d9-4c9e-9854-dabc64ab2574.png';
         const account = accountList.find(item => item.name == agentConfig.name);
         if(!account) {
+            logger.info(` - 创建客服 ${agentConfig.name} 中...`);
             const avatarMediaId = await transferMedia('image', agentConfig.avatarUrl)
             const openKfId = await createAccount(agentConfig.name, avatarMediaId);
             agentConfigCache[agentConfig.id] = {
                 ...agentConfig,
                 openKfId
             };
-            logger.success(`Create account ${agentConfig.name} success`);
+            logger.success(` - 创建客服 ${agentConfig.name} 成功，链接：${agentConfigCache[agentConfig.id].contactUrl}`);
             continue;
         }
         else if(!agentConfigCache[agentConfig.id]) {
@@ -200,19 +204,34 @@ async function initAccountList() {
         agentConfigCache[agentConfig.id].api = agentConfig.api;
         agentConfigCache[agentConfig.id].apiKey = agentConfig.apiKey;
         agentConfigCache[agentConfig.id].maxRounds = agentConfig.maxRounds;
+        agentConfigCache[agentConfig.id].enabled = agentConfig.enabled;
+        if(!agentConfigCache[agentConfig.id].contactUrl)
+            agentConfigCache[agentConfig.id].contactUrl = await createAccountContactUrl(agentConfigCache[agentConfig.id].openKfId);
         if(account.name == agentConfig.name && agentConfig.name == agentConfigCache[agentConfig.id].name && agentConfig.avatarUrl == agentConfigCache[agentConfig.id].avatarUrl) {
-            logger.info(`Account ${agentConfig.name} loaded`);
+            const supported_api = ['qingyan-glms-api', 'qingyan-glms-free-api', 'openai-api'];
+            if(supported_api.includes(agentConfig.api)) {
+                if(agentConfig.enabled)
+                    logger.info(` - 客服 ${agentConfig.name} 已加载，链接：${agentConfigCache[agentConfig.id].contactUrl}`);
+                else
+                    logger.warn(` - 客服 ${agentConfig.name} 已禁用`);
+            }
+            else {
+                agentConfigCache[agentConfig.id].enabled = false;
+                logger.warn(` - 客服 ${agentConfig.name} 似乎使用了不受支持的API【${agentConfig.api}】而被禁用，支持列表：${supported_api.join(' | ')}。`);
+            }
             continue;
         }
+        logger.info(` - 更新客服 ${agentConfig.name} 中...`);
         const avatarMediaId = await transferMedia('image', agentConfig.avatarUrl);
         await updateAccount(account.open_kfid, agentConfig.name, avatarMediaId);
         agentConfigCache[agentConfig.id].name = agentConfig.name;
         agentConfigCache[agentConfig.id].avatarUrl = agentConfig.avatarUrl;
-        logger.success(`Account ${agentConfig.name} upaded`);
+        logger.success(` - 客服 ${agentConfig.name} 已更新，链接：${agentConfigCache[agentConfig.id].contactUrl}`);
     }
     await fs.writeJSON('tmp/accounts.json', agentConfigCache);
     for(let key in agentConfigCache)
         kfAgentMap[agentConfigCache[key].openKfId] = agentConfigCache[key];
+    logger.info('【微信客服列表初始化完成】');
 }
 
 function getAgentConfig(openKfId: string) {
@@ -233,6 +252,19 @@ async function getAccountList(pageNumber = 1, pageSize = 100) {
     });
     const { account_list: accountList } = checkResult(result);
     return accountList;
+}
+
+async function createAccountContactUrl(openKfId: string, scene?: string) {
+    const result = await axios.post('https://qyapi.weixin.qq.com/cgi-bin/kf/add_contact_way', {
+        open_kfid: openKfId,
+        scene
+    }, {
+        params: {
+            access_token: await getAccessToken()
+        }
+    });
+    const { url } = checkResult(result);
+    return url;
 }
 
 async function createAccount(name: string, avatarMediaId: string): Promise<string> {
@@ -428,6 +460,7 @@ export default {
     pullMessageList,
     getAccessToken,
     getAccountList,
+    createAccountContactUrl,
     createAccount,
     updateAccount,
     deleteAccount

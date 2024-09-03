@@ -8,5 +8,5 @@ export default interface IAgentConfig {
     maxRounds: number;
     enabled: boolean;
     openKfId?: string;
-    kfUrl?: string;
+    contactUrl?: string;
 }

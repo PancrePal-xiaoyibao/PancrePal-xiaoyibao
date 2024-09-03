@@ -13,7 +13,7 @@ const startupTime = performance.now();
 (async () => {
   logger.header();
 
-  logger.info("<<<< glm free server >>>>");
+  logger.info("<<<< wxkf api >>>>");
   logger.info("Version:", environment.package.version);
   logger.info("Process id:", process.pid);
   logger.info("Environment:", environment.env);

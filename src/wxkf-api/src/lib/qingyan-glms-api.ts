@@ -1,5 +1,4 @@
 import { PassThrough } from "stream";
-import assert from "assert";
 import path from "path";
 import _ from "lodash";
 import mime from "mime";

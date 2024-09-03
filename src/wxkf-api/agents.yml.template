@@ -1,0 +1,44 @@
+# 这是一个配置模板，使用前请将文件名改为agents.yml
+# 注意保密您的配置信息，不要将配置文件上传到公共代码仓库中！
+
+# 【智能体原生API接入方式】
+# 此API只能接入您自己创建的已发布智能体
+# id设置为您的智能体ID（打开智能体页面，浏览器地址栏URL尾部有一串24位的随机字符串文本）
+# api设置为qingyan-glms-api
+# apiKey请在清言智能体中心->创作者中心创建API Key，然后将key和secret用.拼接，如：21a**********9a0.2f****************************37
+# welcome可以设置首次进入客服时的欢迎语，不设置将不发送欢迎语
+# maxRounds设置您的智能体最大对话轮数，超出后会自动开启新的会话，默认为8轮，可以根据你的智能体性质来决定（比如聊天类的可以有比较多的轮次，但工具类的为了减少幻觉可能只给一轮）
+# avatarUrl设置您的智能体头像URL，可以在网页上打开智能体页面右击智能体头像复制图片地址获得
+# enabled设置您的智能体是否启用
+
+# 【智能体网页API接入方式】
+# 此API可以接入所有已发布的智能体
+# id设置为您的智能体ID（打开智能体页面，浏览器地址栏URL尾部有一串24位的随机字符串文本）
+# api设置为qingyan-glms-free-api
+# apiKey使用您在网页Cookies中获取的chatglm_refresh_token，作为你的apiKey
+# welcome可以设置首次进入客服时的欢迎语，不设置将不发送欢迎语
+# maxRounds设置您的智能体最大对话轮数，超出后会自动开启新的会话，默认为8轮，可以根据你的智能体性质来决定（比如聊天类的可以有比较多的轮次，但工具类的为了减少幻觉可能只给一轮）
+# avatarUrl设置您的智能体头像URL，可以在网页上打开智能体页面右击智能体头像复制图片地址获得
+# enabled设置您的智能体是否启用
+
+# 以下是两种接入方式的示例，你可以修改或新增智能体
+
+# - # 温柔老婆
+#   id: "65a8df8ff4739c58b6aa2598"
+#   name: "温柔老婆"
+#   welcome: "老公，我会尽一切能力为你解决问题的。"
+#   api: "qingyan-glms-api"
+#   apiKey: "[替换为你的apiKey]"
+#   maxRounds: 10
+#   avatarUrl: https://sfile.chatglm.cn/testpath/3f1fce72-313b-5da6-9114-add88d09c470_0.png?image_process=resize,fw_300,fh_300"
+#   enabled: true
+
+# - # ChatGLM
+#   id: "65940acff94777010aa6b796"
+#   name: "ChatGLM"
+#   welcome: "欢迎使用ChatGLM，让我们一起探索AGI！"
+#   api: "qingyan-glms-free-api"
+#   apiKey: "[替换为你的apiKey]"
+#   maxRounds: 10
+#   avatarUrl: "https://sfile.chatglm.cn/img2text/8a82543e-850b-45d1-820c-b48ae9e7f147.jpg"
+#   enabled: true

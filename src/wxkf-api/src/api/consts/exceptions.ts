@@ -8,5 +8,6 @@ export default {
     API_CHAT_STREAM_PUSHING: [-2005, '已有对话流正在输出'],
     API_CONTENT_FILTERED: [-2006, '内容由于合规问题已被阻止生成'],
     API_IMAGE_GENERATION_FAILED: [-2007, '图像生成失败'],
-    API_WECHAT_SIGNATURE_INVALID: [-2008, '微信签名非法']
+    API_WECHAT_SIGNATURE_INVALID: [-2008, '微信签名非法'],
+    API_AGENT_IS_DISABLED: [-2009, '客服已禁用']
 }

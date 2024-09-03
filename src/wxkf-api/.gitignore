@@ -5,4 +5,6 @@ tmp/
 .vercel
 forward-port-proxy.sh
 *.pem
-.env
+wxkf-api.tar.gz
+secret.yml
+agents.yml
