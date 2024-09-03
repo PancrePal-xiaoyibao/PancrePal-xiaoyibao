@@ -94,7 +94,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 
 |        |        |
 |--------|--------|
-| <img width="320" alt="image" src="https://private-user-images.githubusercontent.com/103937568/363078752-ffb9bb57-9bcb-4236-884c-140254ea3df9.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjUwMDI2NTgsIm5iZiI6MTcyNTAwMjM1OCwicGF0aCI6Ii8xMDM5Mzc1NjgvMzYzMDc4NzUyLWZmYjliYjU3LTliY2ItNDIzNi04ODRjLTE0MDI1NGVhM2RmOS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwODMwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDgzMFQwNzE5MThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT04MzFmM2Q0OTQwM2RjYWQ4NTRmODEyMmMxNDFiYzIyOWI5ZTA5YWE3NDdkMWVmNWQ4MzM3MTI2ODM3NDZkZTY1JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.CcUnOLQM6kcsGOI01Psbvu5hR7HIYYQw4KAE58TrARE">| <img width="320" alt="image" src="https://private-user-images.githubusercontent.com/103937568/363078819-9cbe5bae-0410-4445-bba0-754f2817a05b.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjUwMDI2NTgsIm5iZiI6MTcyNTAwMjM1OCwicGF0aCI6Ii8xMDM5Mzc1NjgvMzYzMDc4ODE5LTljYmU1YmFlLTA0MTAtNDQ0NS1iYmEwLTc1NGYyODE3YTA1Yi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwODMwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDgzMFQwNzE5MThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05NzQ0NDAzNzY5NmZkOTQ0OTYxMGJmOTIyNzVjN2NlOGViNDdhZjdiNzFkNWY5ZTE5NmE0ODNhNTc1NWQ1ZjhjJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.Qpe1UwxZYP1t1agM7DSzgu13V068ygnOb9EVp39eN40"> ｜
+| <img width="320" alt="image1" src="https://raw.githubusercontent.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/main/pictures/cancer%20map%20new.png">| <img width="320" alt="image2" src="https://raw.githubusercontent.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/main/pictures/cancer%20map%20death.png"> ｜
 
 
 ---
@@ -105,8 +105,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 
 ## 【小胰宝1.0产品框架介绍】
 
-<img width="640" alt="image" src="https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/assets/103937568/edcb6e3a-cccd-48c1-952a-b40274b9d9a1">
-
+<img width="640" alt="image" src="https://raw.githubusercontent.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/main/tech-stack-v2.png">
 
 ----
 ## 【小胰宝项目1.0版本使用开源组件】
@@ -115,6 +114,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 
 1. [Fastgpt](https://github.com/labring/FastGPT): 为小胰宝1.0提供了核心RAG平台技术栈，，对万人级别患者提供了稳定和高效能服务，以及便捷高效的知识库搭建；Fastgpt杨老师积极帮助xyb协调和解决困扰的权限管理分级，并在社区中寻找微信机器人资源，带动社区贡献，特别感谢Fastgpt团队的无私支持！也期待他们更大的技术突破和成功。<br>
 2. [Chatgpt-on-wechat](https://github.com/zhayujie/chatgpt-on-wechat/tree/master): 作为微信机器人技术栈，提供了患者更便捷的使用和体验；<br>
+3. [开发者Vinlic](https://github.com/Vinlic):提供了企业微信客服解决方案应用，支持1v1的隐私沟通，以及提供了对话中的图片解析等功能，极大改善了用户体验，丰富了应用端生态；<br>
 3. [开发者Francis](https://github.com/Tishon1532/chatgpt-on-wechat-win):感谢 @Tishon1532 提供了微信机器人解决方案，极大改善了微信群病友的使用和体验，拓展了小胰宝在卡片消息使用场景的应用思路，我们成功的加入了密塔搜索，点歌台等病友高频使用场景；<br>
 3. [Dify](https://github.com/langgenius/dify): 为小胰宝2.0提供了RAG的扩展空间，包括LLMs的一站式接入，KB的体系扩展，以及最为重要的和全球化RAG能力对齐.<br>
 4. [0-1 AI, one of LLM Large Language Model Leaders](https://01.ai)：零一万物团队，不仅全力支持本公益项目，而且慷慨提供了0-1API接口及Token消耗赞助，让数千患者享受到了科技福利。<br>
