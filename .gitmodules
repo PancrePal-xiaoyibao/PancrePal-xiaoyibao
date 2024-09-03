@@ -1,6 +1,3 @@
 [submodule "src/CoW-win"]
 	path = src/CoW-win
 	url = https://github.com/PancrePal-xiaoyibao/chatgpt-on-wechat-win
-[submodule "src/wxkf-api"]
-	path = src/wxkf-api
-	url = https://github.com/MetaGLM/qingyan-cookbook.git
