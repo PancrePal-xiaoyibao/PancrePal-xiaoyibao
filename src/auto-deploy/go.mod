@@ -2,7 +2,7 @@ module github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao
 
 go 1.22
 
-require github.com/peterwillcn/ai-launch v1.0.3
+require github.com/peterwillcn/ai-launch v1.0.4
 
 require (
 	github.com/antlabs/strsim v0.0.2 // indirect

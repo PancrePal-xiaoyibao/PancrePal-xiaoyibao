@@ -3,26 +3,23 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/peterwillcn/ai-launch/libs"
 )
 
 func main() {
 	container := libs.NewContainer()
-	workDir := container.WorkDir
-	err := os.MkdirAll(workDir+"/data", 0755)
-	if err != nil {
-		fmt.Printf("Error creating directory %s: %s\n", workDir, err)
-	}
-	libs.MakeConfig(workDir)
+	os.MkdirAll(filepath.Join(container.WorkDir, container.DataDir), 0755)
+	libs.MakeConfig(container)
 	switch container.Operation {
 	case "start":
-		libs.Start(workDir, container)
+		libs.Start(container)
 	case "stop":
-		libs.Stop(workDir, container)
+		libs.Stop(container)
 	case "backup":
 		libs.Backup(container)
 	default:
-		fmt.Printf("Unknown operation: [ %s ], \nexample: [ ./launch -o start (stop, backup) ] \n", container.Operation)
+		fmt.Printf("Unknown operation: [ %s ], \nexample: [ ./launch -o start (stop, restart) ] \n", container.Operation)
 	}
 }

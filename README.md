@@ -2,7 +2,7 @@
 
 ## 项目介绍
 
-**小胰宝项目**，由病友SamQin创立上线，现在由**小胰腺开源社区团队**管理。主旨是为帮助每年**数十万**新增PA确诊病人以及幸存病人/家属，克服专业医学和治疗的医患信息差。使用小胰宝，可7x24小时，帮助病患高效率，准确理解病情状态，治疗术语，规范治疗指南，以及综合治疗的复杂信息，克服慌乱情绪，选择科学和有效治疗路线，并最终获得更长的治疗收益，也即生命窗口。同时，**小胰宝**项目积极推动跨癌肿AGI和RAG技术应用的融合，根据场景需要，自由使用多种技术，自由构建智能助手，服务不同癌肿群体需求。
+**小胰宝项目**，由病友SamQin创立上线，现在由**小胰宝开源社区团队**管理。主旨是为帮助每年**数十万**新增PA确诊病人以及幸存病人/家属，克服专业医学和治疗的医患信息差。使用小胰宝，可7x24小时，帮助病患高效率，准确理解病情状态，治疗术语，规范治疗指南，以及综合治疗的复杂信息，克服慌乱情绪，选择科学和有效治疗路线，并最终获得更长的治疗收益，也即生命窗口。同时，**小胰宝**项目积极推动跨癌肿AGI和RAG技术应用的融合，根据场景需要，自由使用多种技术，自由构建智能助手，服务不同癌肿群体需求。
 
 **我们希望看到：** <br>
 >**- 患者都能得到及时准确的医疗知识援助**<br>
@@ -18,6 +18,7 @@
 <img width="320" alt="image" src="https://github.com/user-attachments/assets/a51ac75f-0d3e-41ed-984a-0da12eeba33e">
 
 **我们的最近10条动态** <br>
+> |**2024-8   我们开始着手推动肺癌应用，并在运营团队，RAG团队扩大的前提下，努力推动肺癌RAG平台的搭建和上线运营，主理人同步招募中。<br>
 > ｜**2024-7  经过商议，开始着手协助构建面向 **肛肠癌**的AI助手 - 小萌宝，和该癌肿的热心美丽的博主Tina进行合作。** <br>
 > ｜**2024-6  小胰宝的使用人数出现下滑，但是AI工具在病友群的普及和使用上升，我们很开心看到这样的技术扩散；** <br>
 > ｜**2024-5  小胰宝在开源社区不断迭代问题，逐渐建立了开源社区的认可，也很感谢AI社群的认可。** <br>
@@ -62,24 +63,39 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 
 ## 【项目开源原则和誓言】
 
-使用小胰宝项目开源框架，包括基于本项目技术框架，产品框架，知识库数据全部或部分，默认自动接受如下原则和誓言：
+使用小胰宝项目开源框架，包括基于本项目技术框架，产品框架，运营框架，知识库数据全部或部分，默认自动接受如下原则和誓言：
 
-1.  **永不向病患和家属收费**：  不以“智能助手”做任何商业化引流。
+1.  **永不向病患和家属收费**：  不以“智能助手”发病人财，拒做“科技医托”，“AI医托”，比如“获取病人信息转临床试验或所谓奇效方案，谋取巨额利益”。这种行为不仅违背公益精神，也违背公序良俗和法律规定，会有天谴法责。
 2.  **尊重知识贡献者所有权**：  不通过知识库获利，公开知识库来源。
-3.  **一切立足“规范治疗”**：   “循证”为知识库准入第一原则。
+3.  **一切立足“规范治疗”**：   “循证”为知识库准入第一原则，杜绝所谓神医方案。
 
 **我们非常欢迎您Fork和复制本仓库建立更多的小x宝，帮助面临困境的患者和家属，加速AI工具的应用，并希望您能够积极提交PR和issue反馈。**
 
 ---
 ### 【开源合作招募】
 
-持续招募并欢迎技术/非技术开源社区伙伴加入，请参考[新成员加入流程](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/blob/main/%E5%8A%A0%E5%85%A5%E9%A1%B9%E7%9B%AE%E5%89%8D%E5%BF%85%E8%AF%BB.md), 并在加入前确认自己的贡献方向。
-确认您希望加入后，请填写[申请表](https://uei55ql5ok.feishu.cn/share/base/form/shrcnl187uRCQnAIhs2A0RbjB7w)。
+#### 持续招募并欢迎技术/非技术开源社区伙伴加入
+* 请参考[新成员加入流程](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/blob/main/%E5%8A%A0%E5%85%A5%E9%A1%B9%E7%9B%AE%E5%89%8D%E5%BF%85%E8%AF%BB.md), 并在加入前确认自己的贡献方向。
+* 确认您希望加入后，请填写[申请表](https://uei55ql5ok.feishu.cn/share/base/form/shrcnl187uRCQnAIhs2A0RbjB7w)。
 
-1. **诊疗协同**：希望和更多的一/二线城市胰腺治疗中心/医生建立沟通，提供免费的技术能力，透过医生和诊疗中心，扩大小胰宝的应用规模；相比于医生花宝贵时间和金钱精力，基于小胰宝的复制和快速上线，可以既实现自主性，技术路线上可以避坑，何乐而不为？
-2. **通用知识库**迭代： 希望能够有更多**非技术**专业人士加入，帮助去构建和迭代胰腺肿瘤治疗的**通用**知识库； 我们尊重私有知识库和商业知识库，本项目也能够很好的进行对接它们，通过私有化部署提升和建立私有化价值；
-3.  LLM能力增强: 希望继续能够在LLM的主力公司/开发大佬的帮助下，提升RAG效果；尤其是在国产LLM风起云涌中，希望在垂直领域，建立更好的应用效果，无论是Cozy，还是Fastgpt，都需要借助LLM的进化速度，来持续提升效果；
-4. **公益组织协同**： 我们希望在技术持续推动的同时，选择和加入DNA相同的公益组织，为小胰宝项目的持续和扩大，提供**资金**，**管理**，**身份**的稳定支持。
+#### 小胰宝项目正在招募的角色：
+**RAG专家**：覆盖从RAG平台技术栈选型，部署和上线，到底层知识库文档转化，KB建立，Workflow构建，场景实现以及生产内容质量的持续提升，毫无疑问，这是一个核心能力岗位，同时也是RAG患者专业服务的一个极佳实践机会。欢迎具备对等专业能力的伙伴加入；
+**知识库运营团队**：负责对知识库的体系搭建，内容优化，内容构建和扩充，为RAG质量提升，提供坚固的基础能力；
+**产品经理**：配合现有团队进行RAG横向技术栈和产品场景实现的路线图设计，以及下场动手和技术开发一起
+**开发团队**：近期急需小程序前端经验的伙伴加入
+**社群运营**：希望淋过雨但是依然愿意帮助他人撑伞的伙伴加入，支持病友社群使用/媒体运营的职能需求，我们需要对官网/公众号/小红书有经验的伙伴。如果来自IT技术圈，优势欢迎。
+
+#### 跨癌肿招募
+**我们努力的动力和目标，是为了全癌种的患者都能够有更少的信息差，让他们有选择权和生命获益。因此我们在招募跨癌肿主理人，领导团队早日上线适配癌肿的助手。**
+
+**小肺宝：一款面向肺癌患者的RAG平台和AI助手**，     [小肺宝- 主理人招募｜肺癌](https://uei55ql5ok.feishu.cn/wiki/Nplgw6ffAiHW0uk9Kqjc71rQnDg) <br>
+**小粉宝：一款面向乳腺癌患者的RAG平台和AI助手**     [小粉宝- 主理人招募｜乳腺肿瘤](https://uei55ql5ok.feishu.cn/wiki/RAwcwXX6MirSoSkb6y8cVrcVnbh) <br>
+**小甘宝：一款面肝癌患者的RAG平台和AI助手**        [小甘宝 - 主理人招募｜肝脏肿瘤](https://uei55ql5ok.feishu.cn/wiki/VweswmxFuiR614k4LBRcVR84nMf) <br>
+
+|        |        |
+|--------|--------|
+| <img width="320" alt="image" src="https://private-user-images.githubusercontent.com/103937568/363078752-ffb9bb57-9bcb-4236-884c-140254ea3df9.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjUwMDI2NTgsIm5iZiI6MTcyNTAwMjM1OCwicGF0aCI6Ii8xMDM5Mzc1NjgvMzYzMDc4NzUyLWZmYjliYjU3LTliY2ItNDIzNi04ODRjLTE0MDI1NGVhM2RmOS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwODMwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDgzMFQwNzE5MThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT04MzFmM2Q0OTQwM2RjYWQ4NTRmODEyMmMxNDFiYzIyOWI5ZTA5YWE3NDdkMWVmNWQ4MzM3MTI2ODM3NDZkZTY1JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.CcUnOLQM6kcsGOI01Psbvu5hR7HIYYQw4KAE58TrARE">| <img width="320" alt="image" src="https://private-user-images.githubusercontent.com/103937568/363078819-9cbe5bae-0410-4445-bba0-754f2817a05b.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjUwMDI2NTgsIm5iZiI6MTcyNTAwMjM1OCwicGF0aCI6Ii8xMDM5Mzc1NjgvMzYzMDc4ODE5LTljYmU1YmFlLTA0MTAtNDQ0NS1iYmEwLTc1NGYyODE3YTA1Yi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwODMwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDgzMFQwNzE5MThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05NzQ0NDAzNzY5NmZkOTQ0OTYxMGJmOTIyNzVjN2NlOGViNDdhZjdiNzFkNWY5ZTE5NmE0ODNhNTc1NWQ1ZjhjJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.Qpe1UwxZYP1t1agM7DSzgu13V068ygnOb9EVp39eN40"> ｜
+
 
 ---
 ### 小胰宝团队wiki: 团队内部使用
@@ -103,7 +119,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 3. [Dify](https://github.com/langgenius/dify): 为小胰宝2.0提供了RAG的扩展空间，包括LLMs的一站式接入，KB的体系扩展，以及最为重要的和全球化RAG能力对齐.<br>
 4. [0-1 AI, one of LLM Large Language Model Leaders](https://01.ai)：零一万物团队，不仅全力支持本公益项目，而且慷慨提供了0-1API接口及Token消耗赞助，让数千患者享受到了科技福利。<br>
 5. 同时，也感谢其它为小胰宝上线提供支持的开源社区人士 @ -中国红客联盟 @wangzhitao-京东健康 @linan-律师，为小胰宝的发展提供关键资源，包括支持和保障。
-6. [阶跃星辰](https://www.stepfun.com/)的小伙伴@Sunny付凯老师@simin主动联系项目，给予了慷慨的token捐赠，在2024人工智能大会上宣传小胰宝，产品@陈雪丹和研发负责人@halo 帮助对prompt优化提供了技术支持。Stepchat的加入，不仅见证了开源世界的价值观，也代表一个重要的信息：
+6. [阶跃星辰](https://www.stepfun.com/)的小伙伴@Sunny付凯老师@simin主动联系项目，给予了慷慨的token捐赠，在2024人工智能大会上宣传小胰宝，产品@陈雪丹和研发负责人@halo 帮助对prompt优化提供了技术支持。StepFun的加入，不仅见证了开源世界的价值观，也代表一个重要的信息：
    ### 始终有一群人，愿意基于开源AI技术和人性温暖，制造出更多类似小胰宝的科技应用，帮助肿瘤患者和他们的家庭，有机会跨过信息鸿沟，选择科学规范治疗，获得更多的生命收益。这一点，聚集于生命所在，是无法以商业成功来衡量的。
 
 ----
@@ -144,7 +160,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 ### 【推荐】一键部署安装
 
 * 感谢@peterwillcn老师，贡献了一键部署代码，请参阅[一键部署Readme文档](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/blob/main/src/README.md)
-* 模型部分以零一为例，可以随需修改，推荐Moonshot/Stepchat/Glm-4系列，不推荐openai，主要还是embedding和对话账号，openai国内使用不合法也不稳定。
+* 模型部分以零一为例，可以随需修改，推荐Moonshot/StepFun/Glm-4系列，不推荐openai，主要还是embedding和对话账号，openai国内使用不合法也不稳定。
 * embedding推荐国产大模型，比如qwen的text-embedding-v2或者智谱的embedding模型
 
 
@@ -156,10 +172,14 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 
 ## 【联络方式】
 
-- 作者联系邮箱 `qinxiaoqiang2002@hotmail.com`，微信：`qinxiaoqiang`
+- 作者联系邮箱 `qinxiaoqiang2002@hotmail.com`，微信：`qinxiaoqiang2002`
 - 小胰宝公益组织负责人 RichardLin 微信：`OPQRichard`
 - 法律顾问：linan律师
 
 # 🌟 贡献者
-![Contributors 贡献者](https://contrib.rocks/image?repo=PancrePal-xiaoyibao/PancrePal-xiaoyibao&Max=1000")
+<a href="https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=PancrePal-xiaoyibao/PancrePal-xiaoyibao" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
 

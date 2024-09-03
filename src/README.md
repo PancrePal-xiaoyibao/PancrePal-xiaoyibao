@@ -1,4 +1,4 @@
-一键部署
+<img width="975" alt="image" src="https://github.com/user-attachments/assets/24a016eb-1d42-4020-a88a-67e8116170ec">一键部署
 =========
 
 ## 简介
@@ -51,7 +51,7 @@ ls -l launch
 | WorkDir      |       运行目录       |                          ./run |
 | BackupDir    |       备份路径       |                         ./tmpl |
 | ImageAPI     | one-api 容器仓库名称 |        justsong/one-api:latest |
-| ImageGPT     | fastGPT 容器仓库名称 | ghcr.io/labring/fastgpt:v4.6.4 |
+| ImageGPT     | fastGPT 容器仓库名称 | registry.cn-hangzhou.aliyuncs.com/fastgpt/fastgpt:latest |
 | BaseURL      | one-api 连接         | http://oneapi:3000/v1          |
 | ApiKey       |  one-api 连接token   |                     1234567890 |
 | RootKey      |  one-api 管理token   |                     0987654321 |
