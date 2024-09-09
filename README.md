@@ -109,12 +109,12 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 
 ---
 
-## 【小胰宝1.0产品框架介绍】
+## 【小胰宝2.0产品框架介绍】
 
 <img width="640" alt="image" src="https://raw.githubusercontent.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/main/tech-stack-v2.png">
 
 ----
-## 【小胰宝项目1.0版本使用开源组件】
+## 【小胰宝项目2.0版本使用开源组件】
 
 小胰宝使用如下开源项目，也感谢这些项目大佬的付出，他们为患者创造了科技温情的价值。
 
