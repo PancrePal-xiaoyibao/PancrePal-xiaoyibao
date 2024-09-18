@@ -20,6 +20,6 @@ func main() {
 	case "backup":
 		libs.Backup(container)
 	default:
-		fmt.Printf("Unknown operation: [ %s ], \nexample: [ ./launch -o start (stop, restart) ] \n", container.Operation)
+		fmt.Printf("Unknown operation: [ %s ], \nexample: [ ./launch -o start (stop, backup) ] \n", container.Operation)
 	}
 }
