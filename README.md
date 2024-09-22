@@ -21,9 +21,7 @@
 [跨癌肿主理人招募- 肝癌ai助手 ](https://uei55ql5ok.feishu.cn/wiki/VweswmxFuiR614k4LBRcVR84nMf?from=from_copylink)<br>
 
 **我们的最近10条动态** <br>
-> |**2024-9  外滩大会宣讲，招募跨癌肿复制 <br>
-
-<img width="320" alt="image" src="https://private-user-images.githubusercontent.com/103937568/365485447-2a8aca32-569a-4077-91e0-3cbbffc923b8.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjU4NDU3NzcsIm5iZiI6MTcyNTg0NTQ3NywicGF0aCI6Ii8xMDM5Mzc1NjgvMzY1NDg1NDQ3LTJhOGFjYTMyLTU2OWEtNDA3Ny05MWUwLTNjYmJmZmM5MjNiOC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwOTA5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDkwOVQwMTMxMTdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1jNzEzYzk4NmEzYjg4ZDJlZTE1OTg4ZDY1NzE3YTU1MzA0ZmQ4YWQ4ZmMxZGEzN2VlNmMyYTJkMDE4NDFiMDQ2JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9._rU_L7LgYdFzzJgJvKqTOpK0YFRjrQ-odjHoYJHqzsI">
+> |**2024-9  外滩大会宣讲，招募跨癌肿复制，获得多项资源捐赠，感谢@Fastgpt团队 @ShowS团队 <br>
 > |**2024-8   我们开始着手推动肺癌应用，并在运营团队，RAG团队扩大的前提下，努力推动肺癌RAG平台的搭建和上线运营，主理人同步招募中。<br>
 > ｜**2024-7  经过商议，开始着手协助构建面向 **肛肠癌**的AI助手 - 小萌宝，和该癌肿的热心美丽的博主Tina进行合作。** <br>
 > ｜**2024-6  小胰宝的使用人数出现下滑，但是AI工具在病友群的普及和使用上升，我们很开心看到这样的技术扩散；** <br>
