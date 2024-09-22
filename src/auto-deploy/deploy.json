@@ -1,8 +1,8 @@
 {
   "WorkDir":    "./run",
   "BackupDir":  "./backup",
-  "ImageAPI":   "justsong/one-api:latest",
-  "ImageGPT":   "registry.cn-hangzhou.aliyuncs.com/fastgpt/fastgpt:latest",
+  "ImageAPI":   "registry.cn-hangzhou.aliyuncs.com/fastgpt/one-api:v0.6.6",
+  "ImageGPT":   "registry.cn-hangzhou.aliyuncs.com/fastgpt/fastgpt:v4.8.9",
   "BaseURL":    "http://oneapi:3000/v1",
   "ApiKey":     "1234567890",
   "RootKey":    "0987654321",
