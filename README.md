@@ -133,26 +133,15 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 参见[【版本介绍和路线图】](roadmap.md) 。
 
 ---
-## 【任务广场：需要开源社区帮助的工作项】
-### 开发类型
+## 【志愿者招募】
+**我们欢迎如下职能角色的志愿者加入**：
 
-- [x] 任务1：~~[微信机器人优化][]：基于COW项目的微信机器人，降低掉线率，可以使用不同的魔改版本，欢迎测试后提交PR；~~
-- [x] 任务2：~~[部署自动化](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/issues/14)：现在是需要3个项目的手工部署，希望能自动化部署，欢迎测试后提交PR；~~ 感谢@田咖啡老师
-- [x] 任务3：[multi-agent优化](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/issues/13)：目前只支持单agent和workflow，但肿瘤患者需要医学助理-营养助理-心理助理构成的至少3个agent联合服务，配合癌症患者的综合治疗效果。目前只能以3个应用来分解，患者则需要使用3个ai助手，很不方便; 需要熟悉RAG的大佬搭建demo，并提交PR；
-- [ ] 任务4：[铂金任务：微信小程序端](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/issues/23)：越来越多的患者希望把微信小程序端开发出来，技术上小胰宝提供了api接口，但是需要前端开发者协助开发，欢迎测试后提交PR；建议使用git上的开源免费chatbot小程序框架。
-- [x] 任务5: [小胰宝复制跨癌肿｜和cozy结合](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/issues/18):基于COZY和小胰宝Repo，复制和构建五大癌肿的新癌肿适配智能助手小x宝。
-- [ ] 任务6: [Fastgpt知识库Re-ranking和问答优化](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/issues/16):使用re-rank，带来的RAG的效果提升和优化对话质量。
-- [ ] 任务7：[优化fastgpt响应速度，实现流式输出]()：目前fastgpt的响应速度比较慢，大概要5-15秒，需要优化到2-3秒，欢迎测试后提交PR；
-- [x] 任务8：[小红书运营和稿件入口](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao): 帮助运营团队定期维护小红书上发布内容。
+1. RAG团队：熟悉RAG技术原理，能够独挡一面完成从内容准备，有过至少一种RAG产品的熟练使用经验，最好是fastgpt/dify/以及coze，百度等平台，熟悉文档转化工具，如MinerU/OCR。熟悉工作流配置，prompt应用是基本能力。需要负责全链条RAG内容和质量输出。
+2. 产品团队：产品经理/Python和JS/ts开发/小程序(微信/支付宝）开发。
+3. 社群运营：熟悉小红书/公众号/短视频平台的社群内容/社群运营，理解病友和患者需求，具备良好的公益沟通能力，最好是病友/家属。
+4. 内容运营团队：持续招募熟悉特定癌肿的临床医护，药学，基因/免疫治疗的专业人员或病友/家属，为知识库运营和构建迭代持续贡献。
 
-
-
-### 运营类型
-- [x] 任务9: [永恒的话题：运营](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao): 小胰宝运营内容互动版块
-- [x] 任务10 [维护知识宝典](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao)：定期维护更新针对病友的系统性病情应知必回体系，尤其是指南和共识。
-- [ ] 任务12 [小胰宝网站建设和维护](https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao/issues/30):网站刚建好，内容组织和内容编辑都需要文笔，思路熟悉的同学来完善和运营，非技术同学优先；
-- [ ] 任务: 社区运营：目前小胰宝的社区运营团队刚刚成立，需要志愿者加入，增强“内容运营”，“病友社群运营”的运营能力，欢迎报名，请联系wx@m89989988m
-- [ ] 任务: 内容库运营：欢迎提交和胰腺癌治疗的内容（包括pdf文件，治疗方案，治疗药物，靶向方案，免疫方案，治疗方案的内容，经验。如果你可以去自行添加到[小胰宝知识库项目](https://xycjscs.github.io/KnowledgeBase-xiaoyibao/)，欢迎提交PR），或者可以申请加入志愿者群，联系wx@m89989988m
+招募联系微信: qinxiaoqiang2002, 标注“小胰宝志愿者”
 ---
 
 ## 部署方式
