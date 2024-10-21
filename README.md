@@ -58,7 +58,7 @@
 
 ---
 >**腾讯元器平台:** <br>
->[小胰宝]((https://yuanbao.tencent.com/chat/tissgDIaBIaq) <br>
+>[小胰宝](https://yuanbao.tencent.com/chat/tissgDIaBIaq) <br>
 <img width="161" alt="image" src="https://github.com/user-attachments/assets/5452e1d0-ecf0-4ff2-9736-27f576e15a37">
 
 ---
