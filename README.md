@@ -50,14 +50,23 @@
 
 ## Demo
 
+>**coze平台:** <br>
+
 | **[星妈爱聊 点击体验](https://www.coze.cn/store/bot/7391456276259160115)** | **[小食宝-肿瘤患者营养专家 点击体验](https://www.coze.cn/s/iM8k258G)** |
 |:---:|:---:|
-| <img width="320" alt="image" src="https://github.com/user-attachments/assets/2a963674-090d-4889-9d8b-e9154c2fe6a9">| <img width="320" alt="image" src="https://github.com/user-attachments/assets/c5d32327-0c86-42ac-8857-8b452f2c3364"> |
+| <img width="200" alt="image" src="https://github.com/user-attachments/assets/2a963674-090d-4889-9d8b-e9154c2fe6a9"> | <img width="200" alt="image" src="https://github.com/user-attachments/assets/c5d32327-0c86-42ac-8857-8b452f2c3364">|
 
+---
+>**腾讯元器平台:** <br>
+>[小胰宝]((https://yuanbao.tencent.com/chat/tissgDIaBIaq) <br>
+<img width="161" alt="image" src="https://github.com/user-attachments/assets/5452e1d0-ecf0-4ff2-9736-27f576e15a37">
 
->**zhipu平台:** <br>
+---
+>**智浦清言平台:** <br>
 >[小胰宝](https://chatglm.cn/share/FEmRj) <br>
 <img width="320" alt="image" src="https://github.com/user-attachments/assets/11bfc020-e943-4306-b6fe-fbe4254b7c54">
+
+
 
 ---
 ## 围绕综合治疗配套的“小胰宝一家人”
