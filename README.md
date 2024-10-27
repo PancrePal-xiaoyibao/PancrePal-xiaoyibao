@@ -63,8 +63,9 @@
 
 ---
 >**腾讯元器平台:** <br>
->[小胰宝](https://yuanbao.tencent.com/chat/tissgDIaBIaq) <br>
-<img width="161" alt="image" src="https://github.com/user-attachments/assets/5452e1d0-ecf0-4ff2-9736-27f576e15a37">
+> **利用元器平台的便捷性，我们快速构建了跨癌肿的Demo** <br>
+<img width="945" alt="image" src="https://github.com/user-attachments/assets/0633a832-ea08-40fe-ae7e-11b262c34660">
+
 
 ---
 >**智浦清言平台:** <br>
