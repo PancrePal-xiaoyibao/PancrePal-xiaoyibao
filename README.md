@@ -150,7 +150,7 @@ AI技术的患者应用，除了小胰宝类针对患者治疗过程的助手外
 1. [Fastgpt](https://github.com/labring/FastGPT): 为小胰宝1.0提供了核心RAG平台技术栈，，对万人级别患者提供了稳定和高效能服务，以及便捷高效的知识库搭建；Fastgpt杨老师积极帮助xyb协调和解决困扰的权限管理分级，并在社区中寻找微信机器人资源，带动社区贡献，特别感谢Fastgpt团队的无私支持！也期待他们更大的技术突破和成功。<br>
 2. [Chatgpt-on-wechat](https://github.com/zhayujie/chatgpt-on-wechat/tree/master): 作为微信机器人技术栈，提供了患者更便捷的使用和体验；<br>
 3. [开发者Vinlic](https://github.com/Vinlic):提供了企业微信客服解决方案应用，支持1v1的隐私沟通，以及提供了对话中的图片解析等功能，极大改善了用户体验，丰富了应用端生态；<br>
-4. [开发者方圆 Dify-on-Wechat](https://github.com/hanfangyuan4396/dify-on-wechat):是一个非常蓬勃发展，基于COW改造的项目，提供了和Dify流畅对接能力，适配了Fastgpt，因此称为小胰宝，小萌宝，小肺宝的主流技术栈之一，非常感谢该项目的努力！<br>
+4. [开发者方圆 Dify-on-Wechat](https://github.com/hanfangyuan4396/dify-on-wechat):是一个非常蓬勃发展，基于COW改造的项目，提供了和Dify流畅对接能力，适配了Fastgpt，因此成为小胰宝，小萌宝，小肺宝的主流技术栈之一，非常感谢该项目的努力！<br>
 3. [开发者Francis](https://github.com/Tishon1532/chatgpt-on-wechat-win):感谢 @Tishon1532 提供了微信机器人解决方案，极大改善了微信群病友的使用和体验，拓展了小胰宝在卡片消息使用场景的应用思路，我们成功的加入了密塔搜索，点歌台等病友高频使用场景；<br>
 3. [Dify](https://github.com/langgenius/dify): 为小胰宝2.0提供了RAG的扩展空间，包括LLMs的一站式接入，KB的体系扩展，以及最为重要的和全球化RAG能力对齐.<br>
 4. [0-1 AI, one of LLM Large Language Model Leaders](https://01.ai)：零一万物团队，不仅全力支持本公益项目，而且慷慨提供了0-1API接口及Token消耗赞助，让数千患者享受到了科技福利。<br>
