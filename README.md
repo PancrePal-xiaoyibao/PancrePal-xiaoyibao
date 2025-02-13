@@ -1,4 +1,5 @@
-# “小胰宝 - 面向胰腺癌肿瘤患者的智能RAG平台”
+# “小X宝社区 & 小胰宝 -面向胰腺癌肿瘤患者的智能RAG平台” | 天工开物旗下公益开源项目
+（www.xiaoyibao.com.cn)或者关注（“小胰宝助手”）公众号，我们会发布社区进展和贡献内容。
 
 ## 项目介绍
 
@@ -69,7 +70,15 @@
 > 除了操作步骤的说明，我们会开源prompts，构建技巧，以方便无代码能力的人员，快速参考和实现构建。
 
 ## Demo
+---
+>**支付宝百宝箱平台** <br>
 
+| **[小胰宝病情分析助手DS满血版](https://tbox.alipay.com/pro/share/202502APKzVp00241467?platform=WebService)** | **[小胰宝-DS满血版 点击体验](https://tbox.alipay.com/pro/share/202502AP4E0s00235175?platform=WebService)** |
+|:---:|:---:|
+|<img width="200" alt="image" src="https://github.com/user-attachments/assets/77bfe551-e36d-4266-9fad-50920f36267f"> | <img width="200" alt="image" src="https://github.com/user-attachments/assets/ea38d220-9ebc-4193-bfa3-2c6e58f70e1d">|
+
+
+---
 >**coze平台:** <br>
 
 | **[星妈爱聊 点击体验](https://www.coze.cn/store/bot/7391456276259160115)** | **[小食宝-肿瘤患者营养专家 点击体验](https://www.coze.cn/s/iM8k258G)** |
