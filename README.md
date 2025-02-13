@@ -75,7 +75,7 @@
 
 | **[小胰宝病情分析助手DS满血版](https://tbox.alipay.com/pro/share/202502APKzVp00241467?platform=WebService)** | **[小胰宝-DS满血版 点击体验](https://tbox.alipay.com/pro/share/202502AP4E0s00235175?platform=WebService)** |**[小粉宝-DS满血版 点击体验](https://tbox.alipay.com/pro/share/202502APeyvN00242024?platform=WebService)** |
 |:---:|:---:|:---:|
-|<img width="200" alt="image" src="https://github.com/user-attachments/assets/77bfe551-e36d-4266-9fad-50920f36267f"> | <img width="200" alt="image" src="https://github.com/user-attachments/assets/ea38d220-9ebc-4193-bfa3-2c6e58f70e1d">| <img width="200" alt="image" src="https://github.com/user-attachments/assets/a4944472-9bfa-4056-8a8a-aad84f0f0a68">|
+|<img width="200" alt="image" src="https://github.com/user-attachments/assets/8cbc5cde-9d8a-46bd-ab2b-2d0d05a8e84b"> | <img width="200" alt="image" src="https://github.com/user-attachments/assets/46765beb-1dd7-4c28-bec3-f110db203a0a">| <img width="200" alt="image" src="https://github.com/user-attachments/assets/5f9c7320-77b2-4445-a404-4904ea41ba6b">|
 
 
 ---
