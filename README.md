@@ -73,9 +73,9 @@
 ---
 >**支付宝百宝箱平台** <br>
 
-| **[小胰宝病情分析助手DS满血版](https://tbox.alipay.com/pro/share/202502APKzVp00241467?platform=WebService)** | **[小胰宝-DS满血版 点击体验](https://tbox.alipay.com/pro/share/202502AP4E0s00235175?platform=WebService)** |
-|:---:|:---:|
-|<img width="200" alt="image" src="https://github.com/user-attachments/assets/77bfe551-e36d-4266-9fad-50920f36267f"> | <img width="200" alt="image" src="https://github.com/user-attachments/assets/ea38d220-9ebc-4193-bfa3-2c6e58f70e1d">|
+| **[小胰宝病情分析助手DS满血版](https://tbox.alipay.com/pro/share/202502APKzVp00241467?platform=WebService)** | **[小胰宝-DS满血版 点击体验](https://tbox.alipay.com/pro/share/202502AP4E0s00235175?platform=WebService)** |**[小粉宝-DS满血版 点击体验](https://tbox.alipay.com/pro/share/202502APeyvN00242024?platform=WebService)** |
+|:---:|:---:|:---:|
+|<img width="200" alt="image" src="https://github.com/user-attachments/assets/77bfe551-e36d-4266-9fad-50920f36267f"> | <img width="200" alt="image" src="https://github.com/user-attachments/assets/ea38d220-9ebc-4193-bfa3-2c6e58f70e1d">| <img width="200" alt="image" src="https://github.com/user-attachments/assets/a4944472-9bfa-4056-8a8a-aad84f0f0a68">|
 
 
 ---
