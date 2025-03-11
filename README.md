@@ -268,6 +268,7 @@
 *   [UCloud](https://github.com/ucloud): 感谢 UCloud[优刻得云计算]在了解到小肺宝上线的资源缺口后，慷慨捐赠服务器资源，对于小肺宝的上线和性能提升直接提供了支援。
 *   [Gewechat](https://github.com/Devo919/Gewechat): 在 cmc 成员田老师介绍后，[Gewechat 团队](www.geweapi.com) 迅速决定加入和支持小 x 宝社区，提供微信机器人服务协议和能力支持，大幅度改善用户体验，对所有 x 宝应用都是巨大贡献；
 *   特别感谢❤️[Clivia 工作室](www.hub.oaifree.cn)❤️:Clivia 是在校大学生，是 AI 技术和公益实践的热血青年，不仅完成了小胃宝的搭建上线，还慷慨捐助的社区公益 Token 资源。期待更多的年轻伙伴，像他一样，加入社区，飞扬青春，实践梦想！
+*   [Gitcode-Gstar](https://docs.gitcode.com/docs/help/home/page-intro/homepage):感谢❤️GitCode团队❤️的信任和邀请，我们有幸受邀加入了G-Star计划,成为GitCode G-Star公益行活动的💎首批成员！⚡感谢GitCode开源x公益的社区推动，让我们看到更多光，感受到更宽广的力量场！
 
 以上伙伴的加入，不仅见证了开源世界的价值观，也代表一个重要的信息：
 
