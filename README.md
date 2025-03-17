@@ -57,6 +57,9 @@
 *   😊  **社区任务：**  [梦想项目](https://task.xiaoyibao.com.cn) 全透明，等你来创建！
 *   👌  **首个贡献：**  辅导员助您完成 [First Good Issue](https://myfirst.xiao-x-bao.com.cn)
 
+*   <img width="345" alt="image" src="https://github.com/user-attachments/assets/faf334fe-2838-405a-820c-96081873a4a9" />
+
+
 ### 🌟 欢迎体验 Demo
 
 #### ⭐️ 小胰宝 (PancrePal):
