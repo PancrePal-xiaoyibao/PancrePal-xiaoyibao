@@ -1,6 +1,8 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
+from fastapi.responses import StreamingResponse, JSONResponse
 import agent.dify as dify
+import asyncio
 
 # 定义前端传入的请求体格式
 class ChatRequest(BaseModel):
@@ -16,24 +18,31 @@ chat = APIRouter()
 @chat.post("/chat")
 async def get_chat(response: ChatRequest):
     if response.agent == "dify":
-        resp = dify.send_chat_message(
-            api_key=dify.dify_api_key,
-            user=response.user,
-            base_url=dify.dify_base_url,
-            query=response.query,
-            response_mode=response.response_mode,
-            conversation_id=response.conversation_id,
-            files=response.files
-        )
         if response.response_mode == "streaming":
-            # 流式返回
-            from fastapi.responses import StreamingResponse
-            def event_stream():
-                for line in resp.iter_lines(decode_unicode=True):
-                    if line:
-                        yield line + "\n"
+            # 异步流式返回
+            async def event_stream():
+                async with await dify.send_chat_message(
+                    api_key=dify.dify_api_key,
+                    user=response.user,
+                    base_url=dify.dify_base_url,
+                    query=response.query,
+                    response_mode=response.response_mode,
+                    conversation_id=response.conversation_id,
+                    files=response.files
+                ) as resp:
+                    async for line in resp.aiter_lines():
+                        if line:
+                            yield line + "\n"
             return StreamingResponse(event_stream(), media_type="text/plain")
         else:
-            # 普通 JSON 返回
-            return resp.json()
+            resp = await dify.send_chat_message(
+                api_key=dify.dify_api_key,
+                user=response.user,
+                base_url=dify.dify_base_url,
+                query=response.query,
+                response_mode=response.response_mode,
+                conversation_id=response.conversation_id,
+                files=response.files
+            )
+            return JSONResponse(content=resp.json())
     return {"message": "Hello, this is a test chat response!"}

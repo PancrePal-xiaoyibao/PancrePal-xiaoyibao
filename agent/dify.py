@@ -1,12 +1,12 @@
 import os
+import httpx
 from dotenv import load_dotenv
-import requests
 
 load_dotenv()
 dify_api_key = os.getenv("DIFY_API_KEY")
 dify_base_url = os.getenv("DIFY_BASE_URL")
 
-def send_chat_message(api_key,user, base_url, query, response_mode="blocking", conversation_id="", files=None):
+async def send_chat_message(api_key, user, base_url, query, response_mode="blocking", conversation_id="", files=None):
     """
     向 Dify 服务发送聊天消息请求。
 
@@ -18,7 +18,7 @@ def send_chat_message(api_key,user, base_url, query, response_mode="blocking", c
         conversation_id (str): 会话 ID，用于多轮对话（可选）。
 
     返回:
-        requests.Response: Dify 服务的 HTTP 响应对象。
+        httpx.Response: Dify 服务的 HTTP 响应对象。
     """
     url = f"{base_url}/chat-messages"
     headers = {
@@ -33,6 +33,11 @@ def send_chat_message(api_key,user, base_url, query, response_mode="blocking", c
         "user": user,
         "files": files
     }
-    stream = response_mode == "streaming"
-    response = requests.post(url, headers=headers, json=data, stream=stream)
-    return response
+    client = httpx.AsyncClient()
+    if response_mode == "streaming":
+        # 返回异步上下文管理器，由调用方 async with 使用
+        return client.stream("POST", url, headers=headers, json=data)
+    else:
+        response = await client.post(url, headers=headers, json=data)
+        await client.aclose()
+        return response
