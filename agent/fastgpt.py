@@ -70,9 +70,9 @@ def chat_completions(
         data["variables"] = variables
 
     # 打印最终请求的URL和数据
-    print("Request URL:", url)
-    print("Request headers:", headers)
-    print("Request data:", json.dumps(data, ensure_ascii=False, indent=2))
+    # print("Request URL:", url)
+    # print("Request headers:", headers)
+    # print("Request data:", json.dumps(data, ensure_ascii=False, indent=2))
 
     with httpx.Client(timeout=30.0) as client:
         response = client.post(url, headers=headers, json=data)
