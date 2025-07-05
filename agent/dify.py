@@ -1,6 +1,12 @@
+import os
+from dotenv import load_dotenv
 import requests
 
-def send_chat_message(api_key, base_url, query, response_mode="blocking", conversation_id=""):
+load_dotenv()
+dify_api_key = os.getenv("DIFY_API_KEY")
+dify_base_url = os.getenv("DIFY_BASE_URL")
+
+def send_chat_message(api_key,user, base_url, query, response_mode="blocking", conversation_id="", files=None):
     """
     向 Dify 服务发送聊天消息请求。
 
@@ -24,16 +30,9 @@ def send_chat_message(api_key, base_url, query, response_mode="blocking", conver
         "query": query,
         "response_mode": response_mode,
         "conversation_id": conversation_id,
-        "user": "abc-123",
-        "files": [
-            {
-                "type": "image",
-                "transfer_method": "remote_url",
-                "url": "https://cloud.dify.ai/logo/logo-site.png"
-            }
-        ]
+        "user": user,
+        "files": files
     }
-    # 如果是流式，stream=True
     stream = response_mode == "streaming"
     response = requests.post(url, headers=headers, json=data, stream=stream)
     return response
