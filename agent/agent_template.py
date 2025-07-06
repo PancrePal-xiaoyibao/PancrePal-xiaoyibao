@@ -2,6 +2,7 @@ import os
 from typing import Dict, Any
 from .base import BaseAgent
 from .registry import registry
+from .models import ChatRequest
 
 class AgentTemplate(BaseAgent):
     """
@@ -18,6 +19,8 @@ class AgentTemplate(BaseAgent):
         """
         校验请求数据是否合法。
         子类可根据实际需求自定义校验逻辑。
+        需要先检验 ChatRequest 模型是否能通过，
+        以确保前端传入的参数符合预期。
 
         参数:
             request_data (Dict[str, Any]): 需要校验的请求数据
@@ -26,6 +29,10 @@ class AgentTemplate(BaseAgent):
             bool: 如果请求数据合法返回 True，否则返回 False
         """
         # 示例：检查 query 字段是否存在且非空
+        try:
+            ChatRequest(**request_data)
+        except Exception:
+            return False
         return 'query' in request_data and bool(request_data['query'])
 
     def process_request(self, request_data: Dict[str, Any]) -> Any:

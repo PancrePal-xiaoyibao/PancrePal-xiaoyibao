@@ -11,6 +11,7 @@ class ChatRequest(BaseModel):
     """
     query: str = Field(..., description="用户输入的对话内容，所有Agent必填")
     user: Optional[str] = Field(None, description="用户标识")
+    uid: Optional[str] = Field(None, description="用户ID")
     stream: Optional[bool] = Field(False, description="是否流式返回")
     app_id: Optional[str] = Field(None, description="应用ID")
     chat_id: Optional[str] = Field(None, description="会话ID")

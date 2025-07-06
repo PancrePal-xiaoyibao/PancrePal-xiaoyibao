@@ -6,6 +6,7 @@ from typing import List, Dict, Optional, Union, Any
 import traceback
 from .base import BaseAgent
 from .registry import registry
+from .models import ChatRequest
 
 load_dotenv()
 fastgpt_api_key = os.getenv("FASTGPT_API_KEY")
@@ -18,6 +19,12 @@ class FastGPTAgent(BaseAgent):
     def validate_request(self, request_data: Dict[str, Any]) -> bool:
         """Validate if the request data is valid for FastGPT."""
         # FastGPT requires a query
+        try:
+            # 用 ChatRequest 模型来验证请求数据
+            ChatRequest(**request_data)
+        except Exception as e:
+            print(f"Validation error: {e}")
+            return False
         return 'query' in request_data and bool(request_data['query'])
     
     def process_request(self, request_data: Dict[str, Any]) -> Dict[str, Any]:
@@ -27,15 +34,16 @@ class FastGPTAgent(BaseAgent):
         ]
         
         variables = {}
+        if 'uid' in request_data and request_data['uid']:
+            variables["uid"] = request_data['uid']
         if 'user' in request_data and request_data['user']:
-            variables["uid"] = request_data['user']
-        
+            variables["user"] = request_data['user']
         response = self.chat_completions(
             messages=messages,
             app_id=request_data.get('app_id'),
             chat_id=request_data.get('chat_id'),
             stream=request_data.get('stream', False),
-            detail=request_data.get('detail', False),
+            detail=True,  # 为了统一接口，统一返回 FastGPT 的详细信息
             variables=variables
         )
         
