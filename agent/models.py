@@ -1,6 +1,29 @@
 from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 
+class Message(BaseModel):
+    role: str = Field(..., description="消息角色，如 assistant 或 user")
+    content: str = Field(..., description="消息内容")
+
+class Choice(BaseModel):
+    message: Message = Field(..., description="消息对象")
+    finish_reason: Optional[str] = Field(None, description="结束原因")
+    index: int = Field(..., description="选项索引")
+
+class Usage(BaseModel):
+    prompt_tokens: int = Field(..., description="提示词 tokens 数")
+    completion_tokens: int = Field(..., description="生成 tokens 数")
+    total_tokens: int = Field(..., description="总 tokens 数")
+
+class ChatResponse(BaseModel):
+    """
+    统一响应数据模型
+    """
+    id: str = Field(..., description="会话ID")
+    model: str = Field(..., description="使用的模型名称")
+    usage: Usage = Field(..., description="tokens 使用情况")
+    choices: List[Choice] = Field(..., description="响应选项列表")
+
 class ChatRequest(BaseModel):
     """
     前端请求统一数据模型

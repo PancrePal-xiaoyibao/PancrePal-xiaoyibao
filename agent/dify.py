@@ -46,6 +46,7 @@ class DifyAgent(BaseAgent):
         )
 
         if response_mode == "blocking":
+            print("Dify response:", response.text)
             return response.json()
         return response
 
@@ -54,11 +55,17 @@ class DifyAgent(BaseAgent):
         格式化 Dify 响应为统一结构。
         """
         if isinstance(response_data, dict):
+            usage = response_data.get("metadata", {}).get("usage", {})
+            # 兼容 Dify 价格等多余字段，只取 tokens 相关
+            usage_obj = {
+                "prompt_tokens": usage.get("prompt_tokens", 0),
+                "completion_tokens": usage.get("completion_tokens", 0),
+                "total_tokens": usage.get("total_tokens", 0)
+            }
             return {
-                "responseData": [],
-                "id": response_data.get("id", ""),
-                "model": "",
-                "usage": response_data.get("metadata", {}).get("usage", {}),
+                "id": response_data.get("conversation_id", ""),
+                "model": response_data.get("mode", ""),
+                "usage": usage_obj,
                 "choices": [
                     {
                         "message": {

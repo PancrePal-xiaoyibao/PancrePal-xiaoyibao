@@ -43,7 +43,7 @@ class FastGPTAgent(BaseAgent):
             app_id=request_data.get('app_id'),
             chat_id=request_data.get('chat_id'),
             stream=request_data.get('stream', False),
-            detail=True,  # 为了统一接口，统一返回 FastGPT 的详细信息
+            detail=False,  # 为了统一接口，不统一返回 FastGPT 的详细信息
             variables=variables
         )
         
