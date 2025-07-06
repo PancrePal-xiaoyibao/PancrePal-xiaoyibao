@@ -2,42 +2,49 @@ from typing import Dict, Optional
 from .base import BaseAgent
 
 class AgentRegistry:
-    """Registry for all available agents."""
-    
+    """
+    智能体注册表类，用于管理所有可用的智能体（Agent）。
+
+    该类提供注册、获取和列出智能体的方法，实现对智能体实例的集中管理。
+    """
+
     def __init__(self):
+        """
+        初始化注册表，创建一个用于存储智能体实例的字典。
+        """
         self._agents: Dict[str, BaseAgent] = {}
-    
+
     def register(self, name: str, agent: BaseAgent) -> None:
         """
-        Register an agent with the registry.
-        
-        Args:
-            name: The name of the agent
-            agent: The agent instance
+        注册一个智能体到注册表中。
+
+        参数:
+            name (str): 智能体名称
+            agent (BaseAgent): 智能体实例
         """
         self._agents[name.lower()] = agent
         print(f"Agent '{name}' registered successfully")
-    
+
     def get(self, name: str) -> Optional[BaseAgent]:
         """
-        Get an agent by name.
-        
-        Args:
-            name: The name of the agent
-            
-        Returns:
-            BaseAgent: The agent instance or None if not found
+        根据名称获取已注册的智能体。
+
+        参数:
+            name (str): 智能体名称
+
+        返回:
+            Optional[BaseAgent]: 智能体实例，如果未找到则返回 None
         """
         return self._agents.get(name.lower())
-    
+
     def list_agents(self) -> Dict[str, BaseAgent]:
         """
-        Get all registered agents.
-        
-        Returns:
-            Dict: A dictionary of agent names to agent instances
+        获取所有已注册的智能体。
+
+        返回:
+            Dict[str, BaseAgent]: 智能体名称到实例的字典副本
         """
         return self._agents.copy()
 
-# Create a singleton instance
+# 创建单例注册表实例，供全局使用
 registry = AgentRegistry()

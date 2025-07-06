@@ -93,7 +93,8 @@ class DifyAgent(BaseAgent):
             "user": user,
             "files": files
         }
-        with httpx.Client() as client:
+        # 后端相应可能过慢
+        with httpx.Client(timeout=60.0) as client:
             if response_mode == "streaming":
                 # 返回同步流式响应
                 return client.stream("POST", url, headers=headers, json=data)
