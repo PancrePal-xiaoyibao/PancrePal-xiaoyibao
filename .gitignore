@@ -6,4 +6,4 @@ docker/cow-pancrepal/plugins/sum4all
 .venv
 .env
 __pycache__/
-**/__pycache__/
+*/__pycache__/
