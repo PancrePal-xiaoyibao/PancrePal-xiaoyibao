@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from .base import BaseAgent
 from .registry import registry
 from typing import Dict, Any
-from .models import ChatRequest
+from .models import ChatRequest, UnifiedChatResponse, Usage, Choice, Message
 
 load_dotenv()
 dify_api_key = os.getenv("DIFY_API_KEY")
@@ -50,36 +50,45 @@ class DifyAgent(BaseAgent):
             return response.json()
         return response
 
-    def format_response(self, response_data: Any) -> Dict[str, Any]:
+    def format_response(self, response_data: Any) -> UnifiedChatResponse:
         """
-        格式化 Dify 响应为统一结构。
+        格式化 Dify 响应为统一结构，遵循 FastGPT 的响应格式。
         """
         if isinstance(response_data, dict):
-            usage = response_data.get("metadata", {}).get("usage", {})
+            usage_data = response_data.get("metadata", {}).get("usage", {})
             # 兼容 Dify 价格等多余字段，只取 tokens 相关
-            usage_obj = {
-                "prompt_tokens": usage.get("prompt_tokens", 0),
-                "completion_tokens": usage.get("completion_tokens", 0),
-                "total_tokens": usage.get("total_tokens", 0)
-            }
-            return {
-                "id": response_data.get("conversation_id", ""),
-                "model": response_data.get("mode", ""),
-                "usage": usage_obj,
-                "choices": [
-                    {
-                        "message": {
-                            "role": "assistant",
-                            "content": response_data.get("answer", "")
-                        },
-                        "finish_reason": "stop",
-                        "index": 0
-                    }
-                ]
-            }
-        return {
-            "error": "Invalid response format"
-        }
+            usage = Usage(
+                prompt_tokens=usage_data.get("prompt_tokens", 0),
+                completion_tokens=usage_data.get("completion_tokens", 0),
+                total_tokens=usage_data.get("total_tokens", 0)
+            )
+            
+            message = Message(
+                role="assistant",
+                content=response_data.get("answer", "")
+            )
+            
+            choice = Choice(
+                message=message,
+                finish_reason="stop",
+                index=0
+            )
+            
+            # Dify 只支持标准模式，不支持 detail=true
+            return UnifiedChatResponse(
+                id=response_data.get("conversation_id", ""),
+                model=response_data.get("mode", ""),
+                usage=usage,
+                choices=[choice]
+            )
+        else:
+            # 错误情况，返回空的标准响应
+            return UnifiedChatResponse(
+                id="",
+                model="",
+                usage=Usage(prompt_tokens=0, completion_tokens=0, total_tokens=0),
+                choices=[]
+            )
 
     def send_chat_message(self, api_key, user, base_url, query, response_mode="blocking", conversation_id="", files=None):
         """

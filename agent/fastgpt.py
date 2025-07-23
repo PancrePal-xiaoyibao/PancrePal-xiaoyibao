@@ -6,7 +6,7 @@ from typing import List, Dict, Optional, Union, Any
 import traceback
 from .base import BaseAgent
 from .registry import registry
-from .models import ChatRequest
+from .models import ChatRequest, UnifiedChatResponse, StandardChatResponse, DetailedChatResponse
 
 load_dotenv()
 fastgpt_api_key = os.getenv("FASTGPT_API_KEY")
@@ -50,22 +50,23 @@ class FastGPTAgent(BaseAgent):
         return response
     
     # 规范来自 FastGPT 的响应格式
-    def format_response(self, response_data: Dict[str, Any]) -> Dict[str, Any]:
-        """Format the FastGPT response into a standardized format."""
+    def format_response(self, response_data: Dict[str, Any]) -> UnifiedChatResponse:
+        """Format the FastGPT response into a standardized format using UnifiedChatResponse model."""
         # 检查是否为 detail=true 的响应格式
         if "responseData" in response_data:
-            # detail=true 的响应格式，只返回 responseData，去掉无用的统一字段
-            return {
-                "responseData": response_data.get("responseData", [])
-            }
+            # detail=true 的响应格式，返回详细模式
+            return UnifiedChatResponse(
+                responseData=response_data.get("responseData", []),
+                newVariables=response_data.get("newVariables", {})
+            )
         else:
-            # detail=false 的响应格式，保持原有逻辑
-            return {
-                "id": response_data.get("id", ""),
-                "model": response_data.get("model", ""),
-                "usage": response_data.get("usage", {}),
-                "choices": response_data.get("choices", [])
-            }
+            # detail=false 的响应格式，返回标准模式
+            return UnifiedChatResponse(
+                id=response_data.get("id", ""),
+                model=response_data.get("model", ""),
+                usage=response_data.get("usage", {}),
+                choices=response_data.get("choices", [])
+            )
     
     def chat_completions(
         self,

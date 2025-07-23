@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Dict, Any, Optional
+from .models import UnifiedChatResponse
 
 class BaseAgent(ABC):
     """
@@ -7,6 +8,7 @@ class BaseAgent(ABC):
 
     该类定义了智能体的基本接口，包括请求校验、请求处理和响应格式化三个核心方法。
     子类需实现这些抽象方法，以保证统一的接口规范。
+    所有 Agent 必须遵循 FastGPT 的响应格式，返回 UnifiedChatResponse 模型。
     """
 
     @abstractmethod
@@ -36,14 +38,15 @@ class BaseAgent(ABC):
         pass
 
     @abstractmethod
-    def format_response(self, response_data: Any) -> Dict[str, Any]:
+    def format_response(self, response_data: Any) -> UnifiedChatResponse:
         """
-        将原始响应数据格式化为标准结构。
+        将原始响应数据格式化为统一的标准结构。
+        所有 Agent 必须遵循 FastGPT 的响应格式。
 
         参数:
             response_data (Any): 原始响应数据
 
         返回:
-            Dict[str, Any]: 标准化后的响应字典
+            UnifiedChatResponse: 统一的响应模型，支持标准模式和详细模式
         """
         pass

@@ -3,6 +3,10 @@
 测试 FastGPT Agent 的 detail 功能
 """
 
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import json
 from agent.fastgpt import FastGPTAgent
 from agent.models import ChatRequest
@@ -78,19 +82,22 @@ def test_format_response():
     # 测试 detail=false 格式化
     formatted_false = agent.format_response(detail_false_response)
     print("Detail=false 格式化结果:")
-    print(json.dumps(formatted_false, indent=2, ensure_ascii=False))
+    print(json.dumps(formatted_false.model_dump(exclude_none=True), indent=2, ensure_ascii=False))
     print()
     
     # 测试 detail=true 格式化
     formatted_true = agent.format_response(detail_true_response)
     print("Detail=true 格式化结果:")
-    print(json.dumps(formatted_true, indent=2, ensure_ascii=False))
+    print(json.dumps(formatted_true.model_dump(exclude_none=True), indent=2, ensure_ascii=False))
     print()
     
     # 验证结果
-    assert "responseData" not in formatted_false, "detail=false 时不应包含 responseData"
-    assert "responseData" in formatted_true, "detail=true 时应包含 responseData"
-    assert len(formatted_true["responseData"]) == 2, "responseData 应包含 2 个模块"
+    false_dict = formatted_false.model_dump(exclude_none=True)
+    true_dict = formatted_true.model_dump(exclude_none=True)
+    
+    assert "responseData" not in false_dict, "detail=false 时不应包含 responseData"
+    assert "responseData" in true_dict, "detail=true 时应包含 responseData"
+    assert len(true_dict["responseData"]) == 2, "responseData 应包含 2 个模块"
     
     print("✅ 所有测试通过！")
 
