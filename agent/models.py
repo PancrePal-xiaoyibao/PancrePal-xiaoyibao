@@ -40,3 +40,4 @@ class ChatRequest(BaseModel):
     chat_id: Optional[str] = Field(None, description="会话ID")
     files: Optional[List[Any]] = Field(None, description="上传的文件列表")
     conversation_id: Optional[str] = Field("", description="会话标识，用于多轮对话")
+    detail: Optional[bool] = Field(False, description="是否返回详细信息（模块状态等）")

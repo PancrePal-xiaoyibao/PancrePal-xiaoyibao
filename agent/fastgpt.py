@@ -43,21 +43,29 @@ class FastGPTAgent(BaseAgent):
             app_id=request_data.get('app_id'),
             chat_id=request_data.get('chat_id'),
             stream=request_data.get('stream', False),
-            detail=False,  # 为了统一接口，不统一返回 FastGPT 的详细信息
+            detail=request_data.get('detail', False),  # 支持通过请求参数控制 detail
             variables=variables
         )
         
         return response
     
+    # 规范来自 FastGPT 的响应格式
     def format_response(self, response_data: Dict[str, Any]) -> Dict[str, Any]:
         """Format the FastGPT response into a standardized format."""
-        return {
-            "responseData": response_data.get("responseData", []),
-            "id": response_data.get("id", ""),
-            "model": response_data.get("model", ""),
-            "usage": response_data.get("usage", {}),
-            "choices": response_data.get("choices", [])
-        }
+        # 检查是否为 detail=true 的响应格式
+        if "responseData" in response_data:
+            # detail=true 的响应格式，只返回 responseData，去掉无用的统一字段
+            return {
+                "responseData": response_data.get("responseData", [])
+            }
+        else:
+            # detail=false 的响应格式，保持原有逻辑
+            return {
+                "id": response_data.get("id", ""),
+                "model": response_data.get("model", ""),
+                "usage": response_data.get("usage", {}),
+                "choices": response_data.get("choices", [])
+            }
     
     def chat_completions(
         self,

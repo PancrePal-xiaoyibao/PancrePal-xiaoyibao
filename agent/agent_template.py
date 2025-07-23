@@ -64,7 +64,6 @@ class AgentTemplate(BaseAgent):
         """
         # 示例：统一输出格式
         return {
-            "responseData": response_data.get("result", ""),
             "status": "success"
         }
 
