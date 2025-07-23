@@ -2,6 +2,7 @@ import os
 import importlib
 import pkgutil
 from pathlib import Path
+import dotenv
 
 def load_agents():
     """
@@ -12,11 +13,26 @@ def load_agents():
     该函数会遍历 agent 目录下所有的 .py 文件（排除特殊模块），
     并通过 importlib 动态导入模块，实现自动发现和加载智能体。
     """
-    # 检查关键环境变量
-    required_envs = ["FASTGPT_BASE_URL", "FASTGPT_API_KEY", "FASTGPT_APP_ID", "DIFY_BASE_URL", "DIFY_API_KEY"]
-    missing_envs = [env for env in required_envs if not os.getenv(env)]
-    if missing_envs:
-        print(f"缺少环境变量，未加载智能体: {', '.join(missing_envs)}")
+    # 检查关键环境变量 - 至少需要一个智能体的完整配置
+    dotenv.load_dotenv()
+    
+    # 检查 FastGPT 配置
+    fastgpt_complete = all([
+        os.getenv("FASTGPT_BASE_URL"),
+        os.getenv("FASTGPT_API_KEY"),
+        os.getenv("FASTGPT_APP_ID")
+    ])
+    
+    # 检查 Dify 配置  
+    dify_complete = all([
+        os.getenv("DIFY_BASE_URL"),
+        os.getenv("DIFY_API_KEY")
+    ])
+    
+    if not (fastgpt_complete or dify_complete):
+        print("未找到完整的智能体配置，需要至少配置一个智能体的环境变量")
+        print("FastGPT 需要: FASTGPT_BASE_URL, FASTGPT_API_KEY, FASTGPT_APP_ID")
+        print("Dify 需要: DIFY_BASE_URL, DIFY_API_KEY")
         return
 
     # 获取当前包的目录路径
