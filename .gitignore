@@ -7,3 +7,4 @@ docker/cow-pancrepal/plugins/sum4all
 .env
 __pycache__/
 */__pycache__/
+http/

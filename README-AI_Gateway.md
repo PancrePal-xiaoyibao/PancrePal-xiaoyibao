@@ -49,7 +49,7 @@ uvicorn main:app --reload
 - [x] FastGPT
 - [x] Dify
 - [ ] 腾讯混元
-- [ ] 扣子
+- [x] 扣子
 
 ## 请求方法
 

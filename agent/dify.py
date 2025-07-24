@@ -90,7 +90,7 @@ class DifyAgent(BaseAgent):
                 choices=[]
             )
 
-    def send_chat_message(self, api_key, user, base_url, query, response_mode="blocking", conversation_id="", files=None):
+    def send_chat_message(self, api_key: str, user: str, base_url: str, query: str, response_mode: str = "blocking", conversation_id: str = "", files: list = None):
         """
         向 Dify 服务发送聊天消息请求。
         """
@@ -113,6 +113,23 @@ class DifyAgent(BaseAgent):
             else:
                 response = client.post(url, headers=headers, json=data)
                 return response
+
+    def get_history(self, api_key: str, user: str, base_url: str, conversation_id: str = ""):
+        """
+        获取 Dify 聊天历史记录。
+        """
+        url = f"{base_url}/conversations?user={user}&conversation_id={conversation_id}"
+
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json"
+        }
+        
+        with httpx.Client(timeout=60.0) as client:
+            response = client.get(url, headers=headers)
+            return response
+        
+    def 
 
 # 注册 Dify Agent
 registry.register("dify", DifyAgent())
