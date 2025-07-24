@@ -4,7 +4,7 @@ from .base import BaseAgent
 from .registry import registry
 from .models import ChatRequest, UnifiedChatResponse, Message, Choice, Usage
 from dotenv import load_dotenv
-from cozepy import Coze, TokenAuth, COZE_CN_BASE_URL, AsyncCoze, AsyncTokenAuth, Message as CozeMessage, ChatEventType
+from cozepy import Coze, TokenAuth, COZE_CN_BASE_URL, AsyncCoze, AsyncTokenAuth, Message as CozeMessage, ChatEventType, ChatStatus, MessageType
 import traceback
 
 load_dotenv()
@@ -82,20 +82,20 @@ class CozeAgent(BaseAgent):
             # 构建消息
             additional_messages = [CozeMessage.build_user_question_text(query)]
             
+            # 暂时禁用流式传输，统一使用非流式响应
             if stream:
-                # 流式响应
-                return self._handle_stream_response(user_id, additional_messages, conversation_id)
-            else:
-                # 非流式响应
-                return self._handle_blocking_response(user_id, additional_messages, conversation_id)
+                print("Warning: Stream mode is temporarily disabled, using blocking mode instead.")
+            
+            # 统一使用非流式响应
+            return self._handle_blocking_response(user_id, additional_messages, conversation_id)
                 
         except Exception as e:
             print(f"Error in process_request: {e}")
             traceback.print_exc()
-            return {"error": str(e)}
+            return {"error": str(e), "error_type": "process_error"}
 
     def _handle_blocking_response(self, user_id: str, additional_messages: List[CozeMessage], conversation_id: Optional[str] = None) -> Dict[str, Any]:
-        """处理非流式响应"""
+        """处理非流式响应，基于实际的Coze响应结构优化"""
         try:
             # 发送聊天请求
             kwargs = {
@@ -109,11 +109,27 @@ class CozeAgent(BaseAgent):
                 
             chat_result = coze.chat.create_and_poll(**kwargs)
             
-            # 构建响应
+            # 检查聊天状态
+            if not hasattr(chat_result, 'chat') or not chat_result.chat:
+                return {"error": "No chat object in response", "error_type": "response_error"}
+            
+            chat = chat_result.chat
+            
+            # 检查聊天是否完成
+            if chat.status != ChatStatus.COMPLETED:
+                error_msg = f"Chat not completed. Status: {chat.status}"
+                if chat.last_error:
+                    error_msg += f", Error: {chat.last_error}"
+                return {"error": error_msg, "error_type": "chat_status_error"}
+            
+            # 构建基础响应结构
             response = {
-                "id": getattr(chat_result, 'id', ''),
-                "conversation_id": getattr(chat_result, 'conversation_id', ''),
-                "model": "coze",  # Coze 作为模型名称
+                "id": chat.id,
+                "conversation_id": chat.conversation_id,
+                "model": "coze",
+                "status": str(chat.status),
+                "created_at": getattr(chat, 'created_at', None),
+                "completed_at": getattr(chat, 'completed_at', None),
                 "choices": [],
                 "usage": {
                     "prompt_tokens": 0,
@@ -122,46 +138,83 @@ class CozeAgent(BaseAgent):
                 }
             }
             
-            # 获取消息内容 - 改进的消息处理逻辑
-            if hasattr(chat_result, 'messages') and chat_result.messages:
-                content_parts = []
-                for message in chat_result.messages:
-                    # 只处理 assistant 角色的消息
-                    if hasattr(message, 'role') and message.role == 'assistant':
-                        if hasattr(message, 'content') and message.content:
-                            # 过滤掉系统控制信息
-                            content = message.content.strip()
-                            if content and not content.startswith('{"msg_type":'):
-                                content_parts.append(content)
-                
-                final_content = '\n'.join(content_parts) if content_parts else "响应为空"
-                
-                response["choices"] = [{
-                    "message": {
-                        "role": "assistant",
-                        "content": final_content
-                    },
-                    "finish_reason": "stop",
-                    "index": 0
-                }]
-            else:
-                # 如果没有消息，提供默认响应
-                response["choices"] = [{
-                    "message": {
-                        "role": "assistant",
-                        "content": "抱歉，没有收到有效响应"
-                    },
-                    "finish_reason": "stop",
-                    "index": 0
-                }]
-            
-            # 如果有使用量信息，更新usage
-            if hasattr(chat_result, 'usage') and chat_result.usage:
-                usage = chat_result.usage
+            # 处理使用量信息
+            if hasattr(chat, 'usage') and chat.usage:
+                usage = chat.usage
                 response["usage"] = {
                     "prompt_tokens": getattr(usage, 'input_count', 0),
                     "completion_tokens": getattr(usage, 'output_count', 0),
                     "total_tokens": getattr(usage, 'token_count', 0)
+                }
+            
+            # 处理消息内容
+            if hasattr(chat_result, 'messages') and chat_result.messages:
+                # 分类处理不同类型的消息
+                answer_content = []
+                follow_up_questions = []
+                verbose_info = []
+                
+                for message in chat_result.messages:
+                    if not hasattr(message, 'role') or not hasattr(message, 'type'):
+                        continue
+                        
+                    # 只处理 assistant 角色的消息
+                    if message.role.value == 'assistant':
+                        content = getattr(message, 'content', '')
+                        
+                        if message.type == MessageType.ANSWER:
+                            # 主要回答内容
+                            answer_content.append(content)
+                        elif message.type == MessageType.FOLLOW_UP:
+                            # 跟进问题
+                            follow_up_questions.append(content)
+                        elif message.type == MessageType.VERBOSE:
+                            # 详细信息（通常是系统信息）
+                            verbose_info.append(content)
+                
+                # 构建最终回答内容
+                final_content = '\n'.join(answer_content) if answer_content else ""
+                
+                # 如果没有主要回答，但有其他内容，使用它们
+                if not final_content and (follow_up_questions or verbose_info):
+                    final_content = "抱歉，没有收到有效的回答内容。"
+                
+                # 添加跟进问题（可选）
+                if follow_up_questions:
+                    final_content += f"\n\n相关问题推荐：\n" + '\n'.join(f"• {q}" for q in follow_up_questions[:3])
+                
+                response["choices"] = [{
+                    "message": {
+                        "role": "assistant",
+                        "content": final_content or "抱歉，没有收到有效响应"
+                    },
+                    "finish_reason": "stop",
+                    "index": 0
+                }]
+                
+                # 添加额外的消息元数据
+                response["metadata"] = {
+                    "answer_count": len(answer_content),
+                    "follow_up_count": len(follow_up_questions),
+                    "verbose_count": len(verbose_info),
+                    "total_messages": len(list(chat_result.messages))
+                }
+                
+            else:
+                # 没有消息的情况
+                response["choices"] = [{
+                    "message": {
+                        "role": "assistant",
+                        "content": "抱歉，没有收到任何响应消息"
+                    },
+                    "finish_reason": "no_content",
+                    "index": 0
+                }]
+                response["metadata"] = {
+                    "answer_count": 0,
+                    "follow_up_count": 0,
+                    "verbose_count": 0,
+                    "total_messages": 0
                 }
                 
             return response
@@ -169,7 +222,7 @@ class CozeAgent(BaseAgent):
         except Exception as e:
             print(f"Error in _handle_blocking_response: {e}")
             traceback.print_exc()
-            return {"error": str(e)}
+            return {"error": str(e), "error_type": "api_error"}
 
     def _handle_stream_response(self, user_id: str, additional_messages: List[CozeMessage], conversation_id: Optional[str] = None) -> Dict[str, Any]:
         """处理流式响应"""
@@ -238,7 +291,7 @@ class CozeAgent(BaseAgent):
     def format_response(self, response_data: Dict[str, Any]) -> UnifiedChatResponse:
         """
         将原始响应数据格式化为标准结构。
-        将 Coze 的响应格式转换为统一的响应格式。
+        将 Coze 的响应格式转换为统一的响应格式，增强错误处理。
 
         参数:
             response_data (Dict[str, Any]): 原始响应数据
@@ -249,13 +302,29 @@ class CozeAgent(BaseAgent):
         try:
             # 检查是否有错误
             if "error" in response_data:
-                # 返回错误响应
+                error_type = response_data.get("error_type", "unknown_error")
+                error_msg = response_data["error"]
+                
+                # 根据错误类型提供更友好的错误信息
+                user_friendly_errors = {
+                    "process_error": "处理请求时发生错误",
+                    "response_error": "响应格式异常",
+                    "chat_status_error": "对话状态异常",
+                    "api_error": "API调用失败",
+                    "unknown_error": "未知错误"
+                }
+                
+                friendly_msg = user_friendly_errors.get(error_type, "系统错误")
+                
                 return UnifiedChatResponse(
                     id="error",
                     model="coze",
                     usage=Usage(prompt_tokens=0, completion_tokens=0, total_tokens=0),
                     choices=[Choice(
-                        message=Message(role="assistant", content=f"Error: {response_data['error']}"),
+                        message=Message(
+                            role="assistant", 
+                            content=f"{friendly_msg}: {error_msg}"
+                        ),
                         finish_reason="error",
                         index=0
                     )]
@@ -266,15 +335,30 @@ class CozeAgent(BaseAgent):
             if response_data.get("choices"):
                 for idx, choice in enumerate(response_data["choices"]):
                     message_data = choice.get("message", {})
+                    finish_reason = choice.get("finish_reason", "stop")
+                    
+                    # 确保finish_reason的有效性
+                    valid_finish_reasons = ["stop", "length", "content_filter", "error", "no_content"]
+                    if finish_reason not in valid_finish_reasons:
+                        finish_reason = "stop"
+                    
                     choices.append(Choice(
                         message=Message(
                             role=message_data.get("role", "assistant"),
                             content=message_data.get("content", "")
                         ),
-                        finish_reason=choice.get("finish_reason", "stop"),
+                        finish_reason=finish_reason,
                         index=idx
                     ))
+            else:
+                # 如果没有choices，创建默认的空响应
+                choices.append(Choice(
+                    message=Message(role="assistant", content="没有可用的响应内容"),
+                    finish_reason="no_content",
+                    index=0
+                ))
             
+            # 处理使用量信息
             usage_data = response_data.get("usage", {})
             usage = Usage(
                 prompt_tokens=usage_data.get("prompt_tokens", 0),
@@ -282,23 +366,39 @@ class CozeAgent(BaseAgent):
                 total_tokens=usage_data.get("total_tokens", 0)
             )
             
-            return UnifiedChatResponse(
+            # 构建响应，包含额外的元数据
+            unified_response = UnifiedChatResponse(
                 id=response_data.get("id", ""),
                 model=response_data.get("model", "coze"),
                 usage=usage,
                 choices=choices
             )
             
+            # 如果有元数据，可以添加到newVariables中（用于调试和监控）
+            if "metadata" in response_data:
+                unified_response.newVariables = {
+                    "coze_metadata": response_data["metadata"],
+                    "conversation_id": response_data.get("conversation_id", ""),
+                    "status": response_data.get("status", ""),
+                    "created_at": response_data.get("created_at"),
+                    "completed_at": response_data.get("completed_at")
+                }
+            
+            return unified_response
+            
         except Exception as e:
             print(f"Error in format_response: {e}")
             traceback.print_exc()
             # 返回错误响应
             return UnifiedChatResponse(
-                id="error",
+                id="format_error",
                 model="coze",
                 usage=Usage(prompt_tokens=0, completion_tokens=0, total_tokens=0),
                 choices=[Choice(
-                    message=Message(role="assistant", content=f"Format error: {str(e)}"),
+                    message=Message(
+                        role="assistant", 
+                        content=f"响应格式化失败: {str(e)}"
+                    ),
                     finish_reason="error",
                     index=0
                 )]

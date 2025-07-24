@@ -129,7 +129,6 @@ class DifyAgent(BaseAgent):
             response = client.get(url, headers=headers)
             return response
         
-    def 
 
 # 注册 Dify Agent
 registry.register("dify", DifyAgent())

@@ -8,3 +8,5 @@ docker/cow-pancrepal/plugins/sum4all
 __pycache__/
 */__pycache__/
 http/
+debug/
+examples/
