@@ -288,6 +288,58 @@ class CozeAgent(BaseAgent):
             traceback.print_exc()
             return {"error": str(e)}
 
+    def upload_file(self, file_path: str) -> Dict[str, Any]:
+        """
+        上传文件到 Coze，并返回文件信息。
+        
+        参数:
+            file_path (str): 本地文件路径
+        
+        返回:
+            Dict[str, Any]: Coze API 的完整响应数据
+        """
+        if not self.api_token:
+            raise ValueError("Coze client not initialized. Please check COZE_API_TOKEN.")
+        
+        try:
+            import requests
+            
+            # 构建请求URL
+            upload_url = f"{self.base_url}/v1/files/upload"
+            
+            # 构建请求头
+            headers = {
+                "Authorization": f"Bearer {self.api_token}"
+            }
+            
+            # 打开文件并上传
+            with open(file_path, 'rb') as file:
+                files = {
+                    'file': (os.path.basename(file_path), file, 'application/octet-stream')
+                }
+                
+                # 发送POST请求
+                response = requests.post(upload_url, headers=headers, files=files)
+                response.raise_for_status()
+                
+                # 解析响应
+                result = response.json()
+                
+                # 验证响应格式
+                if "code" not in result:
+                    raise ValueError("Invalid response format from Coze API")
+                
+                return result
+                
+        except requests.exceptions.RequestException as e:
+            print(f"HTTP request error: {e}")
+            traceback.print_exc()
+            raise e
+        except Exception as e:
+            print(f"Error uploading file: {e}")
+            traceback.print_exc()
+            raise e
+        
     def format_response(self, response_data: Dict[str, Any]) -> UnifiedChatResponse:
         """
         将原始响应数据格式化为标准结构。

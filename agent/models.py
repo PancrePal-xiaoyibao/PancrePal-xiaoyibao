@@ -94,6 +94,24 @@ class UnifiedChatResponse(BaseModel):
 # 保持原有的 ChatResponse 作为别名，确保向后兼容
 ChatResponse = StandardChatResponse
 
+# 文件上传相关模型
+class FileUploadResponse(BaseModel):
+    """
+    文件上传响应模型
+    """
+    code: int = Field(..., description="响应代码，0表示成功")
+    data: Optional[Dict[str, Any]] = Field(None, description="文件信息数据")
+    msg: str = Field("", description="响应消息")
+
+class FileData(BaseModel):
+    """
+    文件数据模型
+    """
+    bytes: int = Field(..., description="文件大小（字节）")
+    created_at: int = Field(..., description="创建时间戳")
+    file_name: str = Field(..., description="文件名")
+    id: str = Field(..., description="文件ID")
+
 class ChatRequest(BaseModel):
     """
     前端请求统一数据模型

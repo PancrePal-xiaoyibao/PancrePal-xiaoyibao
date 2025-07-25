@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Dict, Any, Optional
-from .models import UnifiedChatResponse
+from .models import UnifiedChatResponse, FileUploadResponse
 
 class BaseAgent(ABC):
     """
@@ -50,3 +50,19 @@ class BaseAgent(ABC):
             UnifiedChatResponse: 统一的响应模型，支持标准模式和详细模式
         """
         pass
+
+    def upload_file(self, file_path: str) -> str:
+        """
+        上传文件的默认实现。
+        子类可以重写此方法以实现特定的文件上传逻辑。
+
+        参数:
+            file_path (str): 本地文件路径
+
+        返回:
+            str: 文件的访问 URL 或 ID
+
+        异常:
+            NotImplementedError: 如果子类没有实现此方法
+        """
+        raise NotImplementedError("File upload not supported by this agent")

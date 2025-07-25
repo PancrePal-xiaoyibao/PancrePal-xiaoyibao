@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import StreamingResponse, JSONResponse
 from api.chat import chat
+from api.upload import upload
 from agent.loader import load_agents
 from dotenv import load_dotenv
 import os
@@ -20,3 +21,4 @@ load_agents()
 app = FastAPI()
 
 app.include_router(chat, prefix="/api/v1", tags=["聊天"])
+app.include_router(upload, prefix="/api/v1", tags=["文件上传"])
