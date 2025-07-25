@@ -18,26 +18,74 @@ class FastGPTAgent(BaseAgent):
     
     def validate_request(self, request_data: Dict[str, Any]) -> bool:
         """Validate if the request data is valid for FastGPT."""
-        # FastGPT requires a query
+        # FastGPT requires a query or files
         try:
             # 用 ChatRequest 模型来验证请求数据
             ChatRequest(**request_data)
         except Exception as e:
             print(f"Validation error: {e}")
             return False
-        return 'query' in request_data and bool(request_data['query'])
+        
+        # 至少需要有 query 或 files 其中一个
+        has_query = 'query' in request_data and bool(request_data['query'])
+        has_files = 'files' in request_data and request_data['files'] and len(request_data['files']) > 0
+        
+        return has_query or has_files
     
     def process_request(self, request_data: Dict[str, Any]) -> Dict[str, Any]:
         """Process the request using FastGPT API."""
-        messages = [
-            {"role": "user", "content": request_data.get('query', '')}
-        ]
+        # 构建消息内容，支持文件上传
+        message_content = []
+        
+        # 添加文本内容
+        text_content = request_data.get('query', '')
+        if text_content:
+            message_content.append({
+                "type": "text",
+                "text": text_content
+            })
+        
+        # 处理文件上传
+        files = request_data.get('files', [])
+        if files:
+            for file_url in files:
+                if isinstance(file_url, str):
+                    # 判断文件类型
+                    if self._is_image_file(file_url):
+                        # 图片文件
+                        message_content.append({
+                            "type": "image_url",
+                            "image_url": {
+                                "url": file_url
+                            }
+                        })
+                    else:
+                        # 文档文件
+                        # 从URL中提取文件名
+                        file_name = self._extract_filename_from_url(file_url)
+                        message_content.append({
+                            "type": "file_url",
+                            "name": file_name,
+                            "url": file_url
+                        })
+        
+        # 如果有多个内容类型，使用复合格式；否则使用简单字符串格式
+        if len(message_content) > 1 or (len(message_content) == 1 and message_content[0]["type"] != "text"):
+            messages = [
+                {"role": "user", "content": message_content}
+            ]
+        else:
+            # 只有文本内容时，保持原有格式
+            messages = [
+                {"role": "user", "content": text_content}
+            ]
         
         variables = {}
         if 'uid' in request_data and request_data['uid']:
             variables["uid"] = request_data['uid']
         if 'user' in request_data and request_data['user']:
             variables["user"] = request_data['user']
+        # 请求体参数
         response = self.chat_completions(
             messages=messages,
             app_id=request_data.get('app_id'),
@@ -48,6 +96,27 @@ class FastGPTAgent(BaseAgent):
         )
         
         return response
+    
+    def _is_image_file(self, url: str) -> bool:
+        """判断URL是否为图片文件"""
+        image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp', '.svg']
+        url_lower = url.lower()
+        return any(url_lower.endswith(ext) for ext in image_extensions)
+    
+    def _extract_filename_from_url(self, url: str) -> str:
+        """从URL中提取文件名"""
+        try:
+            # 从URL中提取文件名
+            import urllib.parse
+            parsed_url = urllib.parse.urlparse(url)
+            filename = parsed_url.path.split('/')[-1]
+            if filename:
+                return filename
+            else:
+                # 如果无法提取文件名，返回默认名称
+                return "uploaded_file"
+        except Exception:
+            return "uploaded_file"
     
     # 规范来自 FastGPT 的响应格式
     def format_response(self, response_data: Dict[str, Any]) -> UnifiedChatResponse:
@@ -70,7 +139,7 @@ class FastGPTAgent(BaseAgent):
     
     def chat_completions(
         self,
-        messages: List[Dict[str, str]],
+        messages: List[Dict[str, Union[str, List[Dict[str, Any]]]]],
         app_id: Optional[str] = None,
         chat_id: Optional[str] = None,
         stream: bool = False,
