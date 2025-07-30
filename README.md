@@ -63,7 +63,7 @@
 *   😊  **社区任务：**  [梦想项目](https://task.xiaoyibao.com.cn) 全透明，等你来创建！
 *   👌  **首个贡献：**  辅导员助您完成 [First Good Issue](https://myfirst.xiao-x-bao.com.cn)
 
-*   <img width="345" alt="image" src="https://github.com/user-attachments/assets/faf334fe-2838-405a-820c-96081873a4a9" />
+*   <img width="345" alt="image" src="https://github.com/user-attachments/assets/cdfb2fb4-ddf6-42c3-b5cf-30296bf5e76a" />
 
 
 ### 🌟 欢迎体验 Demo
@@ -82,6 +82,17 @@
 #### ⭐️ 小胃宝 (StomachPal):  首个社区合作项目
 *   [科普版](https://chat.xiaoweibao.com.cn)
 *   [专业版](https://pro.xiaoweibao.com.cn)
+
+#### ⭐️ 小馨宝 (Heartie):  首个社区肿瘤心理助手合作项目: [Web端](https://admin.xiaoyibao.com.cn/chat/share?shareId=ymj9ktfhlmwz1y1exnwy2aoz)
+
+#### ⭐️ 小粉宝 (PinkPal):  首个社区乳腺内科AI助手合作项目：[小粉宝PRO版](http://xfb.xiaoyibao.com.cn)
+
+#### ⭐️ 小妍宝 (复旦肿瘤-妍康e随访合作):  首个社区乳腺肿瘤外科AI助手合作项目：内部使用。
+
+#### ⭐️ 小铃铛（山西白求恩医院肿瘤内科合作）：首个社区助力，医生主导运营的AI淋巴癌助手。开发中。
+
+
+---
 
 ### 🌱 正在成长中的项目
 
