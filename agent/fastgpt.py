@@ -4,6 +4,10 @@ from dotenv import load_dotenv
 import json
 from typing import List, Dict, Optional, Union, Any
 import traceback
+import uuid
+import mimetypes
+from datetime import datetime
+import boto3
 from .base import BaseAgent
 from .registry import registry
 from .models import ChatRequest, UnifiedChatResponse, StandardChatResponse, DetailedChatResponse
@@ -12,6 +16,16 @@ load_dotenv()
 fastgpt_api_key = os.getenv("FASTGPT_API_KEY")
 fastgpt_base_url = os.getenv("FASTGPT_BASE_URL")
 fastgpt_app_id = os.getenv("FASTGPT_APP_ID")
+
+# S3 / MinIO 配置（用于文件上传）
+s3_endpoint = os.getenv("S3_ENDPOINT")  # 例如: https://minio.example.com 或 http://127.0.0.1:9000
+s3_access_key = os.getenv("S3_ACCESS_KEY")
+s3_secret_key = os.getenv("S3_SECRET_KEY")
+s3_bucket = os.getenv("S3_BUCKET")
+s3_region = os.getenv("S3_REGION")  # 可选
+s3_key_prefix = os.getenv("S3_KEY_PREFIX", "uploads")  # 可选，默认 uploads
+s3_acl = os.getenv("S3_ACL")  # 可选，例如 public-read（部分 MinIO 可无 ACL，依赖桶策略）
+s3_public_base_url = os.getenv("S3_PUBLIC_BASE_URL")  # 可选，外网访问基准，如 https://cdn.example.com
 
 class FastGPTAgent(BaseAgent):
     """Agent for FastGPT API."""
@@ -308,6 +322,91 @@ class FastGPTAgent(BaseAgent):
                         yield (line + "\n\n")
 
         return event_generator()
+
+    def upload_file(self, file_path: str) -> Any:
+        """
+        将本地临时文件上传到 S3/MinIO，并返回统一文件信息 FastGPTFileInfo。
+        需要以下环境变量：
+        - S3_ENDPOINT: 形如 https://minio.example.com 或 http://127.0.0.1:9000
+        - S3_ACCESS_KEY, S3_SECRET_KEY
+        - S3_BUCKET
+        可选：S3_REGION, S3_KEY_PREFIX, S3_ACL, S3_PUBLIC_BASE_URL
+        """
+        if not all([s3_endpoint, s3_access_key, s3_secret_key, s3_bucket]):
+            raise ValueError("Missing S3 configs. Please set S3_ENDPOINT,S3_ACCESS_KEY,S3_SECRET_KEY,S3_BUCKET")
+
+        # 提取原始文件名（upload.py 会以 _{filename} 作为后缀创建临时文件）
+        original_name = os.path.basename(file_path)
+        if "_" in original_name:
+            original_name = original_name.split("_", 1)[1] or original_name
+
+        # 猜测 MIME
+        mime_type = mimetypes.guess_type(original_name)[0] or "application/octet-stream"
+        file_size = os.path.getsize(file_path)
+        ext = os.path.splitext(original_name)[1]
+        object_key = f"{s3_key_prefix}/{datetime.utcnow().strftime('%Y/%m/%d')}/{uuid.uuid4().hex}{ext}"
+
+        client = boto3.client(
+            "s3",
+            endpoint_url=s3_endpoint,
+            aws_access_key_id=s3_access_key,
+            aws_secret_access_key=s3_secret_key,
+            region_name=s3_region if s3_region else None
+        )
+
+        extra_args = {"ContentType": mime_type}
+        if s3_acl:
+            extra_args["ACL"] = s3_acl
+
+        with open(file_path, "rb") as f:
+            client.upload_fileobj(
+                f,
+                s3_bucket,
+                object_key,
+                ExtraArgs=extra_args
+            )
+
+        # 生成可访问 URL：优先使用 S3_PUBLIC_BASE_URL，其次使用预签名 URL
+        public_url: Optional[str] = None
+        if s3_public_base_url:
+            base = s3_public_base_url.rstrip('/')
+            try:
+                # 支持 {bucket} 占位符、虚拟主机式(bucket.example.com) 与路径式(/bucket/...)
+                from urllib.parse import urlparse
+                parsed = urlparse(base)
+                host_has_bucket = parsed.netloc.startswith(f"{s3_bucket}.") if parsed.netloc else False
+                path = (parsed.path or '').strip('/')
+                path_has_bucket = (path == s3_bucket) or path.startswith(f"{s3_bucket}/")
+
+                if '{bucket}' in base:
+                    base = base.replace('{bucket}', s3_bucket)
+                    public_url = f"{base}/{object_key}"
+                elif host_has_bucket or path_has_bucket:
+                    public_url = f"{base}/{object_key}"
+                else:
+                    public_url = f"{base}/{s3_bucket}/{object_key}"
+            except Exception:
+                public_url = f"{base}/{s3_bucket}/{object_key}"
+        else:
+            try:
+                public_url = client.generate_presigned_url(
+                    'get_object',
+                    Params={'Bucket': s3_bucket, 'Key': object_key},
+                    ExpiresIn=3600
+                )
+            except Exception:
+                public_url = None
+
+        # 构造统一文件信息；将 id 设为可访问 URL（若有），否则为对象键
+        file_info = self.build_file_info(
+            file_id=public_url or object_key,
+            file_name=original_name,
+            size_bytes=file_size,
+            mime_type=mime_type,
+            created_by="uploader"
+        )
+
+        return file_info
 
 # Register the agent
 registry.register("fastgpt", FastGPTAgent())

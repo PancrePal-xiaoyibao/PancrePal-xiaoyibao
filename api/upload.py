@@ -5,7 +5,7 @@ import os
 import tempfile
 from typing import Optional
 from agent import registry
-from agent.models import FileUploadResponse
+from agent.models import FileUploadResponse, FastGPTFileInfo
 
 upload = APIRouter()
 
@@ -13,7 +13,8 @@ upload = APIRouter()
 async def upload_file(
     request: Request,
     file: UploadFile = File(...),
-    agent: Optional[str] = Form(None)
+    agent: Optional[str] = Form(None),
+    created_by: Optional[str] = Form(None)
 ):
     """
     文件上传API
@@ -25,8 +26,15 @@ async def upload_file(
     返回:
         FileUploadResponse: 包含文件信息的响应
     """
-    # 获取智能体名称，优先使用Form参数，其次使用Header
-    agent_name = agent or request.headers.get("agent", "").lower()
+    # 获取智能体名称，优先使用Form参数，其次使用Header（兼容大小写/变体）
+    agent_name = agent or (
+        request.headers.get("agent")
+        or request.headers.get("Agent")
+        or request.headers.get("x-agent")
+        or request.headers.get("X-Agent")
+        or ""
+    )
+    agent_name = agent_name.lower()
     
     if not agent_name:
         return JSONResponse(content={
@@ -67,37 +75,43 @@ async def upload_file(
                 None,
                 lambda: agent_instance.upload_file(temp_file_path)
             )
-            
-            # 根据不同智能体的返回格式处理响应
-            if agent_name == "coze":
-                # Coze返回的是完整的响应对象，需要解析
-                if isinstance(result, dict) and "data" in result:
-                    return JSONResponse(content={
-                        "code": result.get("code", 0),
-                        "msg": result.get("msg", ""),
-                        "data": result.get("data")
-                    })
-                else:
-                    # 如果返回的是文件URL字符串，构造标准响应
-                    return JSONResponse(content={
-                        "code": 0,
-                        "msg": "File uploaded successfully",
-                        "data": {
-                            "file_url": result,
-                            "file_name": file.filename,
-                            "bytes": len(contents)
-                        }
-                    })
-            else:
-                # 其他智能体的通用处理
+
+            # 统一响应：如果 agent 返回 FastGPTFileInfo，直接使用；否则做最小包装
+            if isinstance(result, FastGPTFileInfo):
+                # 覆盖 created_by（优先使用表单 created_by，次之 header: user）
+                cb = created_by or request.headers.get("user") or "unknown"
+                try:
+                    result.created_by = cb
+                except Exception:
+                    pass
                 return JSONResponse(content={
                     "code": 0,
-                    "msg": "File uploaded successfully", 
-                    "data": {
-                        "file_url": result,
-                        "file_name": file.filename,
-                        "bytes": len(contents)
-                    }
+                    "msg": "File uploaded successfully",
+                    "data": result.model_dump()
+                })
+            elif isinstance(result, dict):
+                # 尝试从 dict 中映射到规范字段
+                return JSONResponse(content={
+                    "code": 0,
+                    "msg": result.get("msg", "File uploaded successfully"),
+                    "data": result.get("data", result)
+                })
+            else:
+                # 字符串或其他 → 当作 URL/ID 返回，并补齐必要字段
+                cb = created_by or request.headers.get("user") or "unknown"
+                info = FastGPTFileInfo(
+                    id=str(result),
+                    name=file.filename,
+                    size=len(contents),
+                    extension=(os.path.splitext(file.filename)[1].lstrip('.') or ''),
+                    mime_type=file.content_type or "application/octet-stream",
+                    created_by=cb,
+                    created_at=int(__import__('time').time())
+                )
+                return JSONResponse(content={
+                    "code": 0,
+                    "msg": "File uploaded successfully",
+                    "data": info.model_dump()
                 })
                 
         finally:

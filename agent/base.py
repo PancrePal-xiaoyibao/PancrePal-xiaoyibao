@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Dict, Any, Optional
-from .models import UnifiedChatResponse, FileUploadResponse
+from .models import UnifiedChatResponse, FileUploadResponse, FastGPTFileInfo
 
 class BaseAgent(ABC):
     """
@@ -65,8 +65,8 @@ class BaseAgent(ABC):
 
     def upload_file(self, file_path: str) -> str:
         """
-        上传文件的默认实现。
-        子类可以重写此方法以实现特定的文件上传逻辑。
+        上传文件的默认实现（返回文件可访问 URL/ID）。
+        子类可以重写以使用各自平台的对象存储。
 
         参数:
             file_path (str): 本地文件路径
@@ -78,3 +78,21 @@ class BaseAgent(ABC):
             NotImplementedError: 如果子类没有实现此方法
         """
         raise NotImplementedError("File upload not supported by this agent")
+
+    def build_file_info(self, *, file_id: str, file_name: str, size_bytes: int, mime_type: str, created_by: str = "", created_at: Optional[int] = None) -> FastGPTFileInfo:
+        """
+        构建统一文件信息（用于返回统一响应）。
+        """
+        import time
+        from pathlib import Path
+        ext = Path(file_name).suffix.lstrip('.')
+        ts = created_at if created_at is not None else int(time.time())
+        return FastGPTFileInfo(
+            id=file_id,
+            name=file_name,
+            size=size_bytes,
+            extension=ext,
+            mime_type=mime_type,
+            created_by=created_by or "unknown",
+            created_at=ts
+        )

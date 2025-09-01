@@ -112,6 +112,18 @@ class FileData(BaseModel):
     file_name: str = Field(..., description="文件名")
     id: str = Field(..., description="文件ID")
 
+class FastGPTFileInfo(BaseModel):
+    """
+    统一文件信息模型（对齐 fastgpt_api.md）
+    """
+    id: str = Field(..., description="文件ID")
+    name: str = Field(..., description="文件名")
+    size: int = Field(..., description="文件大小（字节）")
+    extension: str = Field(..., description="文件扩展名")
+    mime_type: str = Field(..., description="MIME 类型")
+    created_by: str = Field(..., description="创建者（用户名或标识）")
+    created_at: int = Field(..., description="创建时间戳（秒）")
+
 class ChatRequest(BaseModel):
     """
     前端请求统一数据模型

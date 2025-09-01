@@ -21,3 +21,4 @@ typing-inspection==0.4.1
 urllib3==2.5.0
 uvicorn==0.35.0
 websockets==14.2
+boto3==1.35.24
