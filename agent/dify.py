@@ -3,7 +3,8 @@ import httpx
 from dotenv import load_dotenv
 from .base import BaseAgent
 from .registry import registry
-from typing import Dict, Any
+from typing import Dict, Any, Optional
+import json
 from .models import ChatRequest, UnifiedChatResponse, Usage, Choice, Message
 
 load_dotenv()
@@ -69,6 +70,123 @@ class DifyAgent(BaseAgent):
         except Exception as e:
             print(f"Unexpected error from Dify: {e}")
             return {"error": f"Unexpected error from Dify: {e}"}
+
+    def stream_chat(self, request_data: Dict[str, Any]):
+        """
+        将 Dify 的流式响应转换为统一的 SSE 增量格式：
+        data: {"id":"","object":"","created":0,"choices":[{"delta":{"content":"..."},"index":0,"finish_reason":null}]}
+        """
+        user = request_data.get('user', '')
+        query = request_data.get('query', '')
+        conversation_id = request_data.get('conversation_id', '')
+        files = request_data.get('files', None)
+
+        if not dify_api_key or not dify_base_url:
+            raise ValueError("DIFY_BASE_URL or DIFY_API_KEY not found in environment variables")
+
+        # 先发一个空增量，保持与 FastGPT/OpenAI 风格一致
+        def sse_wrap(payload: Dict[str, Any]) -> str:
+            return f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
+
+        def build_delta(content: Optional[str]):
+            return {
+                "id": "",
+                "object": "",
+                "created": 0,
+                "choices": [
+                    {
+                        "delta": {"content": content or ""},
+                        "index": 0,
+                        "finish_reason": None
+                    }
+                ]
+            }
+
+        def event_generator():
+            prev = ""
+            # 发送初始空片段
+            yield sse_wrap(build_delta(""))
+
+            # 直接在此方法内部管理 httpx.Client，避免返回已关闭的流
+            url = f"{dify_base_url}/chat-messages"
+            headers = {
+                "Authorization": f"Bearer {dify_api_key}",
+                "Content-Type": "application/json",
+                "Accept": "text/event-stream"
+            }
+            data = {
+                "inputs": {},
+                "query": query,
+                "response_mode": "streaming",
+                "conversation_id": conversation_id,
+                "user": user,
+                "files": files
+            }
+
+            try:
+                with httpx.Client(timeout=None) as client:
+                    with client.stream("POST", url, headers=headers, json=data) as response:
+                        response.raise_for_status()
+                        for raw_line in response.iter_lines():
+                            if not raw_line:
+                                continue
+                            # 统一为 str
+                            try:
+                                line = raw_line.decode('utf-8') if isinstance(raw_line, (bytes, bytearray)) else str(raw_line)
+                            except Exception:
+                                continue
+                            line = line.strip()
+                            if not line:
+                                continue
+                            # 忽略注释行（SSE keepalive）
+                            if line.startswith(":"):
+                                continue
+
+                            if line.startswith("data:"):
+                                data_text = line[len("data:"):].strip()
+                            else:
+                                data_text = line
+
+                            # Dify 结束标识
+                            if data_text == "[DONE]":
+                                done_payload = {
+                                    "id": "",
+                                    "object": "",
+                                    "created": 0,
+                                    "choices": [
+                                        {
+                                            "delta": {},
+                                            "index": 0,
+                                            "finish_reason": "stop"
+                                        }
+                                    ]
+                                }
+                                yield sse_wrap(done_payload)
+                                break
+
+                            # 解析 JSON，取 answer 累计文本，计算增量
+                            try:
+                                obj = json.loads(data_text)
+                            except Exception:
+                                continue
+
+                            answer = obj.get("answer") or obj.get("data", {}).get("answer") or ""
+                            if not isinstance(answer, str):
+                                continue
+
+                            if not answer.startswith(prev):
+                                delta_text = answer
+                            else:
+                                delta_text = answer[len(prev):]
+
+                            if delta_text:
+                                yield sse_wrap(build_delta(delta_text))
+                                prev = answer
+            except httpx.HTTPError as e:
+                err_payload = build_delta(f"[stream error] {e}")
+                yield sse_wrap(err_payload)
+
+        return event_generator()
 
     def format_response(self, response_data: Any) -> UnifiedChatResponse:
         """
