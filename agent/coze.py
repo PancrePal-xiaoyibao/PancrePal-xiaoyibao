@@ -1,10 +1,11 @@
 import os
+import json
 from typing import Dict, Any, List, Optional
 from .base import BaseAgent
 from .registry import registry
 from .models import ChatRequest, UnifiedChatResponse, Message, Choice, Usage
 from dotenv import load_dotenv
-from cozepy import Coze, TokenAuth, COZE_CN_BASE_URL, AsyncCoze, AsyncTokenAuth, Message as CozeMessage, ChatEventType, ChatStatus, MessageType
+from cozepy import Coze, TokenAuth, COZE_CN_BASE_URL, Message as CozeMessage, ChatEventType, ChatStatus, MessageType
 import traceback
 
 load_dotenv()
@@ -17,10 +18,8 @@ coze_bot_id = os.getenv("COZE_BOT_ID")
 # 初始化扣子客户端
 if coze_api_token:
     coze = Coze(auth=TokenAuth(coze_api_token), base_url=coze_base_url)
-    async_coze = AsyncCoze(auth=AsyncTokenAuth(coze_api_token), base_url=coze_base_url)
 else:
     coze = None
-    async_coze = None
 
 class CozeAgent(BaseAgent):
     """Agent for Coze API."""
@@ -31,11 +30,11 @@ class CozeAgent(BaseAgent):
         self.base_url = coze_base_url
         self.bot_id = coze_bot_id
         
-        # 验证必要的环境变量
+        # 验证必要的环境变量（但不抛出异常，让 loader 处理）
         if not self.api_token:
-            raise ValueError("COZE_API_TOKEN not found in environment variables")
+            print("Warning: COZE_API_TOKEN not found in environment variables")
         if not self.bot_id:
-            raise ValueError("COZE_BOT_ID not found in environment variables")
+            print("Warning: COZE_BOT_ID not found in environment variables")
 
     def validate_request(self, request_data: Dict[str, Any]) -> bool:
         """
@@ -82,12 +81,11 @@ class CozeAgent(BaseAgent):
             # 构建消息
             additional_messages = [CozeMessage.build_user_question_text(query)]
             
-            # 暂时禁用流式传输，统一使用非流式响应
+            # 根据 stream 参数选择处理方式
             if stream:
-                print("Warning: Stream mode is temporarily disabled, using blocking mode instead.")
-            
-            # 统一使用非流式响应
-            return self._handle_blocking_response(user_id, additional_messages, conversation_id)
+                return self._handle_stream_response(user_id, additional_messages, conversation_id)
+            else:
+                return self._handle_blocking_response(user_id, additional_messages, conversation_id)
                 
         except Exception as e:
             print(f"Error in process_request: {e}")
@@ -224,98 +222,120 @@ class CozeAgent(BaseAgent):
             traceback.print_exc()
             return {"error": str(e), "error_type": "api_error"}
 
-    def _handle_stream_response(self, user_id: str, additional_messages: List[CozeMessage], conversation_id: Optional[str] = None) -> Dict[str, Any]:
-        """处理流式响应"""
-        try:
-            kwargs = {
-                "bot_id": self.bot_id,
-                "user_id": user_id,
-                "additional_messages": additional_messages
-            }
-            
-            if conversation_id:
-                kwargs["conversation_id"] = conversation_id
-            
-            content_parts = []
-            usage_info = {}
-            conversation_id_result = ""
-            
-            # 流式处理
-            for event in coze.chat.stream(**kwargs):
-                if event.event == ChatEventType.CONVERSATION_MESSAGE_DELTA:
-                    if hasattr(event.message, 'content') and event.message.content:
-                        # 过滤掉系统控制信息
-                        content_chunk = event.message.content
-                        if content_chunk and not content_chunk.startswith('{"msg_type":'):
-                            content_parts.append(content_chunk)
-                        
-                if event.event == ChatEventType.CONVERSATION_CHAT_COMPLETED:
-                    if hasattr(event.chat, 'usage') and event.chat.usage:
-                        usage = event.chat.usage
-                        usage_info = {
-                            "prompt_tokens": getattr(usage, 'input_count', 0),
-                            "completion_tokens": getattr(usage, 'output_count', 0),
-                            "total_tokens": getattr(usage, 'token_count', 0)
-                        }
-                    if hasattr(event.chat, 'conversation_id'):
-                        conversation_id_result = event.chat.conversation_id
-            
-            # 构建最终响应
-            final_content = ''.join(content_parts) if content_parts else "响应为空"
-            response = {
-                "id": "",  # 流式响应可能没有明确的ID
-                "conversation_id": conversation_id_result,
-                "model": "coze",
-                "choices": [{
-                    "message": {
-                        "role": "assistant",
-                        "content": final_content
-                    },
-                    "finish_reason": "stop",
-                    "index": 0
-                }],
-                "usage": usage_info if usage_info else {
-                    "prompt_tokens": 0,
-                    "completion_tokens": 0,
-                    "total_tokens": 0
-                }
-            }
-            
-            return response
-            
-        except Exception as e:
-            print(f"Error in _handle_stream_response: {e}")
-            traceback.print_exc()
-            return {"error": str(e)}
-
-    def upload_file(self, file_path: str) -> Dict[str, Any]:
+    def stream_chat(self, request_data: Dict[str, Any]):
         """
-        上传文件到 Coze，并返回文件信息。
+        以 SSE 形式流式转发 Coze 的响应（stream=true）。
+        """
+        if not coze:
+            raise ValueError("Coze client not initialized. Please check COZE_API_TOKEN.")
+
+        # 获取用户输入
+        query = request_data.get('query', '')
+        user_id = request_data.get('user', 'default_user')
+        conversation_id = request_data.get('conversation_id')
         
-        参数:
-            file_path (str): 本地文件路径
+        # 构建消息
+        additional_messages = [CozeMessage.build_user_question_text(query)]
         
-        返回:
-            Dict[str, Any]: Coze API 的完整响应数据
+        kwargs = {
+            "bot_id": self.bot_id,
+            "user_id": user_id,
+            "additional_messages": additional_messages
+        }
+        
+        if conversation_id:
+            kwargs["conversation_id"] = conversation_id
+
+        def sse_wrap(payload: Dict[str, Any]) -> str:
+            return f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
+
+        def build_delta(content: Optional[str]):
+            return {
+                "id": "",
+                "object": "",
+                "created": 0,
+                "choices": [
+                    {
+                        "delta": {"content": content or ""},
+                        "index": 0,
+                        "finish_reason": None
+                    }
+                ]
+            }
+
+        def event_generator():
+            prev = ""
+            # 发送初始空片段
+            yield sse_wrap(build_delta(""))
+
+            try:
+                # 流式处理
+                for event in coze.chat.stream(**kwargs):
+                    if event.event == ChatEventType.CONVERSATION_MESSAGE_DELTA:
+                        if hasattr(event.message, 'content') and event.message.content:
+                            # 过滤掉系统控制信息
+                            content_chunk = event.message.content
+                            if content_chunk and not content_chunk.startswith('{"msg_type":'):
+                                yield sse_wrap(build_delta(content_chunk))
+                                prev += content_chunk
+                        
+                    if event.event == ChatEventType.CONVERSATION_CHAT_COMPLETED:
+                        # 发送结束片段（finish_reason=stop）
+                        done_payload = {
+                            "id": "",
+                            "object": "",
+                            "created": 0,
+                            "choices": [
+                                {
+                                    "delta": {},
+                                    "index": 0,
+                                    "finish_reason": "stop"
+                                }
+                            ]
+                        }
+                        yield sse_wrap(done_payload)
+                        break
+            except Exception as e:
+                err_payload = build_delta(f"[stream error] {e}")
+                yield sse_wrap(err_payload)
+
+        return event_generator()
+
+    def upload_file(self, file_path: str) -> Any:
+        """
+        将本地临时文件上传到 Coze，并返回统一文件信息 FastGPTFileInfo。
+        使用 Coze 的文件上传接口。
         """
         if not self.api_token:
             raise ValueError("Coze client not initialized. Please check COZE_API_TOKEN.")
         
         try:
             import requests
+            import mimetypes
+            import time
+            
+            # 提取原始文件名（upload.py 会以 _{filename} 作为后缀创建临时文件）
+            original_name = os.path.basename(file_path)
+            if "_" in original_name:
+                original_name = original_name.split("_", 1)[1] or original_name
+
+            # 猜测 MIME 类型
+            mime_type = mimetypes.guess_type(original_name)[0] or "application/octet-stream"
+            file_size = os.path.getsize(file_path)
             
             # 构建请求URL
             upload_url = f"{self.base_url}/v1/files/upload"
             
-            # 构建请求头
+            # 构建请求头 - 按照 Coze 文档格式
             headers = {
-                "Authorization": f"Bearer {self.api_token}"
+                "Authorization": f"Bearer {self.api_token}",
+                "Content-Type": "multipart/form-data"
             }
             
             # 打开文件并上传
             with open(file_path, 'rb') as file:
                 files = {
-                    'file': (os.path.basename(file_path), file, 'application/octet-stream')
+                    'file': (original_name, file, mime_type)
                 }
                 
                 # 发送POST请求
@@ -325,11 +345,16 @@ class CozeAgent(BaseAgent):
                 # 解析响应
                 result = response.json()
                 
-                # 验证响应格式
-                if "code" not in result:
-                    raise ValueError("Invalid response format from Coze API")
-                
-                return result
+                # 构造统一文件信息（Coze 可能返回简单的文件信息）
+                file_info = self.build_file_info(
+                    file_id=result.get("id", ""),
+                    file_name=result.get("name", original_name),
+                    size_bytes=result.get("size", file_size),
+                    mime_type=result.get("mime_type", mime_type),
+                    created_by=result.get("created_by", "uploader"),
+                    created_at=result.get("created_at", int(time.time()))
+                )
+                return file_info
                 
         except requests.exceptions.RequestException as e:
             print(f"HTTP request error: {e}")
@@ -456,5 +481,6 @@ class CozeAgent(BaseAgent):
                 )]
             )
 
-# 注册 Coze Agent
-registry.register("coze", CozeAgent())
+# 注册 Coze Agent（只有在环境变量配置完整时才注册）
+if coze_api_token and coze_bot_id:
+    registry.register("coze", CozeAgent())
