@@ -1,7 +1,192 @@
 [project]
 name = "pancrepal-xiaoyibao"
 version = "0.1.0"
-description = "Add your description here"
+description = "小胰宝智能助手平台 - 基于多AI平台的智能体系统"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+license = {text = "MIT"}
+authors = [
+    {name = "小胰宝团队", email = "team@xiaoyibao.com"}
+]
+keywords = ["ai", "chatbot", "healthcare", "pancreas", "intelligent-agent"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Communications :: Chat",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    # FastAPI 核心依赖
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.35.0",
+    "pydantic>=2.11.0",
+    "python-dotenv>=1.1.0",
+    "python-multipart>=0.0.6",
+    
+    # HTTP 客户端
+    "httpx>=0.27.0",
+    "requests>=2.32.0",
+    
+    # AI 平台集成
+    "openai>=1.0.0",
+    "cozepy>=0.19.0",
+    "linkai>=0.0.6.0",
+    
+    # 图像处理
+    "Pillow>=10.0.0",
+    "qrcode>=7.4.0",
+    "PyQRCode>=1.2.0",
+    
+    # 工具库
+    "click>=8.2.0",
+    "typing-extensions>=4.14.0",
+    "typing-inspection>=0.4.0",
+    "chardet>=5.1.0",
+    "websockets>=14.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit>=3.0.0",
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+]
+
+test = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.10.0",
+]
+
+docs = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.0.0",
+    "mkdocstrings[python]>=0.20.0",
+]
+
+# 构建系统
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# 工具配置
+[tool.hatch.build.targets.wheel]
+packages = ["src/pancrepal_xiaoyibao"]
+
+# 项目结构
+[tool.hatch.build]
+include = [
+    "src/**/*.py",
+    "agent/**/*.py",
+    "api/**/*.py",
+    "docs/**/*",
+    "README.md",
+    "LICENSE",
+]
+
+# 开发工具配置
+[tool.black]
+line-length = 88
+target-version = ['py312']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["pancrepal_xiaoyibao", "agent", "api"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "lib.*",
+    "src/cow-pancrepal.*",
+    "src/cow-qywx.*",
+    "src/wxkf-api.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers --strict-config"
+testpaths = ["test", "tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+
+[tool.coverage.run]
+source = ["src", "agent", "api"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/__pycache__/*",
+    "*/venv/*",
+    "*/env/*",
+    "*/\\.venv/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+# 项目元数据
+[project.urls]
+Homepage = "https://github.com/xiaoyibao/pancrepal-xiaoyibao"
+Documentation = "https://pancrepal-xiaoyibao.readthedocs.io"
+Repository = "https://github.com/xiaoyibao/pancrepal-xiaoyibao.git"
+"Bug Tracker" = "https://github.com/xiaoyibao/pancrepal-xiaoyibao/issues"
+Changelog = "https://github.com/xiaoyibao/pancrepal-xiaoyibao/blob/main/CHANGELOG.md"
