@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Request, HTTPException
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 import asyncio
 from typing import List, Dict, Optional
 from agent import registry
@@ -9,11 +9,18 @@ chat = APIRouter()
 
 @chat.post("/chat", response_model=UnifiedChatResponse)
 async def get_chat(request: Request, body: ChatRequest):
-    agent_name = request.headers.get("agent", "").lower()
+    agent_name = (
+        request.headers.get("agent")
+        or request.headers.get("Agent")
+        or request.headers.get("x-agent")
+        or request.headers.get("X-Agent")
+        or request.query_params.get("agent")
+        or ""
+    ).lower()
     
     if not agent_name:
         return JSONResponse(content={
-            "error": "Missing agent header"
+            "error": "Missing agent header. Please set 'agent: fastgpt' or 'x-agent: fastgpt'"
         }, status_code=400)
     
     agent = registry.get(agent_name)
@@ -22,6 +29,10 @@ async def get_chat(request: Request, body: ChatRequest):
             "error": f"Unknown agent: {agent_name}"
         }, status_code=400)
     
+    # 调试信息：打印 agent 类型和名称
+    print(f"Debug: Agent type: {type(agent)}, Agent name: {agent_name}")
+    print(f"Debug: Available agents: {list(registry.list_agents().keys())}")
+    
     request_data = body.model_dump()  # 使用 model_dump() 替代 dict()
     if not agent.validate_request(request_data):
         return JSONResponse(content={
@@ -29,13 +40,22 @@ async def get_chat(request: Request, body: ChatRequest):
         }, status_code=400)
     
     try:
+        # 如果是流式且非 detail 模式，使用 SSE
+        if request_data.get("stream") and not request_data.get("detail"):
+            print(f"Debug: Using streaming mode for agent: {type(agent)}")
+            loop = asyncio.get_event_loop()
+            generator = await loop.run_in_executor(
+                None,
+                lambda: agent.stream_chat(request_data)
+            )
+            return StreamingResponse(generator, media_type="text/event-stream")
+
         loop = asyncio.get_event_loop()
         response_data = await loop.run_in_executor(
             None,
             lambda: agent.process_request(request_data)
         )
         result = agent.format_response(response_data)
-        # 将 Pydantic 模型转换为字典，用于 JSON 序列化
         return JSONResponse(content=result.model_dump(exclude_none=True))
     except Exception as e:
         import traceback

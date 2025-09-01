@@ -16,6 +16,18 @@ fastgpt_app_id = os.getenv("FASTGPT_APP_ID")
 class FastGPTAgent(BaseAgent):
     """Agent for FastGPT API."""
     
+    @staticmethod
+    def _is_valid_object_id(value: Optional[str]) -> bool:
+        if not value or not isinstance(value, str):
+            return False
+        if len(value) != 24:
+            return False
+        try:
+            int(value, 16)
+            return True
+        except Exception:
+            return False
+    
     def validate_request(self, request_data: Dict[str, Any]) -> bool:
         """Validate if the request data is valid for FastGPT."""
         # FastGPT requires a query or files
@@ -30,7 +42,16 @@ class FastGPTAgent(BaseAgent):
         has_query = 'query' in request_data and bool(request_data['query'])
         has_files = 'files' in request_data and request_data['files'] and len(request_data['files']) > 0
         
-        return has_query or has_files
+        if not (has_query or has_files):
+            return False
+
+        # 校验 appId（请求级或环境变量）
+        used_app_id = request_data.get('app_id') or fastgpt_app_id
+        if not self._is_valid_object_id(used_app_id):
+            print(f"Invalid app_id provided or missing. Got: {used_app_id}")
+            return False
+
+        return True
     
     def process_request(self, request_data: Dict[str, Any]) -> Dict[str, Any]:
         """Process the request using FastGPT API."""
@@ -172,6 +193,8 @@ class FastGPTAgent(BaseAgent):
         used_app_id = app_id or fastgpt_app_id
         if not used_app_id:
             raise ValueError("app_id is required. Please provide it as parameter or set FASTGPT_APP_ID in environment variables")
+        if not self._is_valid_object_id(used_app_id):
+            raise ValueError(f"Invalid app_id format. Expect 24-char hex ObjectId, got: {used_app_id}")
 
         if not fastgpt_base_url:
             raise ValueError("FASTGPT_BASE_URL not found in environment variables")
@@ -203,6 +226,88 @@ class FastGPTAgent(BaseAgent):
             print("Raw response text:", response.text)
             response.raise_for_status()
             return response.json()
+
+    def stream_chat(self, request_data: Dict[str, Any]):
+        """
+        以 SSE 形式流式转发 FastGPT 的响应（detail=false, stream=true）。
+        """
+        if not fastgpt_api_key:
+            raise ValueError("FASTGPT_API_KEY not found in environment variables")
+
+        used_app_id = request_data.get('app_id') or fastgpt_app_id
+        if not used_app_id:
+            raise ValueError("app_id is required. Please provide it as parameter or set FASTGPT_APP_ID in environment variables")
+        if not self._is_valid_object_id(used_app_id):
+            raise ValueError(f"Invalid app_id format. Expect 24-char hex ObjectId, got: {used_app_id}")
+
+        if not fastgpt_base_url:
+            raise ValueError("FASTGPT_BASE_URL not found in environment variables")
+
+        # 组装消息（与 process_request 保持一致）
+        message_content = []
+        text_content = request_data.get('query', '')
+        if text_content:
+            message_content.append({
+                "type": "text",
+                "text": text_content
+            })
+        files = request_data.get('files', [])
+        if files:
+            for file_url in files:
+                if isinstance(file_url, str):
+                    if self._is_image_file(file_url):
+                        message_content.append({
+                            "type": "image_url",
+                            "image_url": {"url": file_url}
+                        })
+                    else:
+                        file_name = self._extract_filename_from_url(file_url)
+                        message_content.append({
+                            "type": "file_url",
+                            "name": file_name,
+                            "url": file_url
+                        })
+
+        if len(message_content) > 1 or (len(message_content) == 1 and message_content[0]["type"] != "text"):
+            messages = [{"role": "user", "content": message_content}]
+        else:
+            messages = [{"role": "user", "content": text_content}]
+
+        variables: Dict[str, str] = {}
+        if 'uid' in request_data and request_data['uid']:
+            variables["uid"] = request_data['uid']
+        if 'user' in request_data and request_data['user']:
+            variables["user"] = request_data['user']
+
+        url = f"{fastgpt_base_url}/v1/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {fastgpt_api_key}",
+            "Content-Type": "application/json"
+        }
+        data = {
+            "appId": used_app_id,
+            "stream": True,
+            "detail": False,
+            "messages": messages
+        }
+        if request_data.get('chat_id') is not None:
+            data["chatId"] = request_data.get('chat_id')
+        if request_data.get('variables') is not None:
+            data["variables"] = request_data.get('variables')
+        elif variables:
+            data["variables"] = variables
+
+        def event_generator():
+            with httpx.Client(timeout=None) as client:
+                with client.stream("POST", url, headers=headers, json=data) as response:
+                    response.raise_for_status()
+                    for line in response.iter_lines():
+                        if not line:
+                            continue
+                        # FastGPT 通常已带有 'data: ' 前缀，这里原样透传
+                        yield (line + "\n\n")
+
+        return event_generator()
 
 # Register the agent
 registry.register("fastgpt", FastGPTAgent())

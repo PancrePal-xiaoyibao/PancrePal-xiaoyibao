@@ -51,6 +51,18 @@ class BaseAgent(ABC):
         """
         pass
 
+    def stream_chat(self, request_data: Dict[str, Any]):
+        """
+        流式对话接口（SSE）。
+
+        参数:
+            request_data (Dict[str, Any]): 请求数据，需包含 detail=false 且 stream=true
+
+        返回:
+            迭代器/生成器: 逐条产出 SSE 文本数据（以 "data: {json}" 形式，使用 \"\n\n\" 分隔）
+        """
+        raise NotImplementedError("This agent does not support streaming chat")
+
     def upload_file(self, file_path: str) -> str:
         """
         上传文件的默认实现。
