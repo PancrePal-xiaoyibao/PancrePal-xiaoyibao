@@ -10,6 +10,13 @@ load_dotenv()
 dify_api_key = os.getenv("DIFY_API_KEY")
 dify_base_url = os.getenv("DIFY_BASE_URL")
 
+class DifyAPIError(Exception):
+    """自定义异常类，用于处理Dify API的错误响应"""
+    def __init__(self, status_code, message):
+        self.status_code = status_code
+        self.message = message
+        super().__init__(f"HTTP {status_code}: {message}")
+
 class DifyAgent(BaseAgent):
     """Agent for Dify API."""
 
@@ -35,25 +42,59 @@ class DifyAgent(BaseAgent):
         conversation_id = request_data.get('conversation_id', '')
         files = request_data.get('files', None)
 
-        response = self.send_chat_message(
-            api_key=dify_api_key,
-            user=user,
-            base_url=dify_base_url,
-            query=query,
-            response_mode=response_mode,
-            conversation_id=conversation_id,
-            files=files
-        )
+        try:
+            response = self.send_chat_message(
+                api_key=dify_api_key,
+                user=user,
+                base_url=dify_base_url,
+                query=query,
+                response_mode=response_mode,
+                conversation_id=conversation_id,
+                files=files
+            )
 
-        if response_mode == "blocking":
-            print("Dify response:", response.text)
-            return response.json()
-        return response
+            if response_mode == "blocking":
+                print("Dify response:", response.text)
+                return response.json()
+            return response
+        except DifyAPIError as e:
+            print(f"Dify API error: {e.status_code} - {e.message}")
+            return {"error": f"Dify API error: {e.status_code} - {e.message}"}
+        except httpx.HTTPStatusError as e:
+            print(f"HTTP error from Dify: {e.response.status_code} - {e.response.text}")
+            return {"error": f"HTTP error from Dify: {e.response.status_code} - {e.response.text}"}
+        except httpx.RequestError as e:
+            print(f"Request error from Dify: {e}")
+            return {"error": f"Request error from Dify: {e}"}
+        except Exception as e:
+            print(f"Unexpected error from Dify: {e}")
+            return {"error": f"Unexpected error from Dify: {e}"}
 
     def format_response(self, response_data: Any) -> UnifiedChatResponse:
         """
         格式化 Dify 响应为统一结构，遵循 FastGPT 的响应格式。
         """
+        # 检查是否是错误响应
+        if isinstance(response_data, dict) and "error" in response_data:
+            # 错误情况，返回包含错误信息的响应
+            error_message = Message(
+                role="assistant",
+                content=f"抱歉，请求处理失败：{response_data['error']}"
+            )
+            
+            choice = Choice(
+                message=error_message,
+                finish_reason="stop",
+                index=0
+            )
+            
+            return UnifiedChatResponse(
+                id="",
+                model="dify",
+                usage=Usage(prompt_tokens=0, completion_tokens=0, total_tokens=0),
+                choices=[choice]
+            )
+        
         if isinstance(response_data, dict):
             usage_data = response_data.get("metadata", {}).get("usage", {})
             # 兼容 Dify 价格等多余字段，只取 tokens 相关
@@ -82,7 +123,7 @@ class DifyAgent(BaseAgent):
                 choices=[choice]
             )
         else:
-            # 错误情况，返回空的标准响应
+            # 其他错误情况，返回空的标准响应
             return UnifiedChatResponse(
                 id="",
                 model="",
@@ -112,6 +153,18 @@ class DifyAgent(BaseAgent):
                 return client.stream("POST", url, headers=headers, json=data)
             else:
                 response = client.post(url, headers=headers, json=data)
+                # 检查HTTP状态码
+                if response.status_code != 200:
+                    error_msg = f"HTTP {response.status_code}"
+                    try:
+                        error_data = response.json()
+                        if "message" in error_data:
+                            error_msg = error_data["message"]
+                        if "code" in error_data:
+                            error_msg = f"{error_data['code']}: {error_data.get('message', 'Unknown error')}"
+                    except:
+                        pass
+                    raise DifyAPIError(response.status_code, error_msg)
                 return response
 
     def get_history(self, api_key: str, user: str, base_url: str, conversation_id: str = ""):
