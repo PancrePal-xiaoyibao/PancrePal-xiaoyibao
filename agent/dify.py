@@ -5,6 +5,7 @@ from .base import BaseAgent
 from .registry import registry
 from typing import Dict, Any, Optional
 import json
+import mimetypes
 from .models import ChatRequest, UnifiedChatResponse, Usage, Choice, Message
 
 load_dotenv()
@@ -187,6 +188,70 @@ class DifyAgent(BaseAgent):
                 yield sse_wrap(err_payload)
 
         return event_generator()
+
+    def upload_file(self, file_path: str) -> Any:
+        """
+        将本地临时文件上传到 Dify，并返回统一文件信息 FastGPTFileInfo。
+        使用 Dify 的 /files/upload 接口。
+        """
+        if not dify_api_key or not dify_base_url:
+            raise ValueError("DIFY_BASE_URL or DIFY_API_KEY not found in environment variables")
+
+        # 提取原始文件名（upload.py 会以 _{filename} 作为后缀创建临时文件）
+        original_name = os.path.basename(file_path)
+        if "_" in original_name:
+            original_name = original_name.split("_", 1)[1] or original_name
+
+        # 猜测 MIME 类型
+        mime_type = mimetypes.guess_type(original_name)[0] or "application/octet-stream"
+        file_size = os.path.getsize(file_path)
+
+        # 智能处理 base_url，避免重复的 /v1
+        base = dify_base_url.rstrip('/')
+        if base.endswith('/v1'):
+            url = f"{base}/files/upload"
+        else:
+            url = f"{base}/v1/files/upload"
+        headers = {
+            "Authorization": f"Bearer {dify_api_key}"
+        }
+
+        # 使用 multipart/form-data 上传文件
+        with open(file_path, 'rb') as f:
+            files = {
+                'file': (original_name, f, mime_type)
+            }
+            data = {
+                'user': 'uploader'  # Dify 要求的用户标识
+            }
+            
+            with httpx.Client(timeout=60.0) as client:
+                response = client.post(url, headers=headers, files=files, data=data)
+                
+                if response.status_code not in [200, 201]:  # 200 OK 或 201 Created 都是成功
+                    error_msg = f"HTTP {response.status_code}"
+                    try:
+                        error_data = response.json()
+                        if "message" in error_data:
+                            error_msg = error_data["message"]
+                    except:
+                        error_msg = response.text or error_msg
+                    raise DifyAPIError(response.status_code, error_msg)
+                
+                # 解析 Dify 返回的文件信息
+                dify_file_info = response.json()
+                
+                # 转换为统一格式
+                file_info = self.build_file_info(
+                    file_id=dify_file_info.get("id", ""),
+                    file_name=dify_file_info.get("name", original_name),
+                    size_bytes=dify_file_info.get("size", file_size),
+                    mime_type=dify_file_info.get("mime_type", mime_type),
+                    created_by=str(dify_file_info.get("created_by", "uploader")),
+                    created_at=dify_file_info.get("created_at")
+                )
+                
+                return file_info
 
     def format_response(self, response_data: Any) -> UnifiedChatResponse:
         """
