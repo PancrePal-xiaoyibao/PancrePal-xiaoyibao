@@ -22,3 +22,8 @@ urllib3==2.5.0
 uvicorn==0.35.0
 websockets==14.2
 boto3==1.35.24
+# 用户鉴权相关依赖
+pymongo==4.6.1
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+python-multipart==0.0.9

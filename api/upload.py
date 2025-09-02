@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request, HTTPException, UploadFile, File, Form
+from fastapi import APIRouter, Request, HTTPException, UploadFile, File, Form, Depends
 from fastapi.responses import JSONResponse
 import asyncio
 import os
@@ -6,6 +6,8 @@ import tempfile
 from typing import Optional
 from agent import registry
 from agent.models import FileUploadResponse, FastGPTFileInfo
+from auth.dependencies import get_current_active_user, check_api_limit, increment_api_calls
+from models.user import UserResponse
 
 upload = APIRouter()
 
@@ -14,18 +16,27 @@ async def upload_file(
     request: Request,
     file: UploadFile = File(...),
     agent: Optional[str] = Form(None),
-    created_by: Optional[str] = Form(None)
+    created_by: Optional[str] = Form(None),
+    current_user: UserResponse = Depends(get_current_active_user)
 ):
     """
-    文件上传API
+    文件上传API（需要认证）
     
     参数:
         file: 上传的文件
         agent: 指定的智能体名称（可选，也可通过header传递）
+        created_by: 创建者标识（可选）
     
     返回:
         FileUploadResponse: 包含文件信息的响应
     """
+    # 检查API调用限制
+    if not check_api_limit(current_user.id):
+        raise HTTPException(
+            status_code=429, 
+            detail="API调用次数超限，请稍后重试或联系管理员"
+        )
+    
     # 获取智能体名称，优先使用Form参数，其次使用Header（兼容大小写/变体）
     agent_name = agent or (
         request.headers.get("agent")
@@ -61,6 +72,9 @@ async def upload_file(
         }, status_code=400)
     
     try:
+        # 增加API调用次数
+        await increment_api_calls(current_user.id)
+        
         # 创建临时文件
         with tempfile.NamedTemporaryFile(delete=False, suffix=f"_{file.filename}") as temp_file:
             # 读取上传文件内容并写入临时文件
@@ -78,8 +92,8 @@ async def upload_file(
 
             # 统一响应：如果 agent 返回 FastGPTFileInfo，直接使用；否则做最小包装
             if isinstance(result, FastGPTFileInfo):
-                # 覆盖 created_by（优先使用表单 created_by，次之 header: user）
-                cb = created_by or request.headers.get("user") or "unknown"
+                # 覆盖 created_by（优先使用表单 created_by，次之当前用户，最后 header: user）
+                cb = created_by or current_user.username or request.headers.get("user") or "unknown"
                 try:
                     result.created_by = cb
                 except Exception:
@@ -98,33 +112,24 @@ async def upload_file(
                 })
             else:
                 # 字符串或其他 → 当作 URL/ID 返回，并补齐必要字段
-                cb = created_by or request.headers.get("user") or "unknown"
-                info = FastGPTFileInfo(
-                    id=str(result),
-                    name=file.filename,
-                    size=len(contents),
-                    extension=(os.path.splitext(file.filename)[1].lstrip('.') or ''),
-                    mime_type=file.content_type or "application/octet-stream",
-                    created_by=cb,
-                    created_at=int(__import__('time').time())
-                )
+                cb = created_by or current_user.username or request.headers.get("user") or "unknown"
                 return JSONResponse(content={
                     "code": 0,
                     "msg": "File uploaded successfully",
-                    "data": info.model_dump()
+                    "data": {
+                        "file_id": str(result),
+                        "created_by": cb,
+                        "agent": agent_name
+                    }
                 })
                 
         finally:
             # 清理临时文件
-            if os.path.exists(temp_file_path):
+            try:
                 os.unlink(temp_file_path)
+            except OSError:
+                pass  # 忽略清理失败
                 
-    except NotImplementedError as e:
-        return JSONResponse(content={
-            "code": 400,
-            "msg": f"Agent {agent_name} does not support file upload: {str(e)}",
-            "data": None
-        }, status_code=400)
     except Exception as e:
         import traceback
         traceback.print_exc()

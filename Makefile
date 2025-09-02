@@ -1,4 +1,4 @@
-.PHONY: help install install-dev install-test install-docs clean test test-cov lint format check-deps sync-deps run build docs
+.PHONY: help install install-dev install-test install-docs clean test test-cov lint format check-deps sync-deps run build docs setup-auth create-admin test-auth
 
 # 默认目标
 help:
@@ -11,6 +11,11 @@ help:
 	@echo "  install-docs  安装文档依赖"
 	@echo "  sync-deps     同步依赖到虚拟环境"
 	@echo "  clean         清理构建文件"
+	@echo ""
+	@echo "认证系统:"
+	@echo "  setup-auth    设置认证系统环境"
+	@echo "  create-admin  创建管理员用户"
+	@echo "  test-auth     测试认证系统"
 	@echo ""
 	@echo "代码质量:"
 	@echo "  lint          运行代码检查"
@@ -60,15 +65,65 @@ clean:
 	find . -type d -name __pycache__ -exec rm -rf {} +
 	find . -type f -name "*.pyc" -delete
 
+# 设置认证系统环境
+setup-auth:
+	@echo "🔐 设置认证系统环境..."
+	@if [ ! -f .env ]; then \
+		echo "📝 创建 .env 文件..."; \
+		cp env.example .env; \
+		echo "✅ .env 文件已创建，请根据需要编辑配置信息"; \
+		echo "💡 JWT_SECRET_KEY 是可选的，系统会自动生成安全密钥"; \
+		echo "💡 如需固定密钥，请取消注释并设置 JWT_SECRET_KEY"; \
+	else \
+		echo "✅ .env 文件已存在"; \
+	fi
+	@echo "📦 安装认证系统依赖..."
+	uv sync
+	@echo "🔄 更新依赖以解决兼容性问题..."
+	uv add bcrypt>=4.0.0
+	uv sync
+	@echo "🔍 检查MongoDB服务..."
+	@if command -v mongod >/dev/null 2>&1; then \
+		echo "✅ MongoDB 已安装"; \
+		echo "💡 启动MongoDB: brew services start mongodb-community (macOS)"; \
+		echo "💡 启动MongoDB: sudo systemctl start mongod (Linux)"; \
+	else \
+		echo "❌ MongoDB 未安装"; \
+		echo "💡 安装MongoDB: brew install mongodb-community (macOS)"; \
+		echo "💡 安装MongoDB: sudo apt install mongodb (Ubuntu)"; \
+	fi
+
+# 创建管理员用户
+create-admin:
+	@echo "👑 创建管理员用户..."
+	@if [ ! -f .env ]; then \
+		echo "❌ 请先运行 'make setup-auth' 设置环境"; \
+		exit 1; \
+	fi
+	uv run python scripts/create_admin.py
+
+# 测试认证系统
+test-auth:
+	@echo "🧪 测试认证系统..."
+	@if [ ! -f .env ]; then \
+		echo "❌ 请先运行 'make setup-auth' 设置环境"; \
+		exit 1; \
+	fi
+	@echo "🚀 启动服务进行测试..."
+	@echo "💡 在另一个终端运行: make run"
+	@echo "⏳ 等待服务启动后按任意键继续..."
+	@read -n 1 -s
+	uv run python test/test_auth_system.py
+
 # 运行代码检查
 lint:
-	uv run flake8 agent/ api/ src/ test/
-	uv run mypy agent/ api/ src/
+	uv run flake8 agent/ api/ auth/ services/ database/ models/ test/
+	uv run mypy agent/ api/ auth/ services/ database/ models/
 
 # 格式化代码
 format:
-	uv run black agent/ api/ src/ test/
-	uv run isort agent/ api/ src/ test/
+	uv run black agent/ api/ auth/ services/ database/ models/ test/
+	uv run isort agent/ api/ auth/ services/ database/ models/ test/
 
 # 检查依赖
 check-deps:
@@ -80,7 +135,7 @@ test:
 
 # 运行测试并生成覆盖率报告
 test-cov:
-	uv run pytest test/ --cov=agent --cov=api --cov=src --cov-report=html --cov-report=term
+	uv run pytest test/ --cov=agent --cov=api --cov=auth --cov=services --cov=database --cov=models --cov-report=html --cov-report=term
 
 # 运行开发服务器
 run:
@@ -118,6 +173,8 @@ update-deps:
 # 显示项目信息
 info:
 	@echo "项目名称: $(shell uv run python -c 'import tomllib; print(tomllib.load(open("pyproject.toml", "rb"))["project"]["name"])')"
-	@echo "项目版本: $(shell uv run python -c 'import tomllib; print(tomllib.load(open("pyproject.toml", "rb"))["project"]["version"])')"
+	@echo "项目版本: $(shell uv run python -c 'import tomllib.load(open("pyproject.toml", "rb"))["project"]["version"])')"
 	@echo "Python版本: $(shell uv run python --version)"
 	@echo "uv版本: $(shell uv --version)"
+	@echo "认证系统: 已集成 ✅"
+	@echo "数据库: MongoDB ✅"

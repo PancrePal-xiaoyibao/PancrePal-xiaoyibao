@@ -1,15 +1,28 @@
-from fastapi import APIRouter, Request, HTTPException
+from fastapi import APIRouter, Request, HTTPException, Depends
 from fastapi.responses import JSONResponse, StreamingResponse
 import asyncio
 from typing import List, Dict, Optional
 from agent import registry
 from agent.models import ChatRequest, UnifiedChatResponse
+from auth.dependencies import get_current_active_user, check_api_limit, increment_api_calls
+from models.user import UserResponse
 
 chat = APIRouter()
 
 
 @chat.post("/chat", response_model=UnifiedChatResponse)
-async def get_chat(request: Request, body: ChatRequest):
+async def get_chat(
+    request: Request, 
+    body: ChatRequest,
+    current_user: UserResponse = Depends(get_current_active_user)
+):
+    # 检查API调用限制
+    if not check_api_limit(current_user.id):
+        raise HTTPException(
+            status_code=429, 
+            detail="API调用次数超限，请稍后重试或联系管理员"
+        )
+    
     agent_name = (
         request.headers.get("agent")
         or request.headers.get("Agent")
@@ -41,6 +54,9 @@ async def get_chat(request: Request, body: ChatRequest):
         }, status_code=400)
     
     try:
+        # 增加API调用次数
+        await increment_api_calls(current_user.id)
+        
         # 如果是流式且非 detail 模式，使用 SSE
         if request_data.get("stream") and not request_data.get("detail"):
             print(f"Debug: Using streaming mode for agent: {type(agent)}")
