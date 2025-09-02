@@ -23,6 +23,7 @@ help:
 	@echo ""
 	@echo "开发:"
 	@echo "  run           运行开发服务器"
+	@echo "  run-prod      运行生产服务器"
 	@echo "  build         构建项目"
 	@echo "  docs          构建文档"
 	@echo ""
@@ -83,7 +84,15 @@ test-cov:
 
 # 运行开发服务器
 run:
-	uv run python main.py
+	uvicorn main:app --reload
+
+# 运行生产服务器
+run-prod:
+	uv run uvicorn main:app --host 0.0.0.0 --port 8000
+
+# 测试智能体管理API
+test-agents:
+	uv run python test/test_agents_api.py
 
 # 构建项目
 build:

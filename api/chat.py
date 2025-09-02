@@ -7,6 +7,7 @@ from agent.models import ChatRequest, UnifiedChatResponse
 
 chat = APIRouter()
 
+
 @chat.post("/chat", response_model=UnifiedChatResponse)
 async def get_chat(request: Request, body: ChatRequest):
     agent_name = (
