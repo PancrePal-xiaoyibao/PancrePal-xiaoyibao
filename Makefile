@@ -32,6 +32,7 @@ help:
 	@echo "  run-prod      运行生产服务器"
 	@echo "  build         构建项目"
 	@echo "  docs          构建文档"
+	@echo "  openapi       导出 OpenAPI 规范为 openapi.json"
 	@echo ""
 
 # 安装生产依赖
@@ -170,6 +171,12 @@ build:
 # 构建文档
 docs:
 	uv run mkdocs build
+
+# 导出 OpenAPI 规范
+openapi:
+	@echo "📝 导出 OpenAPI 规范到 openapi.json..."
+	uv run python -c "import json; from main import app; spec=app.openapi(); open('openapi.json','w',encoding='utf-8').write(json.dumps(spec, ensure_ascii=False, indent=2))"
+	@echo "✅ 已生成 openapi.json"
 
 # 预提交检查
 pre-commit:

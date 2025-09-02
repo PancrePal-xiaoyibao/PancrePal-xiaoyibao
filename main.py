@@ -15,6 +15,7 @@ from contextlib import asynccontextmanager
 from datetime import datetime
 import time
 import json
+from fastapi.openapi.utils import get_openapi
 
 # 加载环境变量
 load_dotenv()
@@ -189,6 +190,58 @@ app.include_router(api_keys, prefix="/api/v1/api-keys", tags=["API Key管理"])
 app.include_router(chat, prefix="/api/v1", tags=["聊天"])
 app.include_router(upload, prefix="/api/v1", tags=["文件上传"])
 app.include_router(agents, prefix="/api/v1/agents", tags=["智能体管理"])
+
+# 自定义 OpenAPI：为实际使用的 Header 补充到文档
+def custom_openapi():
+    if getattr(app, "openapi_schema", None):
+        return app.openapi_schema
+
+    openapi_schema = get_openapi(
+        title=app.title,
+        version=app.version,
+        description=app.description,
+        routes=app.routes,
+    )
+
+    paths = openapi_schema.get("paths", {})
+
+    # 为 /api/v1/chat POST 增加必填 Header: agent
+    chat_path = paths.get("/api/v1/chat")
+    if chat_path and "post" in chat_path:
+        post_op = chat_path["post"]
+        parameters = post_op.get("parameters", [])
+        # 避免重复添加
+        has_agent = any(p.get("in") == "header" and p.get("name") == "agent" for p in parameters)
+        if not has_agent:
+            parameters.append({
+                "name": "agent",
+                "in": "header",
+                "required": True,
+                "schema": {"type": "string"},
+                "description": "指定智能体名称。也支持 'Agent'/'x-agent' 变体。示例: fastgpt",
+            })
+            post_op["parameters"] = parameters
+
+    # 为 /api/v1/upload POST 增加可选 Header: agent（form 参数已支持，这里补充 header 方式）
+    upload_path = paths.get("/api/v1/upload")
+    if upload_path and "post" in upload_path:
+        post_op = upload_path["post"]
+        parameters = post_op.get("parameters", [])
+        has_agent = any(p.get("in") == "header" and p.get("name") == "agent" for p in parameters)
+        if not has_agent:
+            parameters.append({
+                "name": "agent",
+                "in": "header",
+                "required": False,
+                "schema": {"type": "string"},
+                "description": "可选智能体名称（也支持表单字段 'agent'，以及 'Agent'/'x-agent' 变体）",
+            })
+            post_op["parameters"] = parameters
+
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+app.openapi = custom_openapi
 
 if __name__ == "__main__":
     import uvicorn

@@ -109,7 +109,7 @@ async def upload_file(
             elif isinstance(result, dict):
                 # 尝试从 dict 中映射到规范字段
                 return JSONResponse(content={
-                    "code": 0,
+                    "code": 200,
                     "msg": result.get("msg", "File uploaded successfully"),
                     "data": result.get("data", result)
                 })
