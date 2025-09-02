@@ -4,6 +4,7 @@ from typing import Optional
 import logging
 
 from services.user_service import user_service
+from services.api_key_service import api_key_service
 from models.user import UserRole, TokenData
 
 logger = logging.getLogger(__name__)
@@ -13,28 +14,36 @@ security = HTTPBearer()
 
 
 async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
-    """获取当前认证用户"""
+    """获取当前认证用户（支持JWT和API Key）"""
     try:
         token = credentials.credentials
+        
+        # 首先尝试作为JWT令牌验证
         token_data = user_service.verify_token(token)
+        if token_data:
+            user = await user_service.get_user_by_username(token_data.username)
+            if user:
+                return user
         
-        if token_data is None:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="无效的认证令牌",
-                headers={"WWW-Authenticate": "Bearer"},
-            )
+        # 如果不是JWT，尝试作为API Key验证
+        api_key_data = await api_key_service.verify_api_key(token)
+        if api_key_data:
+            # 获取API Key创建者信息
+            user = await user_service.get_user_by_id(api_key_data.created_by)
+            if user:
+                # 将API Key信息附加到用户对象上，用于权限检查
+                user.api_key_data = api_key_data
+                return user
         
-        user = await user_service.get_user_by_username(token_data.username)
-        if user is None:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="用户不存在",
-                headers={"WWW-Authenticate": "Bearer"},
-            )
+        # 如果都验证失败，抛出认证错误
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="无效的认证令牌或API Key",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
         
-        return user
-        
+    except HTTPException:
+        raise
     except Exception as e:
         logger.error(f"认证失败: {str(e)}")
         raise HTTPException(
@@ -70,6 +79,28 @@ async def get_premium_user(current_user = Depends(get_current_user)):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="权限不足，需要高级用户权限"
+        )
+    return current_user
+
+
+async def get_api_key_user(current_user = Depends(get_current_user)):
+    """获取通过API Key认证的用户"""
+    # 检查是否通过API Key认证
+    if not hasattr(current_user, 'api_key_data'):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="此操作需要API Key认证"
+        )
+    return current_user
+
+
+async def get_jwt_user(current_user = Depends(get_current_user)):
+    """获取通过JWT认证的用户"""
+    # 检查是否通过JWT认证
+    if hasattr(current_user, 'api_key_data'):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="此操作需要JWT认证，不支持API Key"
         )
     return current_user
 

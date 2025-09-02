@@ -5,11 +5,13 @@ from api.chat import chat
 from api.upload import upload
 from api.agents import agents
 from api.auth import auth
+from api.api_keys import router as api_keys
 from agent.loader import load_agents
 from database.connection import db_manager
 from dotenv import load_dotenv
 import os
 import logging
+from contextlib import asynccontextmanager
 
 # 加载环境变量
 load_dotenv()
@@ -30,8 +32,27 @@ fastgpt_base_url = os.getenv("FASTGPT_BASE_URL")
 fastgpt_api_key = os.getenv("FASTGPT_API_KEY")
 print(f"FASTGPT_BASE_URL: {fastgpt_base_url}")
 
-# 加载智能体
-load_agents()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """应用生命周期管理：启动时连接DB并加载智能体，关闭时断开DB。"""
+    try:
+        # 连接MongoDB数据库
+        db_manager.connect()
+        logger.info("✅ 数据库连接成功")
+
+        # 加载智能体
+        load_agents()
+        logger.info("✅ 智能体加载完成")
+
+        yield
+    finally:
+        try:
+            db_manager.close()
+            logger.info("✅ 数据库连接已关闭")
+        except Exception as e:
+            logger.error(f"❌ 关闭数据库连接失败: {str(e)}")
+
 
 # 创建FastAPI应用
 app = FastAPI(
@@ -39,7 +60,8 @@ app = FastAPI(
     description="基于多AI平台的智能体系统，支持用户认证和权限管理",
     version="0.2.0",
     docs_url="/docs",
-    redoc_url="/redoc"
+    redoc_url="/redoc",
+    lifespan=lifespan
 )
 
 # 添加CORS中间件
@@ -50,33 +72,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# 启动事件：连接数据库
-@app.on_event("startup")
-async def startup_event():
-    """应用启动时执行"""
-    try:
-        # 连接MongoDB数据库
-        db_manager.connect()
-        logger.info("✅ 数据库连接成功")
-        
-        # 加载智能体
-        logger.info("✅ 智能体加载完成")
-        
-    except Exception as e:
-        logger.error(f"❌ 应用启动失败: {str(e)}")
-        raise
-
-# 关闭事件：关闭数据库连接
-@app.on_event("shutdown")
-async def shutdown_event():
-    """应用关闭时执行"""
-    try:
-        # 关闭数据库连接
-        db_manager.close()
-        logger.info("✅ 数据库连接已关闭")
-    except Exception as e:
-        logger.error(f"❌ 关闭数据库连接失败: {str(e)}")
 
 # 健康检查端点
 @app.get("/health", tags=["系统"])
@@ -91,6 +86,7 @@ async def health_check():
 
 # 包含路由
 app.include_router(auth, prefix="/api/v1/auth", tags=["用户认证"])
+app.include_router(api_keys, prefix="/api/v1/api-keys", tags=["API Key管理"])
 app.include_router(chat, prefix="/api/v1", tags=["聊天"])
 app.include_router(upload, prefix="/api/v1", tags=["文件上传"])
 app.include_router(agents, prefix="/api/v1/agents", tags=["智能体管理"])
@@ -100,6 +96,7 @@ if __name__ == "__main__":
     print("🚀 启动小胰宝智能助手平台...")
     print("📖 API文档: http://localhost:8000/docs")
     print("🔐 用户认证: http://localhost:8000/api/v1/auth/")
+    print("🔑 API Key管理: http://localhost:8000/api/v1/api-keys/")
     print("🔍 智能体管理: http://localhost:8000/api/v1/agents/")
     print("💚 健康检查: http://localhost:8000/health")
     print("\n按 Ctrl+C 停止服务")

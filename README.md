@@ -14,7 +14,7 @@
 
 历经 17 个月的迭代与进化，小胰宝在开源的基石上，获得了基金会的鼎力支持。我们坚信，开源的力量能够汇聚更多智慧，让技术真正服务于人。
 
-**现在，我们以【核心 RAG 技术研发、公益癌种知识库、公益 RAG 应用微孵化（“微光成炬”合作计划）】为核心，推动 RAG 和 AI 技术在公益领域的创新应用。**
+**现在，我们以【核心 RAG 技术研发、公益癌种知识库、公益 RAG 应用微孵化（"微光成炬"合作计划）】为核心，推动 RAG 和 AI 技术在公益领域的创新应用。**
 
 更令人振奋的是，我们已经成功：
 
@@ -26,19 +26,19 @@
         *   [fastgpt-on-wechat](https://github.com/hanfangyuan4396/fastgpt-on-wechat)
         *   [Gemini-2.0病情demo](https://github.com/PancrePal-xiaoyibao/gemini2.0-xiaoyibao)
         期待更多开发者加入，共同完善社区，贡献开源力量！
-    *   🎉 **病友共创 Wiki：**  [小X宝社区“胰腺肿瘤并发症病友共创宝典”](https://bfz.xiao-x-bao.com.cn)，汇聚患者智慧，共享宝贵经验。
+    *   🎉 **病友共创 Wiki：**  [小X宝社区"胰腺肿瘤并发症病友共创宝典"](https://bfz.xiao-x-bao.com.cn)，汇聚患者智慧，共享宝贵经验。
 
 *   **招募到更多社区项目：**
     *   👏 **小胃宝：**  由社区技术贡献者 Clivia 带领，两周内完成，效率惊人！
     *   👏 **小妍宝：**  与国内乳腺外科团队合作，为乳腺癌患者的重建需求提供 AI 助力。
     *   👏 **FSHD 患者 AI 助手：**  携手罕见病社区志愿者 Aili #Khub，共同为 FSHD 患者打造 AI 助手。
 
-*   **更多“微光成炬”伙伴加入：**
+*   **更多"微光成炬"伙伴加入：**
     *   👏 **Gewechat 团队：**  提升微信 Bot 能力，让服务触手可及。
     *   👏 **Opendatalab 团队：**  数据驱动，赋能 AI 应用。
     *   👏 **GitCode G-Star 计划：**  GitCode 鼎力支持，助力社区发展。
 
-**小X宝们的上线，为全癌种肿瘤患者 AI 智能服务开辟了新模式！** 我们相信，通过开源社区的力量，能够将这种模式复制到更多癌种和罕见病领域，让数千万患者受益。  **期待各位工程师们贡献你们的“科技+AI+人文”的独有技能，让技术成为照亮生命的希望之光！**
+**小X宝们的上线，为全癌种肿瘤患者 AI 智能服务开辟了新模式！** 我们相信，通过开源社区的力量，能够将这种模式复制到更多癌种和罕见病领域，让数千万患者受益。  **期待各位工程师们贡献你们的"科技+AI+人文"的独有技能，让技术成为照亮生命的希望之光！**
 
 欢迎联系我们 (service@xiaoyibao.com.cn, sam.qin@xiaoyibao.com.cn) 交流信息，携手公益！  也希望您能传播本项目，让更多开发者参与到这项有价值、有温度的事业中来。
 
@@ -48,6 +48,43 @@
 
 #小胰宝 是一个由病友发起的公益项目，现已发展成为由天工开物基金会和社区管理委员会 (CMC) 共同管理的纯血 AI 类公益开源项目 – #小X宝社区。  **我们的目标是普及 AI 技术和 RAG 应用，集合社区力量，助力 25+ 癌种患者，消除医患信息差，减轻患者/家属的焦虑。**  目前已推出小胰宝助手、小肺宝助手、小萌宝助手、小粉宝助手、小胃宝、小妍宝助手等项目。
 
+## 🔑 新增功能：API Key 系统
+
+### ✨ 特性亮点
+- **双重认证**: 支持JWT令牌和API Key两种认证方式
+- **权限控制**: 只有管理员和高级用户才能创建API Key
+- **过期管理**: 支持设置自定义过期时间，自动失效
+- **使用统计**: 详细的调用次数和时间统计
+- **安全存储**: 使用SHA-256哈希存储，无法逆向还原
+- **清晰分离**: JWT用于用户管理，API Key用于API访问
+
+### 🔄 标准业务流程
+```
+用户登录 → 获取JWT令牌 → 使用JWT创建API Key → 使用API Key访问API接口
+```
+
+### 🚀 快速开始
+
+```bash
+# 克隆项目
+git clone https://github.com/PancrePal-xiaoyibao/PancrePal-xiaoyibao.git
+cd PancrePal-xiaoyibao
+
+# 设置环境
+make setup-auth
+
+# 启动服务
+make run
+
+# 测试API Key功能
+make test-api-keys
+```
+
+### 📚 详细文档
+- [API Key 使用说明](docs/api_keys.md)
+- [用户认证系统说明](docs/用户认证系统说明.md)
+- [API 文档](http://localhost:8000/docs)
+
 ### 🤝 了解社区
 
 *   **社区属性：** 公益 x 开源，AI 社区的创新力量。
@@ -55,7 +92,7 @@
 *   ‼️  **志愿者责任：** [点击](https://faq.xiao-x-bao.com.cn)
 *   ❤️  **加入我们：**  [点击](https://iamin.xiao-x-bao.com.cn)
 *   😊  **社区任务：**  [梦想项目](https://task.xiaoyibao.com.cn) 全透明，等你来创建！
-*   👌  **首个贡献：**  辅导员助您完成 [First Good Issue](https://myfirst.xiao-x-bao.com.cn)
+*   👌  **首个贡献：**  辅导员助您完成 [First Good Issue](https://myfirst.xiaoyibao.com.cn)
 
 *   <img width="345" alt="image" src="https://github.com/user-attachments/assets/faf334fe-2838-405a-820c-96081873a4a9" />
 

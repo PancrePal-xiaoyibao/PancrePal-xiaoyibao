@@ -96,3 +96,48 @@ class UserStats(BaseModel):
     active_users: int
     admin_users: int
     premium_users: int
+
+
+# API Key相关模型
+class APIKeyCreate(BaseModel):
+    """创建API Key请求模型"""
+    name: str = Field(..., min_length=1, max_length=100, description="API Key名称")
+    description: Optional[str] = Field(None, max_length=500, description="API Key描述")
+    expires_at: Optional[datetime] = Field(None, description="过期时间，为空表示永不过期")
+    permissions: List[str] = Field(default=[], description="权限列表")
+
+
+class APIKeyResponse(BaseModel):
+    """API Key响应模型"""
+    id: str
+    name: str
+    description: Optional[str]
+    key_prefix: str = Field(..., description="API Key前缀（用于识别）")
+    created_at: datetime
+    expires_at: Optional[datetime]
+    last_used_at: Optional[datetime]
+    permissions: List[str]
+    is_active: bool
+    created_by: str = Field(..., description="创建者用户ID")
+
+
+class APIKeyFullResponse(APIKeyResponse):
+    """API Key完整响应模型（包含完整密钥）"""
+    full_key: str = Field(..., description="完整的API Key")
+
+
+class APIKeyUpdate(BaseModel):
+    """更新API Key请求模型"""
+    name: Optional[str] = Field(None, min_length=1, max_length=100)
+    description: Optional[str] = Field(None, max_length=500)
+    expires_at: Optional[datetime] = None
+    permissions: Optional[List[str]] = None
+    is_active: Optional[bool] = None
+
+
+class APIKeyUsage(BaseModel):
+    """API Key使用统计"""
+    total_calls: int = Field(default=0, description="总调用次数")
+    last_used_at: Optional[datetime] = Field(None, description="最后使用时间")
+    calls_today: int = Field(default=0, description="今日调用次数")
+    calls_this_month: int = Field(default=0, description="本月调用次数")

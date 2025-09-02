@@ -6,7 +6,7 @@ import tempfile
 from typing import Optional
 from agent import registry
 from agent.models import FileUploadResponse, FastGPTFileInfo
-from auth.dependencies import get_current_active_user, check_api_limit, increment_api_calls
+from auth.dependencies import get_api_key_user, check_api_limit, increment_api_calls
 from models.user import UserResponse
 
 upload = APIRouter()
@@ -17,10 +17,13 @@ async def upload_file(
     file: UploadFile = File(...),
     agent: Optional[str] = Form(None),
     created_by: Optional[str] = Form(None),
-    current_user: UserResponse = Depends(get_current_active_user)
+    current_user: UserResponse = Depends(get_api_key_user)
 ):
     """
-    文件上传API（需要认证）
+    文件上传API（仅支持API Key认证）
+    
+    此端点专门为API Key用户设计，提供稳定的文件上传服务。
+    用户需要先登录获取JWT令牌，然后使用JWT创建API Key，最后使用API Key访问此接口。
     
     参数:
         file: 上传的文件

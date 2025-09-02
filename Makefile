@@ -1,8 +1,8 @@
-.PHONY: help install install-dev install-test install-docs clean test test-cov lint format check-deps sync-deps run build docs setup-auth create-admin test-auth
+.PHONY: help install install-dev install-test install-docs clean test test-cov lint format check-deps sync-deps run build docs setup-auth create-admin test-auth test-api-keys
 
 # 默认目标
 help:
-	@echo "小胰宝项目 - 可用命令:"
+	@echo "小胰宝 - AI Gateway项目 - 可用命令:"
 	@echo ""
 	@echo "环境管理:"
 	@echo "  install       安装生产依赖"
@@ -16,6 +16,7 @@ help:
 	@echo "  setup-auth    设置认证系统环境"
 	@echo "  create-admin  创建管理员用户"
 	@echo "  test-auth     测试认证系统"
+	@echo "  test-api-keys 测试API Key功能"
 	@echo ""
 	@echo "代码质量:"
 	@echo "  lint          运行代码检查"
@@ -115,6 +116,19 @@ test-auth:
 	@read -n 1 -s
 	uv run python test/test_auth_system.py
 
+# 测试API Key功能
+test-api-keys:
+	@echo "🔑 测试API Key功能..."
+	@if [ ! -f .env ]; then \
+		echo "❌ 请先运行 'make setup-auth' 设置环境"; \
+		exit 1; \
+	fi
+	@echo "🚀 启动服务进行测试..."
+	@echo "💡 在另一个终端运行: make run"
+	@echo "⏳ 等待服务启动后按任意键继续..."
+	@read -n 1 -s
+	uv run python test/test_api_keys.py
+
 # 运行代码检查
 lint:
 	uv run flake8 agent/ api/ auth/ services/ database/ models/ test/
@@ -177,4 +191,5 @@ info:
 	@echo "Python版本: $(shell uv run python --version)"
 	@echo "uv版本: $(shell uv --version)"
 	@echo "认证系统: 已集成 ✅"
+	@echo "API Key系统: 已集成 ✅"
 	@echo "数据库: MongoDB ✅"
