@@ -80,9 +80,9 @@ class UserService:
         """创建访问令牌"""
         to_encode = data.copy()
         if expires_delta:
-            expire = datetime.utcnow() + expires_delta
+            expire = datetime.now() + expires_delta
         else:
-            expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+            expire = datetime.now() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
         
         to_encode.update({"exp": expire})
         encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
@@ -114,7 +114,7 @@ class UserService:
                 raise ValueError("邮箱已存在")
             
             # 创建用户文档
-            now = datetime.utcnow()
+            now = datetime.now()
             user_doc = {
                 "username": user_create.username,
                 "email": user_create.email,
@@ -161,7 +161,7 @@ class UserService:
             # 更新最后登录时间
             self.users_collection.update_one(
                 {"_id": user_doc["_id"]},
-                {"$set": {"last_login": datetime.utcnow()}}
+                {"$set": {"last_login": datetime.now()}}
             )
             
             user_doc["_id"] = str(user_doc["_id"])
@@ -238,7 +238,7 @@ class UserService:
                 update_data["hashed_password"] = self.get_password_hash(user_update.password)
             
             if update_data:
-                update_data["updated_at"] = datetime.utcnow()
+                update_data["updated_at"] = datetime.now()
                 
                 result = self.users_collection.update_one(
                     {"_id": ObjectId(user_id)},

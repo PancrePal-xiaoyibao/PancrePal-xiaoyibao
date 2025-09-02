@@ -37,8 +37,6 @@ async def get_current_user(request: Request, credentials: HTTPAuthorizationCrede
             # 获取API Key创建者信息
             user = await user_service.get_user_by_id(api_key_data.created_by)
             if user:
-                # 将API Key信息附加到用户对象上，用于权限检查
-                user.api_key_data = api_key_data
                 # 将认证信息注入 request.state
                 try:
                     request.state.current_user = user
@@ -96,10 +94,10 @@ async def get_premium_user(current_user = Depends(get_current_user)):
     return current_user
 
 
-async def get_api_key_user(current_user = Depends(get_current_user)):
+async def get_api_key_user(request: Request, current_user = Depends(get_current_user)):
     """获取通过API Key认证的用户"""
-    # 检查是否通过API Key认证
-    if not hasattr(current_user, 'api_key_data'):
+    # 检查是否通过API Key认证（基于 request.state）
+    if getattr(request.state, 'auth_type', None) != 'api_key':
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="此操作需要API Key认证"
@@ -107,10 +105,10 @@ async def get_api_key_user(current_user = Depends(get_current_user)):
     return current_user
 
 
-async def get_jwt_user(current_user = Depends(get_current_user)):
+async def get_jwt_user(request: Request, current_user = Depends(get_current_user)):
     """获取通过JWT认证的用户"""
-    # 检查是否通过JWT认证
-    if hasattr(current_user, 'api_key_data'):
+    # 检查是否通过JWT认证（基于 request.state）
+    if getattr(request.state, 'auth_type', None) != 'jwt':
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="此操作需要JWT认证，不支持API Key"

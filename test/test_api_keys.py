@@ -251,7 +251,7 @@ def run_tests():
     api_key_data = {
         "name": "测试API Key",
         "description": "用于测试的API Key",
-        "expires_at": (datetime.utcnow() + timedelta(days=30)).isoformat(),
+        "expires_at": (datetime.now() + timedelta(days=30)).isoformat(),
         "permissions": ["read", "write"]
     }
     

@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Optional, List
 from bson import ObjectId
 import secrets
@@ -55,14 +55,29 @@ class APIKeyService:
                 key_prefix = self._get_key_prefix(full_key)
             
             # 创建API Key文档
-            now = datetime.utcnow()
+            now = datetime.now()
+
+            # 处理并校验过期时间：必须晚于当前时间；统一存储为UTC无时区
+            normalized_expires_at = None
+            if api_key_create.expires_at is not None:
+                exp = api_key_create.expires_at
+                try:
+                    if getattr(exp, "tzinfo", None) is not None:
+                        exp_utc = exp.astimezone(timezone.utc).replace(tzinfo=None)
+                    else:
+                        exp_utc = exp
+                except Exception:
+                    exp_utc = exp
+                if exp_utc <= now:
+                    raise ValueError("过期时间必须晚于当前时间")
+                normalized_expires_at = exp_utc
             api_key_doc = {
                 "name": api_key_create.name,
                 "description": api_key_create.description,
                 "key_hash": hashlib.sha256(full_key.encode()).hexdigest(),
                 "key_prefix": key_prefix,
                 "created_at": now,
-                "expires_at": api_key_create.expires_at,
+                "expires_at": normalized_expires_at,
                 "last_used_at": None,
                 "permissions": api_key_create.permissions or [],
                 "is_active": True,
@@ -114,14 +129,14 @@ class APIKeyService:
                 return None
             
             # 检查是否过期
-            if api_key_doc.get("expires_at") and datetime.utcnow() > api_key_doc["expires_at"]:
+            if api_key_doc.get("expires_at") and datetime.now() > api_key_doc["expires_at"]:
                 logger.warning(f"API Key已过期: {api_key_doc['key_prefix']}")
                 return None
             
             # 更新最后使用时间
             self.api_keys_collection.update_one(
                 {"_id": api_key_doc["_id"]},
-                {"$set": {"last_used_at": datetime.utcnow()}}
+                {"$set": {"last_used_at": datetime.now()}}
             )
             
             # 更新使用统计
@@ -215,7 +230,7 @@ class APIKeyService:
                 update_data["is_active"] = api_key_update.is_active
             
             if update_data:
-                update_data["updated_at"] = datetime.utcnow()
+                update_data["updated_at"] = datetime.now()
                 
                 result = self.api_keys_collection.update_one(
                     {"_id": ObjectId(api_key_id)},
@@ -282,7 +297,7 @@ class APIKeyService:
             # 停用API Key
             result = self.api_keys_collection.update_one(
                 {"_id": ObjectId(api_key_id)},
-                {"$set": {"is_active": False, "updated_at": datetime.utcnow()}}
+                {"$set": {"is_active": False, "updated_at": datetime.now()}}
             )
             
             if result.modified_count > 0:
@@ -308,7 +323,7 @@ class APIKeyService:
     async def _increment_usage(self, api_key_id: str):
         """增加API Key使用次数"""
         try:
-            now = datetime.utcnow()
+            now = datetime.now()
             today = now.date().isoformat()
             this_month = now.strftime("%Y-%m")
             
@@ -359,7 +374,7 @@ class APIKeyService:
     async def cleanup_expired_keys(self) -> int:
         """清理过期的API Key"""
         try:
-            now = datetime.utcnow()
+            now = datetime.now()
             result = self.api_keys_collection.update_many(
                 {
                     "expires_at": {"$lt": now},

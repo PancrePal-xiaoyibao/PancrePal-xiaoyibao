@@ -349,7 +349,7 @@ class FastGPTAgent(BaseAgent):
         mime_type = mimetypes.guess_type(original_name)[0] or "application/octet-stream"
         file_size = os.path.getsize(file_path)
         ext = os.path.splitext(original_name)[1]
-        object_key = f"{s3_key_prefix}/{datetime.utcnow().strftime('%Y/%m/%d')}/{uuid.uuid4().hex}{ext}"
+        object_key = f"{s3_key_prefix}/{datetime.now().strftime('%Y/%m/%d')}/{uuid.uuid4().hex}{ext}"
 
         client = boto3.client(
             "s3",

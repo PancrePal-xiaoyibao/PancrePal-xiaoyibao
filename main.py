@@ -136,7 +136,7 @@ async def request_logging_middleware(request: Request, call_next):
 
     # 组织日志文档
     log_doc = {
-        "timestamp": datetime.utcnow(),
+        "timestamp": datetime.now(),
         "method": request.method,
         "path": request.url.path,
         "query": dict(request.query_params) if request.query_params else {},
