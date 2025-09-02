@@ -62,6 +62,14 @@ class DatabaseManager:
             # 创建时间索引
             users_collection.create_index("created_at")
             
+            # 请求日志集合索引
+            request_logs = self.db.request_logs
+            request_logs.create_index("timestamp")
+            request_logs.create_index([("user_id", 1), ("timestamp", -1)])
+            request_logs.create_index([("ip", 1), ("timestamp", -1)])
+            request_logs.create_index([("agent", 1), ("timestamp", -1)])
+            request_logs.create_index("status_code")
+
             logger.info("✅ 数据库索引创建成功")
             
         except Exception as e:
@@ -69,7 +77,7 @@ class DatabaseManager:
     
     def get_database(self) -> Database:
         """获取数据库实例"""
-        if not self.db:
+        if self.db is None:
             self.connect()
         return self.db
     

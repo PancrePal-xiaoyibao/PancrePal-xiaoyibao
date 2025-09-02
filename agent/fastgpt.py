@@ -7,7 +7,6 @@ import traceback
 import uuid
 import mimetypes
 from datetime import datetime
-import boto3
 from .base import BaseAgent
 from .registry import registry
 from .models import ChatRequest, UnifiedChatResponse, StandardChatResponse, DetailedChatResponse
@@ -334,6 +333,12 @@ class FastGPTAgent(BaseAgent):
         """
         if not all([s3_endpoint, s3_access_key, s3_secret_key, s3_bucket]):
             raise ValueError("Missing S3 configs. Please set S3_ENDPOINT,S3_ACCESS_KEY,S3_SECRET_KEY,S3_BUCKET")
+
+        # 延迟导入 boto3，避免未使用文件上传功能时强依赖
+        try:
+            import boto3  # type: ignore
+        except ImportError as e:
+            raise ImportError("boto3 未安装。请运行: pip install boto3 或将其加入 requirements.txt") from e
 
         # 提取原始文件名（upload.py 会以 _{filename} 作为后缀创建临时文件）
         original_name = os.path.basename(file_path)

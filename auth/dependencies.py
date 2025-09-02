@@ -1,4 +1,4 @@
-from fastapi import Depends, HTTPException, status
+from fastapi import Depends, HTTPException, status, Request
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from typing import Optional
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 security = HTTPBearer()
 
 
-async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
+async def get_current_user(request: Request, credentials: HTTPAuthorizationCredentials = Depends(security)):
     """获取当前认证用户（支持JWT和API Key）"""
     try:
         token = credentials.credentials
@@ -23,6 +23,12 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
         if token_data:
             user = await user_service.get_user_by_username(token_data.username)
             if user:
+                # 将认证信息注入 request.state
+                try:
+                    request.state.current_user = user
+                    request.state.auth_type = "jwt"
+                except Exception:
+                    pass
                 return user
         
         # 如果不是JWT，尝试作为API Key验证
@@ -33,6 +39,13 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
             if user:
                 # 将API Key信息附加到用户对象上，用于权限检查
                 user.api_key_data = api_key_data
+                # 将认证信息注入 request.state
+                try:
+                    request.state.current_user = user
+                    request.state.auth_type = "api_key"
+                    request.state.api_key_data = api_key_data
+                except Exception:
+                    pass
                 return user
         
         # 如果都验证失败，抛出认证错误

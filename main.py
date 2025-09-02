@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from api.chat import chat
 from api.upload import upload
 from api.agents import agents
-from api.auth import auth
+from api.auth import router as auth
 from api.api_keys import router as api_keys
 from agent.loader import load_agents
 from database.connection import db_manager
@@ -12,6 +12,9 @@ from dotenv import load_dotenv
 import os
 import logging
 from contextlib import asynccontextmanager
+from datetime import datetime
+import time
+import json
 
 # 加载环境变量
 load_dotenv()
@@ -64,6 +67,102 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+# 请求/响应日志中间件
+@app.middleware("http")
+async def request_logging_middleware(request: Request, call_next):
+    start_time = time.time()
+    client_ip = request.headers.get("x-forwarded-for") or request.client.host if request.client else "unknown"
+    # 兼容多级代理，取第一个IP
+    if isinstance(client_ip, str) and "," in client_ip:
+        client_ip = client_ip.split(",")[0].strip()
+
+    # 提取agent（多种header/参数变体）
+    agent_name = (
+        request.headers.get("agent")
+        or request.headers.get("Agent")
+        or request.headers.get("x-agent")
+        or request.headers.get("X-Agent")
+        or request.query_params.get("agent")
+        or ""
+    )
+    agent_name = agent_name.lower() if isinstance(agent_name, str) else ""
+
+    # 从 request.state 获取认证信息（由依赖注入）
+    user_id = None
+    username = None
+    auth_type = None
+    api_key_id = None
+    try:
+        if hasattr(request.state, "current_user") and request.state.current_user:
+            user_id = getattr(request.state.current_user, "id", None)
+            username = getattr(request.state.current_user, "username", None)
+        auth_type = getattr(request.state, "auth_type", None)
+        api_key_data = getattr(request.state, "api_key_data", None)
+        if api_key_data:
+            api_key_id = getattr(api_key_data, "id", None) or getattr(api_key_data, "_id", None)
+    except Exception:
+        pass
+
+    # 先执行实际处理，拿到响应
+    response = await call_next(request)
+
+    # 计算耗时
+    duration_ms = int((time.time() - start_time) * 1000)
+
+    # 尝试获取响应体（JSON完整记录，其他类型记录文本，流式标记）
+    response_body = None
+    is_streaming = False
+    try:
+        if getattr(response, "media_type", None) == "text/event-stream":
+            is_streaming = True
+        if isinstance(response, JSONResponse):
+            # JSONResponse 在 render 后有 body 可读
+            body_bytes = getattr(response, "body", None)
+            if body_bytes is not None:
+                max_bytes = int(os.getenv("RESPONSE_LOG_MAX_BYTES", "65536"))
+                trimmed = body_bytes[:max_bytes]
+                try:
+                    response_body = json.loads(trimmed.decode("utf-8", errors="ignore"))
+                except Exception:
+                    response_body = trimmed.decode("utf-8", errors="ignore")
+        else:
+            # 非 JSON 的响应（如纯文本）尽力记录
+            body_bytes = getattr(response, "body", None)
+            if body_bytes is not None:
+                max_bytes = int(os.getenv("RESPONSE_LOG_MAX_BYTES", "65536"))
+                response_body = body_bytes[:max_bytes].decode("utf-8", errors="ignore")
+    except Exception:
+        response_body = None
+
+    # 组织日志文档
+    log_doc = {
+        "timestamp": datetime.utcnow(),
+        "method": request.method,
+        "path": request.url.path,
+        "query": dict(request.query_params) if request.query_params else {},
+        "ip": client_ip,
+        "agent": agent_name,
+        "user_id": user_id,
+        "username": username,
+        "auth_type": auth_type,
+        "api_key_id": api_key_id,
+        "status_code": response.status_code,
+        "duration_ms": duration_ms,
+        "user_agent": request.headers.get("user-agent"),
+        "content_length": request.headers.get("content-length"),
+        "response": response_body,
+        "is_streaming": is_streaming,
+        "trace_id": request.headers.get("x-request-id") or request.headers.get("x-trace-id"),
+    }
+
+    try:
+        db = db_manager.get_database()
+        db.request_logs.insert_one(log_doc)
+    except Exception as e:
+        logger.error(f"写入请求日志失败: {str(e)}")
+
+    return response
+
 # 添加CORS中间件
 app.add_middleware(
     CORSMiddleware,
@@ -81,7 +180,7 @@ async def health_check():
         "status": "healthy",
         "timestamp": "2024-01-01T00:00:00Z",
         "version": "0.2.0",
-        "database": "connected" if db_manager.db else "disconnected"
+        "database": "connected" if db_manager.db is not None else "disconnected"
     }
 
 # 包含路由

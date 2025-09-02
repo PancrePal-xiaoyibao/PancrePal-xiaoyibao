@@ -34,7 +34,7 @@ async def create_admin_user():
             username="admin",
             email="admin@pancrepal.com",
             full_name="系统管理员",
-            password="admin123456",  # 默认密码，建议首次登录后修改
+            password="Admin123456",  # 默认密码，建议首次登录后修改
             role=UserRole.ADMIN,
             status=UserStatus.ACTIVE
         )
@@ -72,7 +72,7 @@ async def create_demo_users():
                 "username": "demo_user",
                 "email": "demo@pancrepal.com",
                 "full_name": "演示用户",
-                "password": "demo123456",
+                "password": "Demo123456",
                 "role": UserRole.USER,
                 "status": UserStatus.ACTIVE
             },
@@ -80,13 +80,13 @@ async def create_demo_users():
                 "username": "premium_user",
                 "email": "premium@pancrepal.com",
                 "full_name": "高级用户",
-                "password": "premium123456",
+                "password": "Premium123456!",
                 "role": UserRole.PREMIUM,
                 "status": UserStatus.ACTIVE
             }
         ]
         
-        created_users = []
+        created_users_info = []
         
         for user_data in demo_users:
             # 检查用户是否已存在
@@ -98,14 +98,17 @@ async def create_demo_users():
             # 创建用户
             user_create = UserCreate(**user_data)
             created_user = await user_service.create_user(user_create)
-            created_users.append(created_user)
+            created_users_info.append({
+                "username": created_user.username,
+                "password": user_data["password"]
+            })
             
             print(f"✅ 演示用户创建成功: {created_user.username}")
         
-        if created_users:
-            print(f"\n✅ 共创建了 {len(created_users)} 个演示用户")
+        if created_users_info:
+            print(f"\n✅ 共创建了 {len(created_users_info)} 个演示用户")
         
-        return created_users
+        return created_users_info
         
     except Exception as e:
         print(f"❌ 创建演示用户失败: {str(e)}")

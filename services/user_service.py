@@ -165,6 +165,7 @@ class UserService:
             )
             
             user_doc["_id"] = str(user_doc["_id"])
+            user_doc["id"] = user_doc["_id"]
             logger.info(f"✅ 用户认证成功: {username}")
             return UserResponse(**user_doc)
             
@@ -178,6 +179,7 @@ class UserService:
             user_doc = self.users_collection.find_one({"_id": ObjectId(user_id)})
             if user_doc:
                 user_doc["_id"] = str(user_doc["_id"])
+                user_doc["id"] = user_doc["_id"]
                 return UserResponse(**user_doc)
             return None
         except Exception as e:
@@ -190,6 +192,7 @@ class UserService:
             user_doc = self.users_collection.find_one({"username": username})
             if user_doc:
                 user_doc["_id"] = str(user_doc["_id"])
+                user_doc["id"] = user_doc["_id"]
                 return UserResponse(**user_doc)
             return None
         except Exception as e:
@@ -276,6 +279,7 @@ class UserService:
             
             for user_doc in cursor:
                 user_doc["_id"] = str(user_doc["_id"])
+                user_doc["id"] = user_doc["_id"]
                 users.append(UserResponse(**user_doc))
             
             return users

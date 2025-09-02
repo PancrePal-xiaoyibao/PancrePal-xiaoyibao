@@ -56,7 +56,6 @@ class UserInDB(UserBase):
 class UserResponse(UserBase):
     """用户响应模型"""
     id: str
-    hashed_password: str
     created_at: datetime
     updated_at: datetime
     last_login: Optional[datetime] = None
