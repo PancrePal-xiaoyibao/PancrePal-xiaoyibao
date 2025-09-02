@@ -70,6 +70,17 @@ class DatabaseManager:
             request_logs.create_index([("agent", 1), ("timestamp", -1)])
             request_logs.create_index("status_code")
 
+            # Agent 原始响应日志集合索引
+            agent_logs = self.db.agent_logs
+            agent_logs.create_index("timestamp")
+            agent_logs.create_index([("user_id", 1), ("timestamp", -1)])
+            agent_logs.create_index([("agent", 1), ("timestamp", -1)])
+
+            # 流式分片日志集合索引
+            agent_logs_chunks = self.db.agent_logs_chunks
+            agent_logs_chunks.create_index([("parent_id", 1), ("seq", 1)])
+            agent_logs_chunks.create_index([("user_id", 1), ("timestamp", -1)])
+
             logger.info("✅ 数据库索引创建成功")
             
         except Exception as e:
