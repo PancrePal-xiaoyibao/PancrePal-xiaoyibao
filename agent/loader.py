@@ -4,6 +4,7 @@ import pkgutil
 from pathlib import Path
 import dotenv
 
+
 def load_agents():
     """
     动态加载 agent 目录下的所有智能体模块。
@@ -14,7 +15,8 @@ def load_agents():
     并通过 importlib 动态导入模块，实现自动发现和加载智能体。
     """
     # 检查关键环境变量 - 至少需要一个智能体的完整配置
-    dotenv.load_dotenv()
+    if os.path.exists('.env'):
+        dotenv.load_dotenv('.env')
     
     # 检查 FastGPT 配置
     fastgpt_complete = all([

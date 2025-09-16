@@ -11,7 +11,9 @@ from .base import BaseAgent
 from .registry import registry
 from .models import ChatRequest, UnifiedChatResponse, StandardChatResponse, DetailedChatResponse
 
-load_dotenv()
+if os.path.exists('.env'):
+    load_dotenv('.env')
+
 fastgpt_api_key = os.getenv("FASTGPT_API_KEY")
 fastgpt_base_url = os.getenv("FASTGPT_BASE_URL")
 fastgpt_app_id = os.getenv("FASTGPT_APP_ID")

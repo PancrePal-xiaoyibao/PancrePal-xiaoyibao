@@ -6,7 +6,8 @@ from .base import BaseAgent
 from .registry import registry
 from .models import ChatRequest, UnifiedChatResponse, Usage, Choice, Message
 
-load_dotenv()
+if os.path.exists('.env'):
+    load_dotenv('.env')
 
 # 环境变量
 zhipu_api_key = os.getenv("ZHIPUAI_API_KEY")
@@ -173,10 +174,8 @@ class ZhipuAgent(BaseAgent):
                 model="zhipu",
                 usage=Usage(prompt_tokens=0, completion_tokens=0, total_tokens=0),
                 choices=[Choice(
-                    message=Message(role="assistant", content=f"请求失败：{response_data.get('error')}"),
-                    finish_reason="error",
-                    index=0
-                )]
+                    message=Message(role="assistant", content=f"请求失败：{response_data.get('error')}")
+                , finish_reason="error", index=0)]
             )
 
         # 标准模式（detail=false）

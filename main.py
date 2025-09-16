@@ -18,15 +18,19 @@ import time
 import json
 from fastapi.openapi.utils import get_openapi
 
-# 加载环境变量
-load_dotenv()
-
 # 配置日志
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+# 有条件加载 .env：存在则加载，否则依赖系统环境变量
+if os.path.exists('.env'):
+    load_dotenv('.env')
+    logger.info("加载 .env 环境变量文件")
+else:
+    logger.info("未找到 .env 文件，使用系统环境变量")
 
 # 环境变量配置
 dify_base_url = os.getenv("DIFY_BASE_URL")
@@ -194,6 +198,7 @@ app.include_router(agents, prefix="/api/v1/agents", tags=["智能体管理"])
 app.include_router(mcp_router, prefix="/api/v1", tags=["MCP"])
 
 # 自定义 OpenAPI：为实际使用的 Header 补充到文档
+
 def custom_openapi():
     if getattr(app, "openapi_schema", None):
         return app.openapi_schema
@@ -254,7 +259,7 @@ if __name__ == "__main__":
     print("🔍 智能体管理: http://localhost:8000/api/v1/agents/")
     print("💚 健康检查: http://localhost:8000/health")
     print("\n按 Ctrl+C 停止服务")
-    
+
     uvicorn.run(
         "main:app",
         host="0.0.0.0",

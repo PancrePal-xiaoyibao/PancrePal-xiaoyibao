@@ -4,9 +4,15 @@ from pymongo.database import Database
 from dotenv import load_dotenv
 import logging
 
-load_dotenv()
-
+# 初始化日志
 logger = logging.getLogger(__name__)
+
+# 有条件加载 .env：存在则加载，否则依赖系统环境变量
+if os.path.exists('.env'):
+    load_dotenv('.env')
+    logger.info("[db] 加载 .env 环境变量文件")
+else:
+    logger.info("[db] 未找到 .env 文件，使用系统环境变量")
 
 
 class DatabaseManager:

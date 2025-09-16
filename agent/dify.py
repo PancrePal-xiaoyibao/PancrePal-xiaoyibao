@@ -8,7 +8,9 @@ import json
 import mimetypes
 from .models import ChatRequest, UnifiedChatResponse, Usage, Choice, Message
 
-load_dotenv()
+if os.path.exists('.env'):
+    load_dotenv('.env')
+
 dify_api_key = os.getenv("DIFY_API_KEY")
 dify_base_url = os.getenv("DIFY_BASE_URL")
 

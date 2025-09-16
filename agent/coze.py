@@ -8,7 +8,8 @@ from dotenv import load_dotenv
 from cozepy import Coze, TokenAuth, COZE_CN_BASE_URL, Message as CozeMessage, ChatEventType, ChatStatus, MessageType
 import traceback
 
-load_dotenv()
+if os.path.exists('.env'):
+    load_dotenv('.env')
 
 # 环境变量配置 - 使用与测试文件一致的变量名
 coze_api_token = os.getenv("COZE_API_TOKEN")
@@ -86,7 +87,7 @@ class CozeAgent(BaseAgent):
                 return self._handle_stream_response(user_id, additional_messages, conversation_id)
             else:
                 return self._handle_blocking_response(user_id, additional_messages, conversation_id)
-                
+            
         except Exception as e:
             print(f"Error in process_request: {e}")
             traceback.print_exc()
@@ -104,7 +105,7 @@ class CozeAgent(BaseAgent):
             
             if conversation_id:
                 kwargs["conversation_id"] = conversation_id
-                
+            
             chat_result = coze.chat.create_and_poll(**kwargs)
             
             # 检查聊天状态
@@ -155,7 +156,7 @@ class CozeAgent(BaseAgent):
                 for message in chat_result.messages:
                     if not hasattr(message, 'role') or not hasattr(message, 'type'):
                         continue
-                        
+                    
                     # 只处理 assistant 角色的消息
                     if message.role.value == 'assistant':
                         content = getattr(message, 'content', '')
