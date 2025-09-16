@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from api.chat import chat
 from api.upload import upload
 from api.agents import agents
+from api.mcp import mcp_router
 from api.auth import router as auth
 from api.api_keys import router as api_keys
 from agent.loader import load_agents
@@ -190,6 +191,7 @@ app.include_router(api_keys, prefix="/api/v1/api-keys", tags=["API Key管理"])
 app.include_router(chat, prefix="/api/v1", tags=["聊天"])
 app.include_router(upload, prefix="/api/v1", tags=["文件上传"])
 app.include_router(agents, prefix="/api/v1/agents", tags=["智能体管理"])
+app.include_router(mcp_router, prefix="/api/v1", tags=["MCP"])
 
 # 自定义 OpenAPI：为实际使用的 Header 补充到文档
 def custom_openapi():

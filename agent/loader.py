@@ -29,10 +29,14 @@ def load_agents():
         os.getenv("DIFY_API_KEY")
     ])
     
-    if not (fastgpt_complete or dify_complete):
+    # 检查 Zhipu 配置
+    zhipu_complete = bool(os.getenv("ZHIPUAI_API_KEY"))
+
+    if not (fastgpt_complete or dify_complete or zhipu_complete):
         print("未找到完整的智能体配置，需要至少配置一个智能体的环境变量")
         print("FastGPT 需要: FASTGPT_BASE_URL, FASTGPT_API_KEY, FASTGPT_APP_ID")
         print("Dify 需要: DIFY_BASE_URL, DIFY_API_KEY")
+        print("Zhipu 需要: ZHIPUAI_API_KEY")
         return
 
     # 获取当前包的目录路径

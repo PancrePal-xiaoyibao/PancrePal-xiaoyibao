@@ -28,6 +28,7 @@ async def list_available_agents():
                 "capabilities": {
                     "streaming": hasattr(agent, 'stream_chat') and callable(getattr(agent, 'stream_chat')),
                     "file_upload": hasattr(agent, 'upload_file') and callable(getattr(agent, 'upload_file')),
+                    "mcp": hasattr(agent, 'handle_mcp') and callable(getattr(agent, 'handle_mcp')),
                 }
             }
             agent_list.append(agent_info)

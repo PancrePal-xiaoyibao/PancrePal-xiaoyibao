@@ -96,3 +96,66 @@ class BaseAgent(ABC):
             created_by=created_by or "unknown",
             created_at=ts
         )
+
+    # ===== MCP 协议占位能力（技术展示用）=====
+    def mcp_capabilities(self) -> Dict[str, Any]:
+        """
+        返回该 Agent 对 MCP（Model Context Protocol）的宣称能力（占位实现）。
+
+        说明：
+        - 这是一个技术展示/拓展接口，默认返回静态能力声明。
+        - 具体 MCP 的握手、会话、工具调用等并未在此仓库中完整实现。
+        - 子类可覆盖此方法，返回更丰富的能力声明。
+        """
+        return {
+            "protocol": "MCP/0.1",
+            "features": {
+                "handshake": True,
+                "tools": [
+                    {"name": "echo", "description": "回显输入内容", "schema": {"type": "object"}},
+                ],
+                "streaming": hasattr(self, 'stream_chat') and callable(getattr(self, 'stream_chat', None)),
+            }
+        }
+
+    def handle_mcp(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        处理来自 MCP 客户端的请求（占位实现）。
+
+        入参:
+            payload: 任意 JSON 结构，建议包含 {"method": str, "params": dict}
+
+        返回:
+            Dict: 演示用响应，包含协议信息、Agent 标识与回显。
+
+        备注:
+            - 真实 MCP 需要状态管理与消息协议，此处仅为便于前后端联调的占位实现。
+        """
+        method = str(payload.get("method", "handshake")).lower()
+        params = payload.get("params", {}) or {}
+
+        if method in ("handshake", "hello"):
+            return {
+                "ok": True,
+                "protocol": "MCP/0.1",
+                "agent": self.__class__.__name__,
+                "capabilities": self.mcp_capabilities(),
+            }
+
+        if method == "capabilities":
+            return {
+                "ok": True,
+                "capabilities": self.mcp_capabilities(),
+            }
+
+        if method == "echo":
+            return {
+                "ok": True,
+                "result": params,
+            }
+
+        return {
+            "ok": False,
+            "error": f"Unsupported MCP method: {method}",
+            "hint": "try one of: handshake, capabilities, echo"
+        }
