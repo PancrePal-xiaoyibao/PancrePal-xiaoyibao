@@ -1,0 +1,260 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36" version="28.2.2">
+  <diagram name="第 1 页" id="e5lLBi7fHp8A4kfYkG7-">
+    <mxGraphModel dx="1734" dy="1149" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-73" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="276.25" y="1020" width="993.75" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-35" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="276.25" y="830" width="990" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-13" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="60" width="230" height="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="670" width="970" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-3" value="RAG问答需求" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="242.5" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-4" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="70" width="170" height="1110" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-5" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="305" width="385" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-6" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="66.25" width="945" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-7" value="LLM api" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="330" y="675" width="120" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-8" value="医疗LLM&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;* quark&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="660" y="677.5" width="120" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-9" value="私有微调LLM&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;(Medgemma3)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="500" y="677.5" width="120" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-10" value="Stepfun&lt;div&gt;GLM&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=7;" vertex="1" parent="1">
+          <mxGeometry x="390" y="720" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-11" value="OpenAI&lt;div&gt;Gemini&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=7;" vertex="1" parent="1">
+          <mxGeometry x="340" y="720" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-14" value="长病程自我管理&lt;div&gt;碎片场景&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="300" width="130" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-15" value="病情管理工具" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="450" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-16" value="并发症管理&lt;div&gt;。。。&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="125" y="387.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-17" value="第三声音需求" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="585" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-19" value="Fastgpt" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="313" y="401" width="106" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-20" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="940" y="300" width="290" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-21" value="Superbase" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="360" width="72" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-22" value="&lt;span style=&quot;&quot;&gt;AI-Router&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="295" y="250" width="955" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-23" value="Prompts管理" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="376.25" width="230" height="52.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-24" value="Agent管理" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="306.25" width="230" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-25" value="SSO" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="861.25" width="100" height="27.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-31" value="Edgeone" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1325" y="270" width="100" height="57.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-32" value="Mongodb" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="970" y="361.25" width="108" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-33" value="存储" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="320" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-34" value="安全" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="716.25" y="830" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-36" value="发布" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1345" y="93.75" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-37" value="Vercel" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1325" y="200" width="100" height="57.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-38" value="AI开发工具" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="410" y="1020" width="82" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-39" value="AI内容发布" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="897.5" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-40" value="心理/安宁支持" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="515" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-42" value="Web" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="325" y="92.5" width="100" height="57.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-43" value="Mini-APP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="92.5" width="100" height="57.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-44" value="小智硬件" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="93.75" width="100" height="57.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-45" value="API 服务" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1325" y="617.5" width="100" height="57.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-46" value="MCP服务" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1325" y="536.25" width="100" height="57.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-48" value="患者&lt;div&gt;家属&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#3333FF;fontColor=#FFF9F9;" vertex="1" parent="1">
+          <mxGeometry x="30" y="403.75" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-49" value="社区" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#3333FF;fontColor=#FFF9F9;" vertex="1" parent="1">
+          <mxGeometry x="30" y="962.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-50" value="医生&lt;div&gt;护理&lt;/div&gt;&lt;div&gt;药学&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=#3333FF;fontColor=#FFF9F9;" vertex="1" parent="1">
+          <mxGeometry x="30" y="720" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-52" value="Git&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="940" width="105" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-53" value="&lt;div style=&quot;forced-color-adjust: none; font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;github&lt;/div&gt;&lt;div style=&quot;forced-color-adjust: none; font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;gitee&lt;/div&gt;&lt;div style=&quot;forced-color-adjust: none; font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;gitcode&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;fontSize=10;fontColor=default;" vertex="1" parent="1">
+          <mxGeometry x="1355" y="970" width="70" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-54" value="日志监管" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="861.25" width="100" height="27.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-55" value="数据水印" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="861.25" width="100" height="27.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-56" value="Dify" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="432" y="401" width="106" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-57" value="Graphrag" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="555" y="401" width="106" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-58" value="RAG" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="455" y="320" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-59" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="280" y="540" width="980" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-60" value="RAG KB" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="320" y="570.63" width="120" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-61" value="个人知识库" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="640" y="570.63" width="140" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-62" value="独立KB" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="492" y="568.13" width="120" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-65" value="知识库星云" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="716.25" y="536.25" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-66" value="redis" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="970" y="405" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-68" value="&lt;h1 style=&quot;margin-bottom: 10px; text-shadow: rgba(44, 82, 52, 0.1) 0px 2px 4px; color: rgb(44, 82, 52); font-family: &amp;quot;Helvetica Neue&amp;quot;, Helvetica, &amp;quot;PingFang SC&amp;quot;, &amp;quot;Hiragino Sans GB&amp;quot;, &amp;quot;Microsoft YaHei&amp;quot;, SimSun, sans-serif; background-color: rgb(248, 249, 250);&quot; data-v-4d08f36d=&quot;&quot;&gt;WeKnora&lt;/h1&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="518" y="610" width="68" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-69" value="&lt;h1 style=&quot;margin-bottom: 10px; text-shadow: rgba(44, 82, 52, 0.1) 0px 2px 4px; color: rgb(44, 82, 52); font-family: &amp;quot;Helvetica Neue&amp;quot;, Helvetica, &amp;quot;PingFang SC&amp;quot;, &amp;quot;Hiragino Sans GB&amp;quot;, &amp;quot;Microsoft YaHei&amp;quot;, SimSun, sans-serif; background-color: rgb(248, 249, 250);&quot; data-v-4d08f36d=&quot;&quot;&gt;Ima &amp;amp; Get笔记&lt;/h1&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="661" y="610" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-70" value="&lt;h1 style=&quot;margin-bottom: 10px; text-shadow: rgba(44, 82, 52, 0.1) 0px 2px 4px; color: rgb(44, 82, 52); font-family: &amp;quot;Helvetica Neue&amp;quot;, Helvetica, &amp;quot;PingFang SC&amp;quot;, &amp;quot;Hiragino Sans GB&amp;quot;, &amp;quot;Microsoft YaHei&amp;quot;, SimSun, sans-serif; background-color: rgb(248, 249, 250);&quot; data-v-4d08f36d=&quot;&quot;&gt;Fastgpt/Dify&lt;/h1&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="327.5" y="605" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-71" value="AI-Router" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="291" y="500" width="950" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-72" value="MCP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="440" width="230" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-75" value="Vibe&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1070" width="125" height="80" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;weavefox&lt;/div&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;bolt.new&lt;/div&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;lovely&lt;/div&gt;" link="&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;weavefox&lt;/div&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;bolt.new&lt;/div&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;lovely&lt;/div&gt;" id="5hZVTf7TrbtX6FOWIpT3-76">
+          <mxCell style="text;whiteSpace=wrap;html=1;align=left;fontSize=10;" vertex="1" parent="1">
+            <mxGeometry x="360" y="1100" width="80" height="70" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-77" value="&lt;div&gt;IDE&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="455" y="1072.5" width="120" height="75" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;cursor/trae/kiro&lt;/div&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;x-Cli&lt;/div&gt;" link="&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;weavefox&lt;/div&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;bolt.new&lt;/div&gt;&lt;div style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(236, 236, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;lovely&lt;/div&gt;" id="5hZVTf7TrbtX6FOWIpT3-78">
+          <mxCell style="text;whiteSpace=wrap;html=1;align=left;fontSize=10;" vertex="1" parent="1">
+            <mxGeometry x="485" y="1100" width="80" height="70" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-79" value="社区看板" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="967.5" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-80" value="任务市场" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="1037.5" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-81" value="AI媒体矩阵" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="1097.5" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-83" value="AI运营工具" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="730" y="1020" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-84" value="Kimi K2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="1072.5" width="100" height="27.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-85" value="Readpro" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="1110" width="100" height="27.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-86" value="Kimi K2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="1072.5" width="100" height="27.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-87" value="知识爬取" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="954" y="570.63" width="116" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-88" value="知识预处理" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="565" width="119" height="83.75" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-89" value="三方应用&lt;div&gt;(api支持）&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="93.75" width="100" height="57.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-90" value="开放知识库" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="800" y="570.63" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-91" value="* drugbank&lt;div&gt;* clinical trial gov&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="800" y="610" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-92" value="* MinerU2&lt;br&gt;&lt;div&gt;* Embedding Agent&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="610" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-94" value="流水线1:&amp;nbsp; RAG 知识获取 - 格式转化 -&amp;nbsp; 清洗 - embedding标记 - 导入&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="280" y="770" width="980" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-95" value="流水线2:&amp;nbsp; 小X宝微调模型&amp;nbsp; &amp;nbsp; 训练数据 - 训练规范 - 模型微调 - 模型发布 - API服务 -质量监控&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;glass=0;" vertex="1" parent="1">
+          <mxGeometry x="276" y="920" width="994" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-98" value="社区智能体" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="1020" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-99" value="小x宝专家团" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="990" y="1070" width="100" height="27.5" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-100" value="论文检索" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="677.5" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5hZVTf7TrbtX6FOWIpT3-101" value="患者反馈" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="740" width="130" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
