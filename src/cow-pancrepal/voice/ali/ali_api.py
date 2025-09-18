@@ -132,7 +132,7 @@ class AliyunTokenGenerator:
             'Version': '2019-02-28',
             'AccessKeyId': self.access_key_id,
             'SignatureMethod': 'HMAC-SHA1',
-            'Timestamp': datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            'Timestamp': datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
             'SignatureVersion': '1.0',
             'SignatureNonce': str(uuid.uuid4()),  # 使用uuid生成唯一的随机数
             'Action': 'CreateToken',

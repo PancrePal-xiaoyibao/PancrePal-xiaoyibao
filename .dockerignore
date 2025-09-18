@@ -1,0 +1,50 @@
+# VCS
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.egg-info
+.venv
+venv
+env
+
+# Build
+build
+/dist
+*.whl
+
+# Local
+*.log
+*.sqlite3
+
+# IDE
+.vscode
+.idea
+
+# Cache
+.cache
+.mypy_cache
+.pytest_cache
+
+# Data / tmp
+**/tmp
+**/temp
+**/*.tmp
+
+# Large assets (keep only if needed at runtime)
+src/cow-pancrepal/user_datas.pkl
+src/cow-pancrepal/tmp
+src/cow-qywx/user_datas.pkl
+
+# Node
+node_modules
+**/node_modules
+
+# Docker
+Dockerfile*
+!.dockerignore

@@ -1,0 +1,48 @@
+services:
+  app:
+    image: ghcr.io/liueic/pancrepal-xiaoyibao:latest
+    container_name: pancrepal-app
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      # 数据库连接（容器内指向 mongo 服务）
+      MONGO_URI: ${MONGO_URI:-mongodb://mongo:27017}
+      MONGO_DATABASE: ${MONGO_DATABASE:-ai-gateway}
+      # 下列平台密钥建议在宿主机/CI 以环境变量注入
+      # DIFY_BASE_URL: ${DIFY_BASE_URL}
+      # DIFY_API_KEY: ${DIFY_API_KEY}
+      # FASTGPT_BASE_URL: ${FASTGPT_BASE_URL}
+      # FASTGPT_API_KEY: ${FASTGPT_API_KEY}
+    depends_on:
+      mongo:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-net
+
+  mongo:
+    image: mongo:7
+    container_name: pancrepal-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok" ]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-net
+
+volumes:
+  mongo-data:
+
+networks:
+  app-net:
