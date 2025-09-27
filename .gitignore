@@ -251,3 +251,10 @@ logs/
 .env.development
 .env.test
 .env.production
+
+# 硬件服务器相关
+hardware/server/main/xiaozhi-server/data
+.config.yaml
+
+hardware/server/main/manager-web/node_modules/*
+hardware/server/main/xiaozhi-server/models/SenseVoiceSmall/model.pt
