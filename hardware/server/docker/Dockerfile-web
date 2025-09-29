@@ -1,0 +1,43 @@
+# 第一阶段：构建Vue前端
+FROM node:18 as web-builder
+WORKDIR /app
+COPY hardware/server/main/manager-web/package*.json ./
+RUN npm install
+COPY hardware/server/main/manager-web .
+RUN npm run build
+
+# 第二阶段：构建Java后端
+FROM maven:3.9.4-eclipse-temurin-21 as api-builder
+WORKDIR /app
+COPY hardware/server/main/manager-api/pom.xml .
+COPY hardware/server/main/manager-api/src ./src
+RUN mvn clean package -Dmaven.test.skip=true
+
+# 第三阶段：构建最终镜像
+FROM bellsoft/liberica-runtime-container:jre-21-glibc
+
+# 安装Nginx和字体库
+RUN apk update && \
+    apk add --no-cache nginx bash && \
+    apk add --no-cache fontconfig ttf-dejavu msttcorefonts-installer && \
+    rm -rf /var/cache/apk/*
+
+# 更新字体缓存
+RUN printf 'YES\n' | update-ms-fonts && fc-cache -f -v
+
+# 配置Nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# 复制前端构建产物
+COPY --from=web-builder /app/dist /usr/share/nginx/html
+
+# 复制Java后端JAR包
+COPY --from=api-builder /app/target/xiaozhi-esp32-api.jar /app/xiaozhi-esp32-api.jar
+
+# 暴露端口
+EXPOSE 8002
+
+# 启动脚本
+COPY hardware/server/docker/start.sh /start.sh
+RUN chmod +x /start.sh
+CMD ["/start.sh"]
