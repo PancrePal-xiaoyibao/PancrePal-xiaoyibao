@@ -29,7 +29,7 @@ services:
 
   # manager-api和manager-web模块
   xiaozhi-esp32-server-web:
-    image: gaochen0/xiaozhi-esp32-server:latest
+    image: gaochen0/xiaozhi-esp32-web:latest
     container_name: xiaozhi-esp32-server-web
     restart: always
     networks:

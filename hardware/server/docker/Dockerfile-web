@@ -39,5 +39,5 @@ EXPOSE 8002
 
 # 启动脚本
 COPY hardware/server/docker/start.sh /start.sh
-RUN chmod +x /start.sh
+RUN sed -i 's/\r$//' /start.sh && chmod +x /start.sh
 CMD ["/start.sh"]

@@ -23,21 +23,13 @@ INSERT INTO `ai_model_config` (
   '小X宝', 
   1, 
   1, 
-  '{
-    "type": "xiaoxbao",
-    "detail": "False",
-    "api_key": "YOUR_API_KEY",  -- 部署时替换
-    "base_url": "https://admin.xiaoyibao.com.cn",
-    "variables": {
-      "k": "v",
-      "k2": "v2"
-    }
-  }',
+  -- 修复1：移除JSON内注释 + 修复2：修正布尔值格式 + 修复3：单行JSON（关键）
+  '{\"type\": \"xiaoxbao\", \"detail\": false, \"api_key\": \"YOUR_API_KEY\", \"base_url\": \"https://admin.xiaoyibao.com.cn\", \"variables\": {\"k\": \"v\", \"k2\": \"v2\"}}',
   '',
   '',
   0,
   1946554867105284097,
-  NOW(),  -- 使用动态时间戳
+  NOW(),
   1946554867105284097,
   NOW()
 );
@@ -52,40 +44,8 @@ INSERT INTO `ai_model_provider` (
   'LLM',
   'xiaoxbao',
   'XiaoXBao接口',
-  '[
-    {
-      "key": "base_url",
-      "type": "string",
-      "label": "模型地址",
-      "default": "https://admin.xiaoyibao.com.cn",
-      "editing": false,
-      "selected": false
-    },
-    {
-      "key": "api_key",
-      "type": "string",
-      "label": "API Key",
-      "default": "YOUR_API_KEY",  -- 部署时替换
-      "editing": false,
-      "selected": false
-    },
-    {
-      "key": "detail",
-      "type": "boolean",
-      "label": "Detail",
-      "default": "False",
-      "editing": false,
-      "selected": false
-    },
-    {
-      "key": "variables",
-      "type": "dict",
-      "label": "Variables",
-      "default": "{\\"k\\": \\"v\\", \\"k2\\": \\"v2\\"}",
-      "editing": false,
-      "selected": false
-    }
-  ]',
+  -- 修复1：移除JSON内注释 + 修复2：修正布尔值格式 + 修复3：单行JSON
+  '[{\"key\": \"base_url\", \"type\": \"string\", \"label\": \"模型地址\", \"default\": \"https://admin.xiaoyibao.com.cn\", \"editing\": false, \"selected\": false}, {\"key\": \"api_key\", \"type\": \"string\", \"label\": \"API Key\", \"default\": \"YOUR_API_KEY\", \"editing\": false, \"selected\": false}, {\"key\": \"detail\", \"type\": \"boolean\", \"label\": \"Detail\", \"default\": false, \"editing\": false, \"selected\": false}, {\"key\": \"variables\", \"type\": \"dict\", \"label\": \"Variables\", \"default\": \"{\\\"k\\\": \\\"v\\\", \\\"k2\\\": \\\"v2\\\"}\", \"editing\": false, \"selected\": false}]',
   9,
   1946554867105284097,
   NOW(),
