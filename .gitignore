@@ -217,7 +217,6 @@ user_datas.pkl
 tmp/
 *.mp3
 *.wav
-*.png
 *.jpg
 *.jpeg
 *.gif
