@@ -120,7 +120,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/
@@ -215,12 +214,9 @@ uv.lock
 # 项目特定文件
 user_datas.pkl
 tmp/
-*.mp3
-*.wav
 *.jpg
 *.jpeg
 *.gif
-*.ico
 *.svg
 
 # 配置文件备份
@@ -247,9 +243,7 @@ logs/
 
 # 环境变量文件
 .env.local
-.env.development
 .env.test
-.env.production
 
 # 硬件服务器相关
 hardware/server/main/xiaozhi-server/data
